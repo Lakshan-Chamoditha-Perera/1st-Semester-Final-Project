@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.EnrollmentsFormController">
+    <children>
+        <AnchorPane layoutX="43.0" layoutY="32.0" prefHeight="860.0" prefWidth="731.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+            <children>
+                <Label layoutX="227.0" layoutY="22.0" prefHeight="48.0" prefWidth="293.0" text="Students' Registration Form">
+                    <font>
+                        <Font name="Noto Serif CJK TC Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="128.0" prefHeight="21.0" prefWidth="133.0" text="Full name ">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="94.0" layoutY="139.0" prefHeight="21.0" prefWidth="275.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="174.0" prefHeight="21.0" prefWidth="133.0" text="Address: ">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="70.0" layoutY="270.0" prefHeight="21.0" prefWidth="161.0" text="Mobile Number: ">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="217.0" prefHeight="21.0" prefWidth="133.0" text="City:">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="319.0" prefHeight="21.0" prefWidth="161.0" text="Email">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="365.0" prefHeight="21.0" prefWidth="161.0" text="Date of birth">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="411.0" prefHeight="21.0" prefWidth="161.0" text="Gender">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="457.0" prefHeight="21.0" prefWidth="161.0" text="School">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="499.0" prefHeight="21.0" prefWidth="161.0" text="University or other">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="548.0" prefHeight="21.0" prefWidth="275.0" text="Higher educational Qualification">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtStdAddress" layoutX="246.0" layoutY="158.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXTextField fx:id="txtStdCity" layoutX="246.0" layoutY="206.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXTextField fx:id="txtStdMobileNumber" layoutX="246.0" layoutY="254.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXTextField fx:id="txtStdEmail" layoutX="246.0" layoutY="304.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXTextField fx:id="txtSchool" layoutX="246.0" layoutY="449.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXTextField fx:id="txtUniversity" layoutX="246.0" layoutY="496.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXRadioButton fx:id="rBtnMale" layoutX="246.0" layoutY="414.0" text="Male">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="gender" />
+                    </toggleGroup>
+                </JFXRadioButton>
+                <JFXRadioButton fx:id="rBtnFemale" layoutX="406.0" layoutY="414.0" text="Female" toggleGroup="$gender" />
+                <JFXDatePicker fx:id="calDob" defaultColor="#0009ff" layoutX="246.0" layoutY="355.0" />
+                <JFXTextField fx:id="txtStdName" layoutX="244.0" layoutY="118.0" prefHeight="26.0" prefWidth="411.0" />
+                <JFXRadioButton fx:id="rBtnMaster" layoutX="196.0" layoutY="594.0" text="Master">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="edu" />
+                    </toggleGroup>
+                </JFXRadioButton>
+                <JFXRadioButton fx:id="rBtnDegree" layoutX="298.0" layoutY="594.0" text="Degree" toggleGroup="$edu" />
+                <JFXRadioButton fx:id="rBtnDiploma" layoutX="404.0" layoutY="594.0" text="Diploma" toggleGroup="$edu" />
+                <JFXRadioButton layoutX="506.0" layoutY="594.0" onAction="#rBtnAL" text="A/L" toggleGroup="$edu" />
+                <JFXRadioButton fx:id="rBtnOL" layoutX="590.0" layoutY="594.0" text="O/L" toggleGroup="$edu" />
+                <Label layoutX="71.0" layoutY="90.0" prefHeight="21.0" prefWidth="161.0" text="Registration ID">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="246.0" layoutY="90.0" prefHeight="21.0" prefWidth="161.0" text="IT21805028">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="79.0" layoutY="644.0" prefHeight="21.0" prefWidth="161.0" text="Select a Course">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXRadioButton fx:id="rBtnGDSE" layoutX="240.0" layoutY="647.0" text="GDSE">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="program" />
+                    </toggleGroup>
+                </JFXRadioButton>
+                <JFXRadioButton fx:id="rBtnCMJD" layoutX="342.0" layoutY="647.0" text="CMJD" toggleGroup="$program" />
+                <JFXRadioButton fx:id="rBtnDEP" layoutX="448.0" layoutY="647.0" text="DEP" toggleGroup="$program" />
+                <JFXRadioButton fx:id="rBtnRWAD" layoutX="550.0" layoutY="647.0" text="RWAD" toggleGroup="$program" />
+                <Label layoutX="79.0" layoutY="695.0" prefHeight="21.0" prefWidth="161.0" text="Batch">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="txtBatch" layoutX="233.0" layoutY="693.0" prefHeight="21.0" prefWidth="161.0" text="lbl Batch">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="73.0" layoutY="746.0" prefHeight="21.0" prefWidth="133.0" text="Postal Code">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtStdCity1" layoutX="248.0" layoutY="735.0" prefHeight="26.0" prefWidth="411.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="863.0" layoutY="32.0" prefHeight="448.0" prefWidth="652.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+            <children>
+                <Label layoutX="245.0" layoutY="31.0" prefHeight="48.0" prefWidth="212.0" text="Gardian Details">
+                    <font>
+                        <Font name="Noto Serif CJK TC Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="76.0" layoutY="153.0" prefHeight="21.0" prefWidth="275.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="62.0" layoutY="142.0" prefHeight="21.0" prefWidth="161.0" text="Name">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtParentAddress" layoutX="208.0" layoutY="191.0" prefHeight="26.0" prefWidth="411.0" />
+                <Label layoutX="63.0" layoutY="199.0" prefHeight="21.0" prefWidth="161.0" text="Address">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtParentMobile" layoutX="211.0" layoutY="247.0" prefHeight="26.0" prefWidth="411.0" />
+                <Label layoutX="66.0" layoutY="255.0" prefHeight="21.0" prefWidth="161.0" text="Mobile Number">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtParentName" layoutX="208.0" layoutY="135.0" prefHeight="26.0" prefWidth="411.0" style="-fx-border-color: RED; -fx-border-radius: 50;" />
+                <JFXTextField fx:id="txtParentEmail" layoutX="211.0" layoutY="296.0" prefHeight="26.0" prefWidth="411.0" />
+                <Label layoutX="66.0" layoutY="304.0" prefHeight="21.0" prefWidth="161.0" text="Email">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtParentDesignation" layoutX="211.0" layoutY="342.0" prefHeight="26.0" prefWidth="411.0" />
+                <Label layoutX="66.0" layoutY="350.0" prefHeight="21.0" prefWidth="161.0" text="Designation">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="txtParentWorkPlace" layoutX="212.0" layoutY="391.0" prefHeight="26.0" prefWidth="411.0" />
+                <Label layoutX="66.0" layoutY="394.0" prefHeight="21.0" prefWidth="161.0" text="Working Place">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="863.0" layoutY="496.0" prefHeight="188.0" prefWidth="652.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+            <children>
+                <JFXButton layoutX="474.0" layoutY="123.0" prefHeight="26.0" prefWidth="123.0" style="-fx-border-radius: 50; -fx-border-color: green; -fx-background-radius: 50;" text="Enroll" />
+                <Label layoutX="169.0" layoutY="28.0" prefHeight="48.0" prefWidth="212.0" text="Payments">
+                    <font>
+                        <Font name="Noto Serif CJK TC Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="863.0" layoutY="695.0" prefHeight="188.0" prefWidth="275.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+            <children>
+                <JFXButton layoutX="60.0" layoutY="58.0" onAction="#btnViewOnAction" prefHeight="73.0" prefWidth="139.0" text="View" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="1233.0" layoutY="695.0" prefHeight="188.0" prefWidth="275.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+            <children>
+                <JFXButton layoutX="68.0" layoutY="58.0" onAction="#btnUpdateOnAction" prefHeight="73.0" prefWidth="139.0" text="Update" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

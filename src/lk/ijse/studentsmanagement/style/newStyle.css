@@ -1,0 +1,47 @@
+.windows{
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-border-color:white;
+    -fx-background-color:#343534;
+}
+
+.sideBar{
+    -fx-background-color:  #343534;
+    -fx-background-radius: 0px 50px 0px 0px;
+
+}
+.northBar{
+    -fx-background-color:  red;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+.rainbow-text {
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+    -fx-text-shadow: #A3A3A3 1px 1px 1px;
+}
+.elementname {
+    -fx-margin:auto;
+    -fx-padding:14px 16px;
+    -fx-color:#000;
+    -fx-background-color: cyan;
+    -fx-opacity: 1;
+}
+
+.body {
+    -fx-background-color: #ff8a80;
+    -fx-font-family: 'Fjalla One', sans-serif;
+    -fx-text-transform: uppercase;
+    -fx-height: 95;
+    -fx-display: -webkit-box;
+    -fx-display: -ms-flexbox;
+    -fx-display: flex;
+    -fx-webkit-box-pack: center;
+    -fx-ms-flex-pack: center;
+    -fx-justify-content: center;
+    -fx-webkit-box-align: center;
+    -fx-ms-flex-align: center;
+    -fx-align-items: center;
+}
+/*//"Proxima Nova","Verdana","Avenir Next"*/

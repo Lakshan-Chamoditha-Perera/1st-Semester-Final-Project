@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainPain" prefHeight="978.0" prefWidth="1544.0" style="-fx-background-color: white;"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.studentsmanagement.controller.MailsCounselorFormControler">
+    <children>
+        <AnchorPane layoutX="183.0" layoutY="131.0" prefHeight="672.0" prefWidth="1200.0"
+                    style="-fx-background-color: white; -fx-background-radius: 90;">
+            <children>
+                <JFXButton layoutX="397.0" layoutY="416.0" onAction="#sendToRegisteredStudentOnAction" prefHeight="50.0"
+                           prefWidth="391.0" style="-fx-background-color: green; -fx-background-radius: 50;"
+                           text="Send to a Student"/>
+                <JFXButton layoutX="398.0" layoutY="473.0" onAction="#sendToRegisteredGroupOnAction" prefHeight="50.0"
+                           prefWidth="391.0" style="-fx-background-radius: 50; -fx-background-color: yellow;"
+                           text="Send to group"/>
+                <JFXButton layoutX="397.0" layoutY="535.0" prefHeight="50.0" prefWidth="391.0"
+                           style="-fx-background-radius: 50; -fx-background-color: gray;" text="Send to an Inquary"/>
+                <ImageView blendMode="DARKEN" fitHeight="362.0" fitWidth="708.0" layoutX="396.0" layoutY="12.0"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asserts/email.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
