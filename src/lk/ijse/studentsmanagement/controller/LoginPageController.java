@@ -35,7 +35,7 @@ public class LoginPageController implements Initializable {
             txtUserName.requestFocus();
         }*/
         switch (txtUserName.getText()){
-            case "ad":  new Alert(Alert.AlertType.INFORMATION,"not fount ui").show();break;
+            case "ad":  new Alert(Alert.AlertType.INFORMATION,"ui not found").show();break;
             case "co" : Navigation.navigate(Routes.COUNSELOR,pane); break;
             case "ac":Navigation.navigate(Routes.ACADEMIC,pane);break;
         }

@@ -25,4 +25,12 @@ public class AcademicExamFormController {
     public void btnIQTestOnAction(ActionEvent actionEvent) throws IOException {
         Navigation.navigate(Routes.SCHEDULE_IQTEST,pane);
     }
+
+    public void btnAddIQTestMarksOnAction(ActionEvent actionEvent) throws IOException {
+        Navigation.navigate(Routes.ACADEMIC_ADDIQMARKS,pane);
+    }
+
+    public void btnViewResultsOnAction(ActionEvent actionEvent) throws IOException {
+        Navigation.navigate(Routes.ACADEMIC_VIEW_RESULTS_BY_BATCH,pane);
+    }
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.AcademicTranscriptFormController">
+   <children>
+      <AnchorPane layoutX="41.0" layoutY="148.0" prefHeight="73.0" prefWidth="735.0" style="-fx-background-color: purple; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="38.0" layoutY="29.0" text="Enter ID">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtId" layoutX="157.0" layoutY="19.0" prefHeight="37.0" prefWidth="298.0" style="-fx-background-color: White;" />
+            <JFXButton fx:id="btnSearch" layoutX="519.0" layoutY="18.0" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: gray; -fx-background-radius: 50;" text="Search" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="40.0" layoutY="261.0" prefHeight="288.0" prefWidth="735.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="60.0" layoutY="84.0" text="Student name">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStdName" layoutX="223.0" layoutY="84.0" text="LAKSHAN CHAMODITHA">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="121.0" text="ID">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStdNic" layoutX="223.0" layoutY="129.0" text="NIC">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="163.0" text="Registerd Date">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblRegDate" layoutX="223.0" layoutY="163.0" text="DATE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="22.0" text="Student Details" textAlignment="CENTER">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="40.0" layoutY="570.0" prefHeight="310.0" prefWidth="735.0" style="-fx-background-color: purple; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="84.0" layoutY="106.0" text="Course ID">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCourseId" layoutX="247.0" layoutY="106.0" text="GDSE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="466.0" layoutY="103.0" text="BATCH">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblBatch" layoutX="595.0" layoutY="103.0" text="63">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" layoutY="185.0" text="Duration">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCourseDuration" layoutX="247.0" layoutY="185.0" text="2 years">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="44.0" text="Programme Details" textAlignment="CENTER">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCourseName" layoutX="245.0" layoutY="145.0" text="Graduate Diploma">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" layoutY="145.0" text="Name">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="795.0" layoutY="148.0" prefHeight="638.0" prefWidth="735.0" style="-fx-background-color: purple; -fx-background-radius: 50;">
+         <children>
+            <TableView layoutX="43.0" layoutY="119.0" prefHeight="471.0" prefWidth="648.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Label layoutX="8.0" layoutY="36.0" text="Results">
+               <font>
+                  <Font size="41.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnPrint" layoutX="1235.0" layoutY="817.0" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: gray; -fx-background-radius: 50;" text="Print" />
+      <JFXButton fx:id="btnCancel" layoutX="1390.0" layoutY="817.0" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: gray; -fx-background-radius: 50;" text="Cancel" />
+      <AnchorPane layoutX="197.0" layoutY="24.0" prefHeight="73.0" prefWidth="1325.0" style="-fx-background-color: purple; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="631.0" layoutY="12.0" text="Transcripts">
+               <font>
+                  <Font size="41.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="41.0" layoutY="24.0" onAction="#btnBackOnAction" prefHeight="73.0" prefWidth="128.0" style="-fx-background-color: gray; -fx-background-radius: 50;" text="Back" />
+      <JFXButton layoutX="994.0" layoutY="812.0" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: gray; -fx-background-radius: 50;" text="send via emial" />
+   </children>
+</AnchorPane>

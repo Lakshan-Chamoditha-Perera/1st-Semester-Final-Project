@@ -59,8 +59,8 @@ public class AcademicDashboardFormController {
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
-
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Routes.ACADEMIC,mainPane);
     }
 
     @FXML
@@ -90,7 +90,8 @@ public class AcademicDashboardFormController {
     }
 
     @FXML
-    void btnStudentsOnAction(ActionEvent event) {
+    void btnStudentsOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Routes.ACADEMIC_STUDENTFORM,pane);
 
     }
 

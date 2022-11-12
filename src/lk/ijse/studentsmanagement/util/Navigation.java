@@ -109,22 +109,48 @@ public class Navigation {
                 window.setTitle("Send Mail  ");
                 initUI("SendMailToGroupfromCounsilorForm.fxml");
                 break;
+
             case ACADEMIC:
                 window.setTitle("Academic");
                 initUI("AcademicDashboardForm.fxml");
                 break;
+
             case EXAMS:
                 window.setTitle("Exams");
                 initUI("AcademicExamForm.fxml");
                 break;
+
             case SCHEDULE_EXAMS:
                 window.setTitle("SCHEDULE_EXAMS");
                 initUI("AcademicScheduleExamForm.fxml");
                 break;
+
             case SCHEDULE_IQTEST:
                 window.setTitle("SCHEDULE_IQTEST");
                 initUI("AcademicSheduleIQTestForm.fxml");
                 break;
+
+            case ACADEMIC_ADDIQMARKS:
+                window.setTitle("ACADEMIC_ADDIQMARKS");
+                initUI("AcademicAddIQtestMarksForm.fxml");
+                break;
+
+            case ACADEMIC_STUDENTFORM:
+                window.setTitle("ACADEMIC_STUDENTFORM");
+                initUI("AcademicStudentsForm.fxml");
+                break;
+
+
+            case ACADEMIC_TRANSCRIPT:
+                window.setTitle("ACADEMIC_TRANSCRIPT");
+                initUI("AcademicTranscriptForm.fxml");
+                break;
+
+            case ACADEMIC_VIEW_RESULTS_BY_BATCH:
+                window.setTitle("ACADEMIC_VIEW_RESULTS_BY_BATCH");
+                initUI("AcademicViewResultsForm.fxml");
+                break;
+
 
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();
