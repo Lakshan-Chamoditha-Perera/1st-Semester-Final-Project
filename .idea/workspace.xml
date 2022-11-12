@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89daeda8-d7d6-4bac-93f2-f72c7c634145" name="Changes" comment="milestone-1">
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageExamsFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicViewStudentsDetailsFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageExamsForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewStudentsDetailsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9699ef27-c27e-4e20-b48d-b1c197c1fef9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9699ef27-c27e-4e20-b48d-b1c197c1fef9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicExamFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicExamFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/util/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/util/Navigation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/util/Routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/util/Routes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicExamForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicExamForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicSheduleIQTestForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicSheduleIQTestForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewResultsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewResultsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/ViewStudentEnrollmentForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/ViewStudentEnrollmentForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageExamsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageExamsForm.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +163,8 @@
       <workItem from="1668172052795" duration="5167000" />
       <workItem from="1668192094954" duration="1176000" />
       <workItem from="1668193995769" duration="2403000" />
-      <workItem from="1668223799528" duration="14337000" />
+      <workItem from="1668223799528" duration="14875000" />
+      <workItem from="1668258112545" duration="53000" />
     </task>
     <task id="LOCAL-00001" summary="milestone-1">
       <created>1668139955032</created>
@@ -197,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668242380311</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="milestone-1">
+      <created>1668246682133</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668246682133</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
