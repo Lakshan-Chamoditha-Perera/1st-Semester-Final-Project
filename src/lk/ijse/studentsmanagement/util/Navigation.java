@@ -151,6 +151,10 @@ public class Navigation {
                 initUI("AcademicViewResultsForm.fxml");
                 break;
 
+            case ACADEMIC_MANAGE_EXAMS:
+                window.setTitle("ACADEMIC_MANAGE_EXAMS");
+                initUI("AcademicManageExamsForm.fxml");
+                break;
 
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();

@@ -33,4 +33,8 @@ public class AcademicExamFormController {
     public void btnViewResultsOnAction(ActionEvent actionEvent) throws IOException {
         Navigation.navigate(Routes.ACADEMIC_VIEW_RESULTS_BY_BATCH,pane);
     }
+
+    public void btnManageExamsOnAction(ActionEvent actionEvent) throws IOException {
+        Navigation.navigate(Routes.ACADEMIC_MANAGE_EXAMS,pane);
+    }
 }

@@ -11,7 +11,7 @@
                 <Font size="20.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutX="831.0" layoutY="79.0" onAction="#btnAddMarksOnAction" prefHeight="198.0" prefWidth="581.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: lightGray;" text="ADD MARKS">
+        <JFXButton layoutX="831.0" layoutY="79.0" onAction="#btnAddMarksOnAction" prefHeight="198.0" prefWidth="581.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: lightGray;" text="ADD Results">
             <font>
                 <Font name="System Bold" size="25.0" />
             </font>
@@ -21,20 +21,25 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutX="87.0" layoutY="324.0" onAction="#btnIQTestOnAction" prefHeight="198.0" prefWidth="558.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;" text="IQ TESTS">
+        <JFXButton layoutX="87.0" layoutY="324.0" onAction="#btnIQTestOnAction" prefHeight="198.0" prefWidth="558.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;" text="Add IQ TESTS">
             <font>
                 <Font name="System Bold" size="25.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutX="87.0" layoutY="636.0" onAction="#btnAddIQTestMarksOnAction" prefHeight="198.0" prefWidth="558.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;" text="ADD IQ MARKS">
+        <JFXButton layoutX="854.0" layoutY="324.0" onAction="#btnAddIQTestMarksOnAction" prefHeight="198.0" prefWidth="558.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;" text="ADD IQ MARKS">
             <font>
                 <Font name="System Bold" size="25.0" />
             </font>
         </JFXButton>
-      <JFXButton layoutX="821.0" layoutY="324.0" onAction="#btnViewResultsOnAction" prefHeight="198.0" prefWidth="581.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: lightGray;" text="View Results by Batch">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </JFXButton>
+        <JFXButton layoutX="80.0" layoutY="610.0" onAction="#btnViewResultsOnAction" prefHeight="198.0" prefWidth="581.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: lightGray;" text="View Results by Batch">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="839.0" layoutY="610.0" onAction="#btnManageExamsOnAction" prefHeight="198.0" prefWidth="566.0" style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;" text="View/Delete/Update Exams">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </JFXButton>
     </children>
 </AnchorPane>
