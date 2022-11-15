@@ -26,6 +26,6 @@ public class AcademicStudentsFormContorller {
     }
 
     public void btnViewStudentsDetailsOnAction(ActionEvent actionEvent) throws IOException {
-
+        Navigation.navigate(Routes.ACADEMIC_VIEW_STUDENT_DETAILS,pane);
     }
 }

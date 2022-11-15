@@ -1,0 +1,187 @@
+drop database project;
+Create database project;
+use project;
+
+create table inquiry(
+    studentID VARCHAR(20) NOT NULL primary key,
+    name  VARCHAR(20),
+    city VARCHAR(20),
+    email VARCHAR(60),
+    mobile VARCHAR(15),
+    date VARCHAR(20),
+    gender VARCHAR(10),
+    status VARCHAR(20) DEFAULT ('not registerd')
+);
+INSERT INTO inquiry VALUES ('200076900989','Ruvini Rangathara','Panadura','ruvinisubhasinghe20009@gmail.com','0705811994','07-11-2022','female','not registerd');
+INSERT INTO inquiry VALUES ('200012401163','Lakshan Chamoditha','Panadura','perera.alc2000@gmail.com','0714066967','07-11-2022','male','not registerd');
+
+create table iqTest(
+    id VARCHAR(10) primary key ,
+    date VARCHAR(15),
+    time varchar(15),
+    lab varchar(10)
+);
+INSERT INTO iqTest VALUES ('IQ001','07-11-2022','2.00-3.00','LAB 101');
+
+create table inquiry_iqTest_Detail(
+    studentID VARCHAR(20),
+    testID VARCHAR(10),
+    result VARCHAR(20) default ('not published'),
+    CONSTRAINT PRIMARY KEY (studentID,testID),
+    CONSTRAINT FOREIGN KEY (studentID) REFERENCES inquiry (studentID)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (testID) REFERENCES iqTest(id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table test_Payment(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    studentID VARCHAR(20),
+    date VARCHAR(15),
+    remark VARCHAR(15),
+    amount double,
+    CONSTRAINT FOREIGN KEY (studentID) REFERENCES  inquiry(studentID)
+);
+
+create table course(
+       id VARCHAR(10) PRIMARY KEY,
+       name VARCHAR(50),
+       duration VARCHAR(50)
+);
+insert into course values ( 'GDSE', 'Graduate Diploma in Software Engineering','24 months');
+insert into course values ( 'DEP', 'Direct Entry Programme','6 months');
+insert into course values ( 'RWAD', 'Rapid Web Application Developer','6 months');
+
+create table batch(
+	batchID VARCHAR(10),
+	batch_no    int,
+        courseId VARCHAR(10),
+        fee double,
+        start_date DATE,
+        maximum_std_count int,
+       	constraint foreign key (courseId) references course (id),
+        constraint primary key (batchID,batch_no, courseId)
+);
+insert into batch values ('61GDSE', 61, 'GDSE',325000,'2022-01-01',100);
+insert into batch values ( '63GDSE',63, 'GDSE',325000,'2022-05-01',100);
+insert into batch values ( '61DEP',61, 'DEP',125000,'2022-01-01',30);
+insert into batch values ( '63DEP',63, 'DEP',150000,'2022-07-01',30);
+
+create table gardian(
+    id           varchar(15) not null primary key,
+    name         varchar(45) null,
+    address      varchar(50) null,
+    mobile       varchar(15) null,
+    home         varchar(15) null,
+    email        varchar(80) null,
+    designation  varchar(50) null,
+    workingPlace varchar(60) null
+);
+insert into gardian values ( '757621274V', 'Damayanthi Perera','Pamunugama','0714066967','0380000000','slicdamayanthi@gmail.com','Advisor','SLIC');
+
+
+create table registration(
+    registration_id VARCHAR(20),
+    nic_num         varchar(20),
+   batchID varchar(10),
+   courseID varchar(10),
+    gardian_id 	    varchar(10),
+    full_name       VARCHAR(60),
+    address         varchar(100),
+    city            varchar(40),
+    postal_code     VARCHAR(15),
+    mobile_number   VARCHAR(15),
+    email           VARCHAR(45),
+    dob             DATE,
+    gender          ENUM ('Male','Female')                         NOT NULL,
+    school          VARCHAR(45),
+    higherEDU       ENUM ('Master','Degree','Diploma','A/L','O/L') NOT NULL,
+    status          ENUM ('Active','Completed','Not Active') DEFAULT 'Active',
+    constraint primary key (registration_id),
+    constraint foreign key (courseId) references course (id) on delete cascade on update cascade,
+    constraint foreign key (batchID) references project.batch (batchID) on delete cascade on update cascade,
+    constraint foreign key (nic_num) references project.inquiry (studentID) on delete cascade on update cascade,
+    constraint foreign key (gardian_id) references project.gardian (id) on delete cascade on update cascade
+);
+INSERT into registration VALUES ('IT21805028', '200012401163', '61GDSE','GDSE','757621274V','Lakshan Chamoditha Perera','169/4,Pamunugama,Alubomulla','Panadura','12500','0714066967','perera.alc2000@gmail.com','2000-05-03','Male','Royal College','A/L','Active');
+
+
+
+create table payments(
+    paymentId VARCHAR(25) PRIMARY KEY ,
+    registration_id varchar(20),
+    type ENUM('registration','fee') default 'fee',
+    remark VARCHAR (45),
+    amount DOUBLE,
+    date DATE,
+    constraint foreign key (registration_id) references project.registration(registration_id) 
+);
+INSERT into payments VALUES ('P2200001', 'IT21805028', 'registration','Enrollment Fee',20000,'2022-11-10');
+
+
+create table subject(
+    id VARCHAR(10) PRIMARY KEY ,
+    name VARCHAR(30),
+    learning_hours VARCHAR(15)
+);
+
+INSERT INTO subject values ('ITS-1010','Programming Fundamentals',null);
+INSERT INTO subject values ('ITS-1012','Database Management Systems',null);
+INSERT INTO subject values ('ITS-1013','Database Programming',null);
+INSERT INTO subject values ('ITS-1027','Software Engineering',null);
+INSERT INTO subject values ('ITS-1033','Object Oriented Programming',null);
+
+create table course_subject_detail(
+    courseId VARCHAR(10),
+    subjectID VARCHAR(10),
+    CONSTRAINT PRIMARY KEY (courseId,subjectID),
+    CONSTRAINT FOREIGN KEY (courseId) REFERENCES course (id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (subjectID) REFERENCES subject(id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+insert into course_subject_detail values ( 'GDSE', 'ITS-1010');
+insert into course_subject_detail values ( 'GDSE', 'ITS-1012');
+insert into course_subject_detail values ( 'GDSE', 'ITS-1013');
+insert into course_subject_detail values ( 'GDSE', 'ITS-1027');
+insert into course_subject_detail values ( 'GDSE', 'ITS-1033');
+
+insert into course_subject_detail values ( 'DEP', 'ITS-1010');
+insert into course_subject_detail values ( 'DEP', 'ITS-1012');
+insert into course_subject_detail values ( 'DEP', 'ITS-1013');
+insert into course_subject_detail values ( 'DEP', 'ITS-1027');
+
+
+create table exam(
+    id VARCHAR(10),
+    subjectID VARCHAR(10),
+    batchId varchar(10),
+    description VARCHAR(20),
+    date DATE,
+    lab VARCHAR(10),
+    CONSTRAINT PRIMARY KEY (id),
+    CONSTRAINT FOREIGN KEY (subjectID) references subject(id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    CONSTRAINT FOREIGN KEY (batchId) references batch(batchID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO exam VALUES ('EX001','ITS-1010','61GDSE','Final','2022-11-11','lab 302');
+INSERT INTO exam VALUES ('EX002','ITS-1010','61DEP','Final','2022-11-12','lab 302');;
+
+
+create table registration_exam_results(
+         exam_id VARCHAR(10),
+         registration_id VARCHAR(20),
+         marks INT,
+         result varchar(3),
+         CONSTRAINT PRIMARY KEY (exam_id,registration_id),
+         CONSTRAINT FOREIGN KEY (exam_id) references exam(id) ON DELETE CASCADE ON UPDATE CASCADE ,
+         CONSTRAINT FOREIGN KEY (registration_id) references registration(registration_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO registration_exam_results VALUES ('EX001','IT21805028',90,'A');
+
+
+
+
+

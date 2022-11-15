@@ -109,6 +109,6 @@ public class EnrollmentsFormController {
         Navigation.navigate(Routes.VIEW_REGISTRATION,pane);
     }
 
-    public void btnUpdateOnAction(ActionEvent actionEvent) {
+    public void btnEnrollClickOnAction(ActionEvent actionEvent) {
     }
 }

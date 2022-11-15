@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.EnrollmentsFormController">
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" style="-fx-background-color: #333535; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.EnrollmentsFormController">
     <children>
-        <AnchorPane layoutX="43.0" layoutY="32.0" prefHeight="860.0" prefWidth="731.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+        <AnchorPane layoutX="58.0" layoutY="90.0" prefHeight="811.0" prefWidth="714.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
             <children>
                 <Label layoutX="227.0" layoutY="22.0" prefHeight="48.0" prefWidth="293.0" text="Students' Registration Form">
                     <font>
@@ -137,7 +137,7 @@
                 <JFXTextField fx:id="txtStdCity1" layoutX="248.0" layoutY="735.0" prefHeight="26.0" prefWidth="411.0" />
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="863.0" layoutY="32.0" prefHeight="448.0" prefWidth="652.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+        <AnchorPane layoutX="863.0" layoutY="93.0" prefHeight="429.0" prefWidth="652.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
             <children>
                 <Label layoutX="245.0" layoutY="31.0" prefHeight="48.0" prefWidth="212.0" text="Gardian Details">
                     <font>
@@ -187,25 +187,51 @@
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="863.0" layoutY="496.0" prefHeight="188.0" prefWidth="652.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
+        <AnchorPane layoutX="863.0" layoutY="544.0" prefHeight="261.0" prefWidth="652.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
             <children>
-                <JFXButton layoutX="474.0" layoutY="123.0" prefHeight="26.0" prefWidth="123.0" style="-fx-border-radius: 50; -fx-border-color: green; -fx-background-radius: 50;" text="Enroll" />
-                <Label layoutX="169.0" layoutY="28.0" prefHeight="48.0" prefWidth="212.0" text="Payments">
+                <Label layoutX="36.0" layoutY="14.0" prefHeight="48.0" prefWidth="212.0" text="Payments">
                     <font>
                         <Font name="Noto Serif CJK TC Bold" size="18.0" />
                     </font>
                 </Label>
+                <Label layoutX="27.0" layoutY="67.0" prefHeight="21.0" prefWidth="161.0" text="Payment ID">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="202.0" layoutY="67.0" prefHeight="21.0" prefWidth="161.0" text="P0001">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="27.0" layoutY="110.0" prefHeight="21.0" prefWidth="161.0" text="Amount">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="27.0" layoutY="147.0" prefHeight="21.0" prefWidth="161.0" text="Remark">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="27.0" layoutY="181.0" prefHeight="21.0" prefWidth="161.0" text="Type">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="27.0" layoutY="221.0" prefHeight="21.0" prefWidth="161.0" text="Date">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="863.0" layoutY="695.0" prefHeight="188.0" prefWidth="275.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
-            <children>
-                <JFXButton layoutX="60.0" layoutY="58.0" onAction="#btnViewOnAction" prefHeight="73.0" prefWidth="139.0" text="View" />
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="1233.0" layoutY="695.0" prefHeight="188.0" prefWidth="275.0" style="-fx-background-color: lightblue; -fx-background-radius: 50;">
-            <children>
-                <JFXButton layoutX="68.0" layoutY="58.0" onAction="#btnUpdateOnAction" prefHeight="73.0" prefWidth="139.0" text="Update" />
-            </children>
-        </AnchorPane>
+        <JFXButton layoutX="1338.0" layoutY="828.0" onAction="#btnViewOnAction" prefHeight="73.0" prefWidth="139.0" style="-fx-background-color: pink; -fx-background-radius: 50;" text="View" />
+        <JFXButton layoutX="890.0" layoutY="828.0" onAction="#btnEnrollClickOnAction" prefHeight="73.0" prefWidth="411.0" style="-fx-border-radius: 50; -fx-border-color: green; -fx-background-radius: 50; -fx-background-color: Green;" text="Make Payment &amp; Enroll" />
+      <Label layoutX="64.0" layoutY="14.0" prefHeight="66.0" prefWidth="703.0" text="ENROLLMENTS" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="50.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

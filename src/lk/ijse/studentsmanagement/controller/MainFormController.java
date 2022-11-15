@@ -2,6 +2,7 @@ package lk.ijse.studentsmanagement.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -11,7 +12,7 @@ import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
 
-public class MainFormController {
+public class MainFormController  {
 
     public AnchorPane pane;
 

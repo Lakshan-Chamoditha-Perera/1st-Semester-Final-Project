@@ -72,4 +72,6 @@ public class ViewStudentEnrollmentFormController {
         Navigation.navigate(Routes.ENROLLMENTS,pane);
     }
 
+    public void btnUpdateClickOnAction(ActionEvent actionEvent) {
+    }
 }

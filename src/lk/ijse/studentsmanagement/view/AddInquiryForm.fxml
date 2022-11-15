@@ -10,113 +10,85 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="871.0" prefWidth="1544.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lk.ijse.studentsmanagement.controller.AddInquiryFormController">
+<AnchorPane fx:id="pane" prefHeight="858.0" prefWidth="1544.0" style="-fx-background-color: #333535; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.AddInquiryFormController">
     <children>
-        <AnchorPane layoutX="14.0" layoutY="75.0" prefHeight="124.0" prefWidth="1494.0"
-                    style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
+        <AnchorPane layoutX="19.0" layoutY="159.0" prefHeight="493.0" prefWidth="1484.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
             <children>
-                <Label layoutX="14.0" layoutY="14.0" prefHeight="67.0" prefWidth="435.0"
-                       style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;"
-                       text="Welcome back to Dashboard Counsilor..."/>
-            </children>
-        </AnchorPane>
-        <Label layoutX="659.0" layoutY="31.0" prefHeight="27.0" prefWidth="204.0" text="Add New Student Form">
-            <font>
-                <Font name="KacstArt" size="17.0"/>
-            </font>
-        </Label>
-        <AnchorPane layoutX="19.0" layoutY="208.0" prefHeight="444.0" prefWidth="1484.0"
-                    style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
-            <children>
-                <Label layoutX="68.0" layoutY="14.0" prefHeight="44.0" prefWidth="311.0" text="STUDENTS INQUARY FORM"
-                       textAlignment="RIGHT" underline="true">
+                <Label layoutX="68.0" layoutY="14.0" prefHeight="44.0" prefWidth="311.0" text="STUDENTS INQUARY FORM" textAlignment="RIGHT" underline="true">
                     <font>
-                        <Font name="Z003-MediumItalic" size="23.0"/>
+                        <Font name="Z003-MediumItalic" size="23.0" />
                     </font>
                 </Label>
-                <Label layoutX="772.0" layoutY="182.0" prefHeight="24.0" prefWidth="203.0"
-                       text="Date                        :">
+                <Label layoutX="772.0" layoutY="182.0" prefHeight="24.0" prefWidth="203.0" text="Date                        :">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
-                <JFXDatePicker fx:id="datePicker" layoutX="1006.0" layoutY="181.0" prefHeight="26.0" prefWidth="219.0"
-                               promptText="Choose a Date"/>
+                <JFXDatePicker fx:id="datePicker" layoutX="1006.0" layoutY="181.0" prefHeight="26.0" prefWidth="219.0" promptText="Choose a Date" />
                 <JFXRadioButton fx:id="rBtnMale" layoutX="996.0" layoutY="255.0" selected="true" text="Male">
                     <toggleGroup>
-                        <ToggleGroup fx:id="gender"/>
+                        <ToggleGroup fx:id="gender" />
                     </toggleGroup>
                 </JFXRadioButton>
-                <JFXRadioButton layoutX="1131.0" layoutY="255.0" text="Female" toggleGroup="$gender"/>
+                <JFXRadioButton layoutX="1131.0" layoutY="255.0" text="Female" toggleGroup="$gender" />
                 <Label layoutX="772.0" layoutY="251.0" prefHeight="24.0" prefWidth="203.0" text="Gender">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
                 <Label layoutX="217.0" layoutY="112.0" text="Students National ID:">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtId" layoutX="449.0" layoutY="104.0" prefHeight="26.0" prefWidth="219.0"
-                              promptText="Enter ID Card Number"/>
-                <Label layoutX="217.0" layoutY="172.0" prefHeight="24.0" prefWidth="203.0"
-                       text="Name                    :">
+                <JFXTextField fx:id="txtId" layoutX="449.0" layoutY="104.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter ID Card Number" />
+                <Label layoutX="217.0" layoutY="172.0" prefHeight="24.0" prefWidth="203.0" text="Name                    :">
                     <font>
-                        <Font name="System Italic" size="20.0"/>
+                        <Font name="System Italic" size="20.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtName" layoutX="449.0" layoutY="171.0" prefHeight="26.0" prefWidth="219.0"
-                              promptText="Enter name"/>
-                <Label layoutX="774.0" layoutY="112.0" prefHeight="24.0" prefWidth="203.0"
-                       text="Mobile number        :">
+                <JFXTextField fx:id="txtName" layoutX="449.0" layoutY="171.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter name" />
+                <Label layoutX="774.0" layoutY="112.0" prefHeight="24.0" prefWidth="203.0" text="Mobile number        :">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtMobile" layoutX="1003.0" layoutY="117.0" prefHeight="26.0" prefWidth="219.0"
-                              promptText="Enter Mobile number"/>
-                <Label layoutX="217.0" layoutY="241.0" prefHeight="24.0" prefWidth="203.0"
-                       text="Email                     :">
+                <JFXTextField fx:id="txtMobile" layoutX="1003.0" layoutY="117.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter Mobile number" />
+                <Label layoutX="217.0" layoutY="241.0" prefHeight="24.0" prefWidth="203.0" text="Email                     :">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtEmail" layoutX="449.0" layoutY="241.0" prefHeight="26.0" prefWidth="219.0"
-                              promptText="Enter email"/>
-                <Label layoutX="221.0" layoutY="316.0" prefHeight="24.0" prefWidth="203.0"
-                       text="City                      :">
+                <JFXTextField fx:id="txtEmail" layoutX="449.0" layoutY="241.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter email" />
+                <Label layoutX="221.0" layoutY="316.0" prefHeight="24.0" prefWidth="203.0" text="City                      :">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtCity" layoutX="449.0" layoutY="315.0" prefHeight="26.0" prefWidth="219.0"
-                              promptText="Enter City"/>
-                <JFXButton fx:id="btnAdd" layoutX="1219.0" layoutY="359.0" onAction="#btnAddOnAction" prefHeight="67.0"
-                           prefWidth="189.0" style="-fx-background-color: pink;" text="Add To Inquiry List"/>
+                <JFXTextField fx:id="txtCity" layoutX="449.0" layoutY="315.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter City" />
+                <JFXButton fx:id="btnAdd" layoutX="1219.0" layoutY="359.0" onAction="#btnAddOnAction" prefHeight="67.0" prefWidth="189.0" style="-fx-background-color: pink; -fx-background-radius: 20;" text="Add To Inquiry List" />
             </children>
         </AnchorPane>
-        <JFXButton layoutX="18.0" layoutY="25.0" onAction="#backClickOnAction" prefHeight="26.0" prefWidth="39.0"
-                   style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="&lt;">
+        <JFXButton layoutX="19.0" layoutY="47.0" onAction="#backClickOnAction" prefHeight="44.0" prefWidth="125.0" style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="&lt;">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </JFXButton>
-        <AnchorPane layoutX="19.0" layoutY="666.0" prefHeight="151.0" prefWidth="1212.0"
-                    style="-fx-background-color: #f5f5f5; -fx-background-radius: 25;">
+        <AnchorPane layoutX="19.0" layoutY="679.0" prefHeight="151.0" prefWidth="1484.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 25;">
             <children>
                 <Label layoutX="105.0" layoutY="21.0" prefHeight="24.0" prefWidth="203.0" text="Exam Date : ">
                     <font>
-                        <Font name="System Italic" size="19.0"/>
+                        <Font name="System Italic" size="19.0" />
                     </font>
                 </Label>
-                <JFXComboBox fx:id="cmbExamDates" layoutX="308.0" layoutY="20.0" prefHeight="26.0" prefWidth="247.0"
-                             promptText="Please select a exam date"/>
-                <JFXButton fx:id="btnPayment" layoutX="966.0" layoutY="24.0" prefHeight="44.0" prefWidth="154.0"
-                           style="-fx-background-color: pink;" text="Make Payment"/>
+                <JFXComboBox fx:id="cmbExamDates" layoutX="308.0" layoutY="20.0" prefHeight="26.0" prefWidth="247.0" promptText="Please select a exam date" />
+                <JFXButton fx:id="btnPayment" layoutX="590.0" layoutY="27.0" prefHeight="98.0" prefWidth="176.0" style="-fx-background-color: pink; -fx-background-radius: 20;" text="Make Payment" />
             </children>
         </AnchorPane>
+      <Label layoutX="186.0" layoutY="4.0" prefHeight="129.0" prefWidth="703.0" text="ADD NEW STUDENTS INQUARY" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="50.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

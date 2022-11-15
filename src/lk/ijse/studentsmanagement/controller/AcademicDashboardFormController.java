@@ -100,4 +100,7 @@ public class AcademicDashboardFormController {
         Navigation.navigate(Routes.ACADEMIC,mainPane);
     }
 
+    public void btnManageBatchesOnAction(ActionEvent actionEvent) throws IOException {
+                Navigation.navigate(Routes.ACADEMIC_MANAGE_BATCHES,pane);
+    }
 }

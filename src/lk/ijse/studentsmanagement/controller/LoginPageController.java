@@ -48,9 +48,7 @@ public class LoginPageController implements Initializable {
                 if (systemUser.getUserName().equals(txtUserName.getText())) {
                     if (systemUser.getPassword().equals(txtPassword.getText())) {
                         switch (systemUser.getUserName()) {
-                            case "ad":
-                                Navigation.navigate(Routes.ADMIN, pane);
-                                break;
+
                             case "co":
                                 Navigation.navigate(Routes.COUNSELOR, pane);
                                 break;

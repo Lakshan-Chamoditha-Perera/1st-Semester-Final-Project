@@ -156,6 +156,21 @@ public class Navigation {
                 initUI("AcademicManageExamsForm.fxml");
                 break;
 
+            case ACADEMIC_VIEW_STUDENT_DETAILS:
+                window.setTitle("ACADEMIC_VIEW_STUDENT_DETAILS");
+                initUI("AcademicViewStudentsDetailsForm.fxml");
+                break;
+            case ACADEMIC_ADD_NEW_BATCH:
+                window.setTitle("ACADEMIC_ADD_NEW_BATCH");
+                initUI("AcademicAddNewBatchForm.fxml");
+                break;
+
+            case ACADEMIC_MANAGE_BATCHES:
+                window.setTitle("ACADEMIC_MANAGE_BATCHES");
+                initUI("AcademicManageBatchesForm.fxml");
+                break;
+
+
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();
                 break;

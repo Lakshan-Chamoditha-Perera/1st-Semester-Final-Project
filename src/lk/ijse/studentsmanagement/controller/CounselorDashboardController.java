@@ -63,13 +63,15 @@ public class CounselorDashboardController implements Initializable {
         localDateAndTime();
     }
     private void localDateAndTime() {
-        lbldate.setText(
-                new SimpleDateFormat(" dd : MM : 20yy")
+
+        lbldate.setText("  "+new SimpleDateFormat("dd : MM : 20yy ")
                         .format(
                                 new Date()
                         ));
+
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0),
-                event -> lblTime.setText(new SimpleDateFormat("hh:mm:ss  a").format(Calendar.getInstance().getTime()))),
+                event -> lblTime.setText("  "+new SimpleDateFormat("hh:mm:ss  a").format(Calendar.getInstance().getTime()))),
                 new KeyFrame(Duration.seconds(1)));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();

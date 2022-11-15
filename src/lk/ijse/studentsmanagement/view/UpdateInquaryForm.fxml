@@ -8,52 +8,47 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lk.ijse.studentsmanagement.controller.UpdateInquaryFormController">
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" style="-fx-background-color: #333535; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.UpdateInquaryFormController">
     <children>
-        <JFXButton layoutX="28.0" layoutY="35.0" onAction="#backClickOnAction" prefHeight="26.0" prefWidth="39.0"
-                   style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="&lt;">
+        <JFXButton layoutX="28.0" layoutY="70.0" onAction="#backClickOnAction" prefHeight="39.0" prefWidth="122.0" style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="&lt;">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </JFXButton>
-        <AnchorPane layoutX="30.0" layoutY="241.0" prefHeight="455.0" prefWidth="1484.0"
-                    style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
+        <AnchorPane layoutX="30.0" layoutY="330.0" prefHeight="455.0" prefWidth="1484.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
             <children>
                 <JFXRadioButton fx:id="rBtnMale" layoutX="946.0" layoutY="158.0" text="Male">
                     <toggleGroup>
-                        <ToggleGroup fx:id="gender"/>
+                        <ToggleGroup fx:id="gender" />
                     </toggleGroup>
                 </JFXRadioButton>
-                <JFXRadioButton layoutX="1081.0" layoutY="158.0" text="Female" toggleGroup="$gender"/>
-                <Label layoutX="774.0" layoutY="166.0" text="Gender"/>
-                <Label layoutX="277.0" layoutY="83.0" text="Students National ID:"/>
-                <JFXTextField fx:id="txtId" layoutX="449.0" layoutY="73.0" prefHeight="26.0" prefWidth="219.0"/>
-                <Label layoutX="277.0" layoutY="150.0" text="Name"/>
-                <JFXTextField fx:id="txtName" layoutX="449.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0"/>
-                <Label layoutX="774.0" layoutY="96.0" text="Mobile number"/>
-                <JFXTextField fx:id="txtMobile" layoutX="946.0" layoutY="86.0" prefHeight="26.0" prefWidth="219.0"/>
-                <Label layoutX="277.0" layoutY="219.0" text="Email"/>
-                <JFXTextField fx:id="txtEmail" layoutX="449.0" layoutY="209.0" prefHeight="26.0" prefWidth="219.0"/>
-                <Label layoutX="274.0" layoutY="282.0" text="City:"/>
-                <JFXTextField fx:id="txtCity" layoutX="446.0" layoutY="272.0" prefHeight="26.0" prefWidth="219.0"/>
+                <JFXRadioButton layoutX="1081.0" layoutY="158.0" text="Female" toggleGroup="$gender" />
+                <Label layoutX="774.0" layoutY="166.0" text="Gender" />
+                <Label layoutX="277.0" layoutY="83.0" text="Students National ID:" />
+                <JFXTextField fx:id="txtId" layoutX="449.0" layoutY="73.0" prefHeight="26.0" prefWidth="219.0" />
+                <Label layoutX="277.0" layoutY="150.0" text="Name" />
+                <JFXTextField fx:id="txtName" layoutX="449.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" />
+                <Label layoutX="774.0" layoutY="96.0" text="Mobile number" />
+                <JFXTextField fx:id="txtMobile" layoutX="946.0" layoutY="86.0" prefHeight="26.0" prefWidth="219.0" />
+                <Label layoutX="277.0" layoutY="219.0" text="Email" />
+                <JFXTextField fx:id="txtEmail" layoutX="449.0" layoutY="209.0" prefHeight="26.0" prefWidth="219.0" />
+                <Label layoutX="274.0" layoutY="282.0" text="City:" />
+                <JFXTextField fx:id="txtCity" layoutX="446.0" layoutY="272.0" prefHeight="26.0" prefWidth="219.0" />
             </children>
         </AnchorPane>
-        <JFXButton fx:id="l" layoutX="1174.0" layoutY="838.0" onAction="#btnCancelOnAction" prefHeight="68.0"
-                   prefWidth="239.0" style="-fx-background-color: Green; -fx-background-radius: 50;" text="Cancel"/>
-        <JFXButton fx:id="btnUpdate" layoutX="866.0" layoutY="838.0" onAction="#btnUpdateOnAction" prefHeight="68.0"
-                   prefWidth="239.0" style="-fx-background-color: Green; -fx-background-radius: 50;" text="Update"/>
-        <AnchorPane layoutX="24.0" layoutY="78.0" prefHeight="141.0" prefWidth="1520.0"
-                    style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
+        <JFXButton fx:id="l" layoutX="1174.0" layoutY="838.0" onAction="#btnCancelOnAction" prefHeight="68.0" prefWidth="239.0" style="-fx-background-color: Green; -fx-background-radius: 50;" text="Cancel" />
+        <JFXButton fx:id="btnUpdate" layoutX="866.0" layoutY="838.0" onAction="#btnUpdateOnAction" prefHeight="68.0" prefWidth="239.0" style="-fx-background-color: Green; -fx-background-radius: 50;" text="Update" />
+        <AnchorPane layoutX="28.0" layoutY="169.0" prefHeight="141.0" prefWidth="1484.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
             <children>
-                <Label layoutX="377.0" layoutY="30.0" prefHeight="60.0" prefWidth="129.0"
-                       style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;"
-                       text="Enter ID :"/>
-                <JFXTextField layoutX="529.0" layoutY="42.0" prefHeight="36.0" prefWidth="263.0"
-                              promptText="Enter ID card number"/>
-                <JFXButton layoutX="888.0" layoutY="36.0" prefHeight="49.0" prefWidth="143.0" text="Search"/>
+                <Label layoutX="377.0" layoutY="30.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Enter ID :" />
+                <JFXTextField layoutX="529.0" layoutY="42.0" prefHeight="36.0" prefWidth="263.0" promptText="Enter ID card number" />
+                <JFXButton layoutX="888.0" layoutY="36.0" prefHeight="49.0" prefWidth="143.0" text="Search" />
             </children>
         </AnchorPane>
+      <Label layoutX="184.0" layoutY="35.0" prefHeight="108.0" prefWidth="703.0" text="UPDATE STUDENTS INQUARY" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="50.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
