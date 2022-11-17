@@ -16,7 +16,13 @@ public class Navigation {
         Navigation.pane.getChildren().clear();
         Stage window = (Stage) Navigation.pane.getScene().getWindow();
 
+
         switch (route) {
+
+            case MAIN:
+                window.setTitle("");
+                initUI("MainForm.fxml");
+                break;
 
             case LOGIN:
                 window.setTitle("LOGIN PAGE");

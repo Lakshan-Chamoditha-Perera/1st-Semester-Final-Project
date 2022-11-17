@@ -35,7 +35,6 @@ public class LoginPageController implements Initializable {
             txtUserName.requestFocus();
         }*/
         switch (txtUserName.getText()){
-            case "ad":  new Alert(Alert.AlertType.INFORMATION,"ui not found").show();break;
             case "co" : Navigation.navigate(Routes.COUNSELOR,pane); break;
             case "ac":Navigation.navigate(Routes.ACADEMIC,pane);break;
         }
@@ -71,7 +70,7 @@ public class LoginPageController implements Initializable {
         }
     }
 
-    Pattern pattern[] = new Pattern[2];
+    Pattern[] pattern = new Pattern[2];
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

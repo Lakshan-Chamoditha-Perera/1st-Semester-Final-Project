@@ -3,6 +3,7 @@ package lk.ijse.studentsmanagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,5 +19,8 @@ public class AppInitializer extends Application {
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/MainForm.fxml"))));
         primaryStage.setTitle("Students Management System");
         primaryStage.show();
+        primaryStage.setResizable(false);
+        primaryStage.setFullScreen(true);
+        primaryStage.getIcons().add(new Image("lk/ijse/studentsmanagement/asserts/IJSE_LOGO.png"));
     }
 }

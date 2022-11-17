@@ -3,6 +3,7 @@ package lk.ijse.studentsmanagement.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -13,10 +14,15 @@ import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AcademicDashboardFormController {
+import static lk.ijse.studentsmanagement.util.TimeDate.localDateAndTime;
+
+public class AcademicDashboardFormController implements Initializable {
 
     public ImageView btnHome;
+    public Label lblDate;
     @FXML
     private AnchorPane mainPane;
 
@@ -40,12 +46,6 @@ public class AcademicDashboardFormController {
 
     @FXML
     private JFXButton btnExam;
-
-    @FXML
-    private Label lbldate;
-
-    @FXML
-    private Label lbldate2;
 
     @FXML
     private Label lblTime;
@@ -102,5 +102,10 @@ public class AcademicDashboardFormController {
 
     public void btnManageBatchesOnAction(ActionEvent actionEvent) throws IOException {
                 Navigation.navigate(Routes.ACADEMIC_MANAGE_BATCHES,pane);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        localDateAndTime(lblDate, lblTime);
     }
 }

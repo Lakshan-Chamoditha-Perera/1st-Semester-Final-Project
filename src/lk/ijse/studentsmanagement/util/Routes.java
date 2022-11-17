@@ -1,6 +1,7 @@
 package lk.ijse.studentsmanagement.util;
 
 public enum Routes {
+    MAIN,
     COUNSELOR,
     ACADEMIC,
     LOGIN,

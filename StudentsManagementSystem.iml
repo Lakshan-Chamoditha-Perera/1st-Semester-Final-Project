@@ -11,5 +11,6 @@
     <orderEntry type="library" name="javax.mail" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
     <orderEntry type="library" name="jfoenix-8.0.7" level="project" />
+    <orderEntry type="library" name="GNCalendar-1.0-alpha" level="project" />
   </component>
 </module>
