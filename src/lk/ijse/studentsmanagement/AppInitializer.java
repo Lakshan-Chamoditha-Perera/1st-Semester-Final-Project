@@ -20,7 +20,7 @@ public class AppInitializer extends Application {
         primaryStage.setTitle("Students Management System");
         primaryStage.show();
         primaryStage.setResizable(false);
-        primaryStage.setFullScreen(true);
+     //   primaryStage.setFullScreen(true);
         primaryStage.getIcons().add(new Image("lk/ijse/studentsmanagement/asserts/IJSE_LOGO.png"));
     }
 }

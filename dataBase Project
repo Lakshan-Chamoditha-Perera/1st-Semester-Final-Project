@@ -35,11 +35,12 @@ create table inquiry_iqTest_Detail(
 );
 
 create table test_Payment(
-    id int PRIMARY KEY AUTO_INCREMENT,
+id VARCHAR (15) PRIMARY KEY,
     studentID VARCHAR(20),
     date VARCHAR(15),
     remark VARCHAR(15),
     amount double,
+    
     CONSTRAINT FOREIGN KEY (studentID) REFERENCES  inquiry(studentID)
 );
 

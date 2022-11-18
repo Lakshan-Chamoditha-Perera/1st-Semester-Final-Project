@@ -9,27 +9,21 @@
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="lk.ijse.studentsmanagement.controller.AcademicExamFormController">
     <children>
-        <JFXButton layoutX="24.0" layoutY="26.0" onAction="#backClickOnAction" prefHeight="39.0" prefWidth="96.0"
-                   style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="&lt;">
-            <font>
-                <Font size="20.0"/>
-            </font>
-        </JFXButton>
-        <JFXButton layoutX="821.0" layoutY="129.0" onAction="#btnAddMarksOnAction" prefHeight="198.0" prefWidth="581.0"
+        <JFXButton layoutX="851.0" layoutY="129.0" onAction="#btnAddMarksOnAction" prefHeight="198.0" prefWidth="551.0"
                    style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: lightGray;"
                    text="ADD Results">
             <font>
                 <Font name="System Bold" size="25.0"/>
             </font>
         </JFXButton>
-        <JFXButton layoutX="95.0" layoutY="129.0" onAction="#btnAddExamsOnAction" prefHeight="185.0" prefWidth="581.0"
+        <JFXButton layoutX="95.0" layoutY="129.0" onAction="#btnAddExamsOnAction" prefHeight="198.0" prefWidth="566.0"
                    style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;"
                    text="ADD EXAMS">
             <font>
                 <Font name="System Bold" size="25.0"/>
             </font>
         </JFXButton>
-        <JFXButton layoutX="92.0" layoutY="390.0" onAction="#btnIQTestOnAction" prefHeight="198.0" prefWidth="558.0"
+        <JFXButton layoutX="103.0" layoutY="390.0" onAction="#btnIQTestOnAction" prefHeight="198.0" prefWidth="558.0"
                    style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: gray;"
                    text="Add IQ TESTS">
             <font>
@@ -44,8 +38,8 @@
                 <Font name="System Bold" size="25.0"/>
             </font>
         </JFXButton>
-        <JFXButton layoutX="80.0" layoutY="696.0" onAction="#btnViewResultsOnAction" prefHeight="198.0"
-                   prefWidth="581.0"
+        <JFXButton layoutX="95.0" layoutY="683.0" onAction="#btnViewResultsOnAction" prefHeight="198.0"
+                   prefWidth="566.0"
                    style="-fx-background-radius: 60; -fx-border-radius: 60; -fx-background-color: lightGray;"
                    text="View Results by Batch">
             <font>
@@ -60,7 +54,7 @@
                 <Font name="System Bold" size="25.0"/>
             </font>
         </JFXButton>
-        <Label layoutX="171.0" layoutY="15.0" prefHeight="62.0" prefWidth="703.0" text="MANAGE EXAMS"
+        <Label layoutX="34.0" layoutY="14.0" prefHeight="62.0" prefWidth="334.0" text="MANAGE EXAMS"
                textAlignment="RIGHT" textFill="WHITE">
             <font>
                 <Font name="Ubuntu Mono Bold" size="50.0"/>

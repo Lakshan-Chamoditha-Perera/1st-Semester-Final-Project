@@ -1,9 +1,11 @@
 package lk.ijse.studentsmanagement.controller;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.model.SystemUserModel;
@@ -19,8 +21,10 @@ import java.util.regex.Pattern;
 
 public class LoginPageController implements Initializable {
     public AnchorPane pane;
-    public JFXTextField txtPassword;
     public JFXTextField txtUserName;
+    public JFXPasswordField txtPassword;
+    public Label lblPassword;
+    public Label lblUsername;
 
     public void btnClickOnAction(ActionEvent actionEvent) throws IOException {
         /*if (pattern[0].matcher(txtUserName.getText()).matches()){
@@ -74,8 +78,11 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pattern[0] = Pattern.compile("^[a-z0-9A-Z]{4,}$");
+        pattern[0] = Pattern.compile("^[a-z0-9A-Z]{4,}$");//username
         pattern[1] = Pattern.compile("^[0-9a-zA-Z]{3,}$");//password
+
+        lblUsername.setVisible(false);
+        lblPassword.setVisible(false);
 
     }
 }
