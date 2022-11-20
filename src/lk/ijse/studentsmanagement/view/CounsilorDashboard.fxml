@@ -78,7 +78,15 @@
         </AnchorPane>
         <AnchorPane fx:id="pane" focusTraversable="true" layoutX="327.0" layoutY="68.0" prefHeight="928.0" prefWidth="1573.0" style="-fx-background-color: #333535; -fx-background-radius: 60;">
             <children>
-                <AnchorPane layoutX="76.0" layoutY="151.0" prefHeight="717.0" prefWidth="955.0" style="-fx-background-radius: 50; -fx-background-color: white;" />
+                <AnchorPane layoutX="76.0" layoutY="151.0" prefHeight="717.0" prefWidth="955.0" style="-fx-background-radius: 50; -fx-background-color: white;">
+               <children>
+                  <ImageView fx:id="wishImageView" fitHeight="284.0" fitWidth="403.0" layoutX="25.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="lblGreetings" layoutX="25.0" layoutY="21.0" prefHeight="74.0" prefWidth="493.0" text="HI" textFill="#000000b1">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="51.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
                 <Label layoutX="22.0" layoutY="14.0" prefHeight="67.0" prefWidth="936.0" style="-fx-font-size: 35;" text="Welcome back to Dashboard Counsilor..." textAlignment="CENTER" textFill="WHITE" />
                 <Label layoutX="22.0" layoutY="68.0" prefHeight="27.0" prefWidth="435.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Anything new to DO ?" textFill="WHITE" />
                 <GNCalendarTile layoutX="1082.0" layoutY="14.0" prefHeight="346.0" prefWidth="477.0" style="-fx-background-color: WHITE; -fx-background-radius: 50;" />

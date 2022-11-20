@@ -60,6 +60,30 @@ public class Inquiry {
         return testPayment;
     }
 
+    public Inquiry(String studentID, String name, String city, String email, String mobile, String gender) {
+        this.studentID = studentID;
+        this.name = name;
+        this.city = city;
+        this.email = email;
+        this.mobile = mobile;
+        this.gender = gender;
+    }
+
+    public Inquiry(String studentID, String name, String city, String email, String mobile, String date, String gender, String status) {
+        this.studentID = studentID;
+        this.name = name;
+        this.city = city;
+        this.email = email;
+        this.mobile = mobile;
+        this.date = date;
+        this.gender = gender;
+        this.status = status;
+    }
+
+    public Inquiry(String studentID) {
+        this.studentID = studentID;
+    }
+
     @Override
     public String toString() {
         return "Inquiry{" +

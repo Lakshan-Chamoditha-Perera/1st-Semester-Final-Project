@@ -33,7 +33,6 @@ public class Mail {
         Transport.send(mimeMessage);
 
         System.out.println("Sent... " + to);
-
     }
 
     public static void outMail(String msg, String to[]) throws MessagingException {

@@ -1,48 +1,38 @@
 package lk.ijse.studentsmanagement.controller;
 
 import com.jfoenix.controls.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.comboLoad.ComboLoader;
 import lk.ijse.studentsmanagement.model.IQTestModel;
 import lk.ijse.studentsmanagement.model.InquiryModel;
-import lk.ijse.studentsmanagement.model.TestPaymentModel;
 import lk.ijse.studentsmanagement.regex.RegExPatterns;
 import lk.ijse.studentsmanagement.to.IQTest;
 import lk.ijse.studentsmanagement.to.Inquiry;
 import lk.ijse.studentsmanagement.to.InquiryIQTestDetail;
 import lk.ijse.studentsmanagement.to.TestPayment;
-import lk.ijse.studentsmanagement.util.ComboLoad;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.Observable;
 import java.util.ResourceBundle;
+
+import static lk.ijse.studentsmanagement.autogenerater.AutoGenerateID.setLblPaymentID;
 
 public class AddInquiryFormController implements Initializable {
 
     public JFXComboBox <String> cmbExamDates;
     public Label lblInvalidID;
     public Label lblDate;
-    public Label lblExamID;
-    public Label lblExamLab;
-    public Label lblExamDate;
     public Label lblPaymentID;
     public Label lblTestID;
     public Label lblTestLab;
@@ -75,6 +65,7 @@ public class AddInquiryFormController implements Initializable {
     private JFXTextField txtEmail;
     @FXML
     private JFXTextField txtCity;
+
     @FXML
     private JFXButton btnAdd;
     @FXML
@@ -121,7 +112,7 @@ public class AddInquiryFormController implements Initializable {
 
 
     @FXML
-    void btnAddOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void btnAddOnAction(ActionEvent event) throws SQLException, ClassNotFoundException{
         if (RegExPatterns.getIdPattern().matcher(txtId.getText()).matches()) {
             if (RegExPatterns.getNamePattern().matcher(txtName.getText()).matches()) {
                 if(RegExPatterns.getEmailPattern().matcher(txtEmail.getText()).matches()){
@@ -129,34 +120,9 @@ public class AddInquiryFormController implements Initializable {
                         if(RegExPatterns.getMobilePattern().matcher(txtMobile.getText()).matches()){
                             if (cmbExamDates.getValue() != null){
 
-                                InquiryIQTestDetail inquiryIQTestDetail = new InquiryIQTestDetail(
-                                        txtId.getText(),
-                                        lblTestID.getText(),
-                                        "not added"
-                                );
-                                //System.out.println(inquiryIQTestDetail);
-                                TestPayment testPayment = new TestPayment(
-                                        lblPaymentID.getText(),
-                                        txtId.getText(),
-                                        cmbExamDates.getValue(),
-                                        Double.parseDouble(lblAmount.getText()),
-                                        inquiryIQTestDetail
-                                );
-                              //  System.out.println(testPayment);
-                                Inquiry inquiry = new Inquiry(
-                                        txtId.getText(),
-                                        txtName.getText(),
-                                        txtCity.getText(),
-                                        txtEmail.getText(),
-                                        txtMobile.getText(),
-                                        new SimpleDateFormat("dd-MM-20yy").format(new Date()),
-                                        (rBtnMale.isSelected()) ? "Male" : "Female",
-                                        "not-registered",
-                                        testPayment
-                                );
-                              //  System.out.println(inquiry);
-                                boolean isAdded = InquiryModel.addInquiry(inquiry);
-                                new Alert(Alert.AlertType.CONFIRMATION,(isAdded)? "ADDED":"ERROR").show();
+                               Add();
+
+
                             }else {
                                 lblDate.setVisible(true);
                             }
@@ -181,15 +147,81 @@ public class AddInquiryFormController implements Initializable {
             lblInvalidID.setVisible(true);
         }
     }
+
+    private void Add() throws SQLException, ClassNotFoundException {
+        InquiryIQTestDetail inquiryIQTestDetail = new InquiryIQTestDetail(
+                txtId.getText(),
+                lblTestID.getText(),
+                "not added"
+        );
+        //System.out.println(inquiryIQTestDetail);
+        TestPayment testPayment = new TestPayment(
+                lblPaymentID.getText(),
+                txtId.getText(),
+                new SimpleDateFormat("dd-MM-20yy").format(new Date()),
+                "Test Payment",
+                Double.parseDouble(lblAmount.getText()),
+                lblTestID.getText(),
+                inquiryIQTestDetail
+        );
+        //  System.out.println(testPayment);
+        Inquiry inquiry = new Inquiry(
+                txtId.getText(),
+                txtName.getText(),
+                txtCity.getText(),
+                txtEmail.getText(),
+                txtMobile.getText(),
+                new SimpleDateFormat("dd-MM-20yy").format(new Date()),
+                (rBtnMale.isSelected()) ? "Male" : "Female",
+                "not-registered",
+                testPayment
+        );
+        //  System.out.println(inquiry);
+        boolean isAdded = InquiryModel.addInquiry(inquiry);
+
+        ButtonType printButton = new ButtonType("print");
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                (isAdded)? "ADDED":"ERROR",
+                printButton, ButtonType.OK,ButtonType.NO
+        );
+
+        clearAll();
+        alert.show();
+
+    }
+
+    private void clearAll() throws SQLException, ClassNotFoundException {
+
+        txtId.clear();
+        lblTestID.setText(null);
+      //  lblPaymentID.setText(null);
+        txtId.clear();
+        lblAmount.setText(null);
+        txtName.clear();
+        txtCity.clear();
+        txtEmail.clear();
+        txtMobile.clear();
+        lblTestLab.setText(null);
+        lblTestTime.setText(null);
+        setLblPaymentID(lblPaymentID);
+
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setLabelVisible();
         try {
-            ComboLoader.loadComboBox(cmbExamDates,ComboLoad.IQTEST);
+            ComboLoader.loadIQExamDatesComboBox(cmbExamDates);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        setLblPaymentID();
+        try {
+            setLblPaymentID(lblPaymentID);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
     }
     private void setLabelVisible() {
@@ -200,19 +232,5 @@ public class AddInquiryFormController implements Initializable {
         lblInvalidMobile.setVisible(false);
         lblDate.setVisible(false);
     }
-    private void setLblPaymentID() {
-        try {
-            String lastTestPaymentID= TestPaymentModel.getLastPaymentID();
-            if(lastTestPaymentID==null){
-                lblPaymentID.setText("TP00001");
-            }else{
-                String[] split=lastTestPaymentID.split("[TP]");
-                int lastDigits=Integer.parseInt(split[2]);
-                lastDigits++;
-                lblPaymentID.setText(String.format("TP%05d", lastDigits));
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR,e+"").show();
-        }
-    }
+
 }

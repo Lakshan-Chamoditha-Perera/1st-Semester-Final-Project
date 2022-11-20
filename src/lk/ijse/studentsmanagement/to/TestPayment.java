@@ -6,18 +6,34 @@ public class TestPayment {
     String date;
     String remark = "test payment";
     double amount;
+    String iqTestId;
+
+    public String getIqTestId() {
+        return iqTestId;
+    }
 
     InquiryIQTestDetail inquiryIQTestDetail;
+
+    public TestPayment(String id, String studentID, String date, String remark, double amount, String iqTestId) {
+        this.id = id;
+        this.studentID = studentID;
+        this.date = date;
+        this.remark = remark;
+        this.amount = amount;
+        this.iqTestId = iqTestId;
+    }
 
     public InquiryIQTestDetail getInquiryIQTestDetail() {
         return inquiryIQTestDetail;
     }
 
-    public TestPayment(String id, String studentID, String date, double amount, InquiryIQTestDetail inquiryIQTestDetail) {
+    public TestPayment(String id, String studentID, String date, String remark, double amount, String iqTestId, InquiryIQTestDetail inquiryIQTestDetail) {
         this.id = id;
         this.studentID = studentID;
         this.date = date;
+        this.remark = remark;
         this.amount = amount;
+        this.iqTestId = iqTestId;
         this.inquiryIQTestDetail = inquiryIQTestDetail;
     }
 

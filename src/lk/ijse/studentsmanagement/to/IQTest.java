@@ -5,7 +5,6 @@ public class IQTest {
     String date;
     String time;
     String lab;
-
     double amount;
 
     public IQTest(String id, String date, String time, String lab,  double amount) {

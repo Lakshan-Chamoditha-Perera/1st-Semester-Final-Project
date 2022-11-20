@@ -21,6 +21,8 @@ public class AppInitializer extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
      //   primaryStage.setFullScreen(true);
-        primaryStage.getIcons().add(new Image("lk/ijse/studentsmanagement/asserts/IJSE_LOGO.png"));
+        primaryStage.getIcons().add(new Image("lk/ijse/studentsmanagement/asserts/logo.png"));
+       // primaryStage.
+
     }
 }

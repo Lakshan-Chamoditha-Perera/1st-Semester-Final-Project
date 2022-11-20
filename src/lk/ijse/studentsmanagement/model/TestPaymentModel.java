@@ -15,13 +15,31 @@ public class TestPaymentModel {
     }
     public static boolean addTestPayment(TestPayment testPayment) throws SQLException, ClassNotFoundException {
 
-            return CrudUtil.execute("INSERT INTO test_Payment VALUES(?,?,?,?,?)",
+            return CrudUtil.execute("INSERT INTO test_Payment VALUES(?,?,?,?,?,?)",
                     testPayment.getId(),
                     testPayment.getStudentID(),
                     testPayment.getDate(),
                     testPayment.getRemark(),
-                    testPayment.getAmount()
+                    testPayment.getAmount(),
+                    testPayment.getIqTestId()
             );
+
+    }
+
+    public static boolean addTestPaymentTransaction(TestPayment testPayment) throws SQLException, ClassNotFoundException {
+       try{
+           DBconnection.getInstance().getConnection().setAutoCommit(false);
+           if(addTestPayment(testPayment)){
+               if(InquiryIQTestDetailModel.addInquiryTestDetail(testPayment.getInquiryIQTestDetail())){
+                   DBconnection.getInstance().getConnection().commit();
+                   return true;
+               }
+           }
+           DBconnection.getInstance().getConnection().rollback();
+           return false;
+       }finally {
+           DBconnection.getInstance().getConnection().setAutoCommit(true);
+       }
 
     }
 }
