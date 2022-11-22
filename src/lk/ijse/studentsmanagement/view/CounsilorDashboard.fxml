@@ -20,17 +20,17 @@
                         <Image url="@../asserts/ijse@1x.png" />
                     </image>
                 </ImageView>
-                <JFXButton layoutX="2.0" layoutY="669.0" onAction="#btnMailsOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Mails">
+                <JFXButton focusTraversable="false" layoutX="2.0" layoutY="669.0" onAction="#btnMailsOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Mails">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="btnPayments" layoutX="2.0" layoutY="761.0" onAction="#btnPaymentsOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Payments">
+                <JFXButton fx:id="btnPayments" focusTraversable="false" layoutX="2.0" layoutY="761.0" onAction="#btnPaymentsOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Payments">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="btnEnrollments" layoutX="2.0" layoutY="482.0" onAction="#btnEnrollmentsOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Enrolments">
+                <JFXButton fx:id="btnEnrollments" focusTraversable="false" layoutX="2.0" layoutY="482.0" onAction="#btnEnrollmentsOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Enrolments">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
@@ -40,22 +40,22 @@
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="btnInquires" layoutX="2.0" layoutY="295.0" onAction="#btnInquriesOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Inquries">
+                <JFXButton fx:id="btnInquires" focusTraversable="false" layoutX="2.0" layoutY="295.0" onAction="#btnInquriesOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Inquries">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="btnIQTest" layoutX="2.0" layoutY="389.0" onAction="#btnIQTestOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="IQ Tests">
+                <JFXButton fx:id="btnIQTest" focusTraversable="false" layoutX="2.0" layoutY="389.0" onAction="#btnIQTestOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="IQ Tests">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="btnViewCourse" layoutX="2.0" layoutY="576.0" onAction="#btnViewCourseOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Courses">
+                <JFXButton fx:id="btnViewCourse" focusTraversable="false" layoutX="2.0" layoutY="576.0" onAction="#btnViewCourseOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Courses">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutX="2.0" layoutY="201.0" onAction="#btnDashboardOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Dashboard">
+                <JFXButton focusTraversable="false" layoutX="2.0" layoutY="201.0" onAction="#btnDashboardOnAction" prefHeight="74.0" prefWidth="300.0" styleClass="but" stylesheets="@../style/newStyle.css" text="Dashboard">
                     <font>
                         <Font name="Ubuntu Bold" size="18.0" />
                     </font>
@@ -79,14 +79,25 @@
         <AnchorPane fx:id="pane" focusTraversable="true" layoutX="327.0" layoutY="68.0" prefHeight="928.0" prefWidth="1573.0" style="-fx-background-color: #333535; -fx-background-radius: 60;">
             <children>
                 <AnchorPane layoutX="76.0" layoutY="151.0" prefHeight="717.0" prefWidth="955.0" style="-fx-background-radius: 50; -fx-background-color: white;">
-               <children>
-                  <ImageView fx:id="wishImageView" fitHeight="284.0" fitWidth="403.0" layoutX="25.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="lblGreetings" layoutX="25.0" layoutY="21.0" prefHeight="74.0" prefWidth="493.0" text="HI" textFill="#000000b1">
+                    <children>
+                        <ImageView fx:id="wishImageView" fitHeight="284.0" fitWidth="403.0" layoutX="25.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="lblGreetings" layoutX="25.0" layoutY="21.0" prefHeight="74.0" prefWidth="493.0" text="HI" textFill="#000000b1">
+                            <font>
+                                <Font name="Ubuntu Mono Bold" size="51.0" />
+                            </font>
+                        </Label>
+                  <ImageView fitHeight="103.0" fitWidth="127.0" layoutX="644.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asserts/registerd_count.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblGreetings1" layoutX="757.0" layoutY="45.0" prefHeight="74.0" prefWidth="111.0" text="Registerd Students" textFill="#000000b1">
                      <font>
-                        <Font name="Ubuntu Mono Bold" size="51.0" />
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
                      </font>
                   </Label>
-               </children></AnchorPane>
+                    </children>
+                </AnchorPane>
                 <Label layoutX="22.0" layoutY="14.0" prefHeight="67.0" prefWidth="936.0" style="-fx-font-size: 35;" text="Welcome back to Dashboard Counsilor..." textAlignment="CENTER" textFill="WHITE" />
                 <Label layoutX="22.0" layoutY="68.0" prefHeight="27.0" prefWidth="435.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Anything new to DO ?" textFill="WHITE" />
                 <GNCalendarTile layoutX="1082.0" layoutY="14.0" prefHeight="346.0" prefWidth="477.0" style="-fx-background-color: WHITE; -fx-background-radius: 50;" />

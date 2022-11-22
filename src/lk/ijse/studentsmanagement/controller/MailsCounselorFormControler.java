@@ -15,13 +15,11 @@ public class MailsCounselorFormControler {
     private AnchorPane mainPain;
 
     @FXML
-    void sendToRegisteredGroupOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.SendMailToGroupfromCounsilor,mainPain);
-    }
-
-    @FXML
     void sendToRegisteredStudentOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.SendMailToStudentfromCounsilor,mainPain);
+        Navigation.navigate(Routes.SEND_MAIL_TO_REGISTERED,mainPain);
     }
 
+    public void sendToInquiryOnAction(ActionEvent actionEvent) {
+
+    }
 }

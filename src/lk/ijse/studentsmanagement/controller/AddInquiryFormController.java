@@ -112,7 +112,7 @@ public class AddInquiryFormController implements Initializable {
 
 
     @FXML
-    void btnAddOnAction(ActionEvent event) throws SQLException, ClassNotFoundException{
+    void btnAddOnAction(ActionEvent event) {
         if (RegExPatterns.getIdPattern().matcher(txtId.getText()).matches()) {
             if (RegExPatterns.getNamePattern().matcher(txtName.getText()).matches()) {
                 if(RegExPatterns.getEmailPattern().matcher(txtEmail.getText()).matches()){
@@ -120,7 +120,11 @@ public class AddInquiryFormController implements Initializable {
                         if(RegExPatterns.getMobilePattern().matcher(txtMobile.getText()).matches()){
                             if (cmbExamDates.getValue() != null){
 
-                               Add();
+                                try {
+                                    Add();
+                                } catch (SQLException | ClassNotFoundException e) {
+                                    new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
+                                }
 
 
                             }else {

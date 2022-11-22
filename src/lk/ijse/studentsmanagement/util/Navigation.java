@@ -106,16 +106,6 @@ public class Navigation {
                 initUI("RwadForm.fxml");
                 break;
 
-            case SendMailToStudentfromCounsilor:
-                window.setTitle("Send Mail To Student ");
-                initUI("SendMailToStudentfromCounsilorForm.fxml");
-                break;
-
-            case SendMailToGroupfromCounsilor:
-                window.setTitle("Send Mail  ");
-                initUI("SendMailToGroupfromCounsilorForm.fxml");
-                break;
-
             case ACADEMIC:
                 window.setTitle("Academic");
                 initUI("AcademicDashboardForm.fxml");
@@ -175,7 +165,10 @@ public class Navigation {
                 window.setTitle("ACADEMIC_MANAGE_BATCHES");
                 initUI("AcademicManageBatchesForm.fxml");
                 break;
-
+            case  SEND_MAIL_TO_REGISTERED:
+                window.setTitle("ACADEMIC_MANAGE_BATCHES");
+                initUI("SendMailToRegisterdStudentForm.fxml");
+                break;
 
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();

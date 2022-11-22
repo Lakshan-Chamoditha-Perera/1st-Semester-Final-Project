@@ -65,11 +65,11 @@ public class IQTestsFormController implements Initializable {
             AutoGenerateID.setLblPaymentID(lblPaymentID);
             ComboLoader.loadIQExamDatesComboBox(cmbExamDate);
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
         }
     }
-
     private void addInquiryIQTestDetail() throws SQLException, ClassNotFoundException {
+        AutoGenerateID.setLblPaymentID(lblPaymentID);
         colExamID.setCellValueFactory(new PropertyValueFactory<>("testId"));
         colResults.setCellValueFactory(new PropertyValueFactory<>("result"));
         colStdID.setCellValueFactory(new PropertyValueFactory<>("studentId"));
@@ -93,7 +93,6 @@ public class IQTestsFormController implements Initializable {
         colTestLab.setCellValueFactory(new PropertyValueFactory<>("lab"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         ArrayList<IQTest> iqTestList = IQTestModel.getIQTestList();
-
         ObservableList<IQTestTM> observableArrayList= FXCollections.observableArrayList();
         for (IQTest ele: iqTestList) {
             observableArrayList.add(
@@ -108,17 +107,16 @@ public class IQTestsFormController implements Initializable {
         }
         tblIQTestDetail.setItems(observableArrayList);
     }
-
     public void cmbExamIDOnMouseClicked(MouseEvent mouseEvent) {
         lblSelectExamID.setVisible(false);
     }
-
     public void btnPaymentOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if(RegExPatterns.getIdPattern().matcher(txtStudentID.getText()).matches()){
             if(isExists(txtStudentID.getText())) {
                 if (cmbExamDate.getValue() != null) {
                     String text = (registerToNewIQTest()) ? "added" : "error";
-                    new Alert(Alert.AlertType.CONFIRMATION, text).show();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, text);
+                    alert.show();
                     addInquiryIQTestDetail();
                 } else {
                     lblSelectExamID.setVisible(true);
@@ -131,35 +129,25 @@ public class IQTestsFormController implements Initializable {
             lblInvalidStdID.setVisible(true);
         }
     }
-
     private boolean isExists(String studentID) throws SQLException, ClassNotFoundException {
-      return (InquiryModel.searchInquiry(new Inquiry(studentID)) == null)? false: true;
+      return InquiryModel.searchInquiry(new Inquiry(studentID)) != null;
     }
-
     private boolean registerToNewIQTest() throws SQLException, ClassNotFoundException {
         IQTest iqTestDetails = IQTestModel.getIQTestDetails(cmbExamDate.getValue().toString());
-
-        if(TestPaymentModel.addTestPaymentTransaction(new TestPayment(
-                        lblPaymentID.getText(),
+        //added
+        return TestPaymentModel.addTestPaymentTransaction(new TestPayment(
+                lblPaymentID.getText(),
+                txtStudentID.getText(),
+                new SimpleDateFormat("dd-MM-20yy").format(new Date()),
+                "Test Payment",
+                iqTestDetails.getAmount(),
+                iqTestDetails.getId(),
+                new InquiryIQTestDetail(
                         txtStudentID.getText(),
-                        new SimpleDateFormat("dd-MM-20yy").format(new Date()),
-                        "Test Payment",
-                        iqTestDetails.getAmount(),
                         iqTestDetails.getId(),
-                        new InquiryIQTestDetail(
-                                txtStudentID.getText(),
-                                iqTestDetails.getId(),
-                                "not-added"
-                        )
-                 ))){
-            //added
-            return true;
-        }
-        return false;
+                        "not-added"
+                )
+        ));
     }
-
-
-    public void txtStudentIDOnMouseClicked(MouseEvent mouseEvent) {
-        lblInvalidStdID.setVisible(false);
-    }
+    public void txtStudentIDOnMouseClicked(MouseEvent mouseEvent) {lblInvalidStdID.setVisible(false);}
 }

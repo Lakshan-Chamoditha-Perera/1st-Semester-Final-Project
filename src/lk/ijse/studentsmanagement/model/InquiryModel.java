@@ -82,4 +82,8 @@ public class InquiryModel {
         );
     }
 
+    public static boolean updateInquiryStatus(String id) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("UPDATE inquiry SET status = 'Registered' WHERE studentID = ?",id);
+    }
+
 }

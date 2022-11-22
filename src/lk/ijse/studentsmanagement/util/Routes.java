@@ -18,10 +18,8 @@ public enum Routes {
     GDSE,
     CMJD,
     DEP,
-    RWAD ,
+    RWAD,
     EMAILCOUNSILOR,
-    SendMailToStudentfromCounsilor,
-    SendMailToGroupfromCounsilor,
     EXAMS,
     SCHEDULE_EXAMS,
     SCHEDULE_IQTEST,
@@ -33,6 +31,8 @@ public enum Routes {
     ACADEMIC_VIEW_STUDENT_DETAILS,
 
     ACADEMIC_MANAGE_BATCHES,
-    ACADEMIC_ADD_NEW_BATCH
+    ACADEMIC_ADD_NEW_BATCH,
+
+    SEND_MAIL_TO_REGISTERED
 
 }

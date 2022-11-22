@@ -13,14 +13,14 @@
         <JFXButton layoutX="916.0" layoutY="130.0" onAction="#btnViewBatchesOnAction" prefHeight="196.0" prefWidth="482.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="View Batche" />
       <AnchorPane layoutX="147.0" layoutY="353.0" prefHeight="564.0" prefWidth="1251.0" style="-fx-background-color: white; -fx-background-radius: 50;">
          <children>
-            <TableView layoutX="35.0" layoutY="25.0" prefHeight="514.0" prefWidth="1182.0">
+            <TableView fx:id="tableBatches" layoutX="35.0" layoutY="25.0" prefHeight="514.0" prefWidth="1182.0">
                <columns>
-                  <TableColumn prefWidth="167.0" text="BatchID" />
-                  <TableColumn prefWidth="205.3333740234375" text="Batch No" />
-                  <TableColumn prefWidth="206.66665649414062" text="Course ID" />
-                  <TableColumn prefWidth="206.0" text="Fee" />
-                  <TableColumn prefWidth="305.66668701171875" text="Start date" />
-                  <TableColumn prefWidth="216.3333740234375" text="Max Crowd" />
+                  <TableColumn fx:id="colBatchID" prefWidth="167.0" text="BatchID" />
+                  <TableColumn fx:id="colBatchNo" prefWidth="205.3333740234375" text="Batch No" />
+                  <TableColumn fx:id="colCourseId" prefWidth="176.0" text="Course ID" />
+                  <TableColumn fx:id="colFee" prefWidth="182.0" text="Fee" />
+                  <TableColumn fx:id="colDate" prefWidth="214.0" text="Start date" />
+                  <TableColumn fx:id="colMaxCount" prefWidth="236.0" text="Max Crowd" />
                </columns>
             </TableView>
          </children>

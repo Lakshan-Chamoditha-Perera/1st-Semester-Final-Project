@@ -8,37 +8,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.DepFormController">
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" styleClass="sideBar" stylesheets="@../style/newStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.DepFormController">
     <children>
-        <AnchorPane layoutX="6.0" layoutY="113.0" prefHeight="171.0" prefWidth="1516.0">
+        <AnchorPane layoutX="147.0" layoutY="113.0" prefHeight="202.0" prefWidth="579.0" style="-fx-background-color: white;">
             <children>
-                <Label layoutX="138.0" layoutY="25.0" text="Course Details"/>
+                <Label layoutX="14.0" layoutY="14.0" text="Course Details" />
             </children>
         </AnchorPane>
-        <Label layoutX="194.0" layoutY="34.0" style="-fx-background-color: #f5f5f5;" text="Direct Entry Programme">
-            <font>
-                <Font size="53.0"/>
-            </font>
-        </Label>
         <AnchorPane layoutX="14.0" layoutY="345.0" prefHeight="550.0" prefWidth="1516.0">
             <children>
-                <TableView layoutX="135.0" layoutY="75.0" prefHeight="429.0" prefWidth="1246.0">
+                <TableView fx:id="tblDep" layoutX="135.0" layoutY="78.0" prefHeight="429.0" prefWidth="1246.0">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="C1"/>
-                        <TableColumn prefWidth="75.0" text="C2"/>
+                        <TableColumn fx:id="colId" prefWidth="172.0" text="Registration ID" />
+                        <TableColumn fx:id="colName" prefWidth="271.0" text="Name" />
+                        <TableColumn fx:id="colMobile" prefWidth="187.0" text="Mobile" />
+                        <TableColumn fx:id="colEmail" prefWidth="388.0" text="Email" />
+                        <TableColumn fx:id="colStatus" prefWidth="225.0" text="Status" />
                     </columns>
                 </TableView>
-                <ComboBox layoutX="135.0" layoutY="14.0" prefHeight="26.0" prefWidth="229.0"
-                          promptText="Select A batch"/>
+                <ComboBox fx:id="cmbDep" layoutX="135.0" layoutY="14.0" onAction="#cmbDepOnAction" prefHeight="26.0" prefWidth="229.0" promptText="Select A batch" />
             </children>
         </AnchorPane>
-        <JFXButton layoutX="24.0" layoutY="26.0" onAction="#backClickOnAction" prefHeight="26.0" prefWidth="39.0"
-                   style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="&lt;">
+        <JFXButton layoutX="24.0" layoutY="26.0" onAction="#backClickOnAction" prefHeight="39.0" prefWidth="135.0" style="-fx-background-radius: 50; -fx-background-color: f5f5f5;" text="Back">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </JFXButton>
+        <Label layoutX="197.0" layoutY="10.0" prefHeight="66.0" prefWidth="703.0" text="DIRECT ENTERY PROGRAMME" textAlignment="RIGHT" textFill="WHITE">
+            <font>
+                <Font name="Ubuntu Mono Bold" size="50.0" />
+            </font>
+        </Label>
+        <AnchorPane layoutX="816.0" layoutY="113.0" prefHeight="233.0" prefWidth="579.0" style="-fx-background-color: white;">
+            <children>
+                <TableView fx:id="tblOnGoingBatches" layoutX="23.0" layoutY="17.0" prefHeight="200.0" prefWidth="536.0">
+                    <columns>
+                        <TableColumn fx:id="colBatchId" prefWidth="75.0" text="Batch ID" />
+                        <TableColumn fx:id="colBatchNo" prefWidth="75.0" text="Batch No" />
+                        <TableColumn fx:id="colFee" prefWidth="126.0" text="Fee" />
+                        <TableColumn fx:id="colStartDate" prefWidth="135.0" text="Started Date" />
+                        <TableColumn fx:id="colMaxCount" prefWidth="117.0" text="Max Count" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

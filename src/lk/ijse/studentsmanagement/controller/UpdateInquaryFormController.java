@@ -51,21 +51,26 @@ public class UpdateInquaryFormController implements Initializable {
         rBtnFemale.setVisible(false);
     }
 
-    public void btnUpdateOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void btnUpdateOnAction(ActionEvent actionEvent)  {
         if(RegExPatterns.getNamePattern().matcher(txtName.getText()).matches()){
             if(RegExPatterns.getEmailPattern().matcher(txtEmail.getText()).matches()){
                 if(RegExPatterns.getCityPattern().matcher(txtCity.getText()).matches()){
                     if(RegExPatterns.getMobilePattern().matcher(txtMobile.getText()).matches()) {
 
-                        boolean isUpdated = InquiryModel.updateInquiryDetails(
-                                new Inquiry(
-                                        txtID.getText(),
-                                        txtName.getText(),
-                                        txtCity.getText(),
-                                        txtEmail.getText(),
-                                        txtMobile.getText(),
-                                        (rBtnMale.isSelected()) ? "Male" : "Female")
-                        );
+                        boolean isUpdated = false;
+                        try {
+                            isUpdated = InquiryModel.updateInquiryDetails(
+                                    new Inquiry(
+                                            txtID.getText(),
+                                            txtName.getText(),
+                                            txtCity.getText(),
+                                            txtEmail.getText(),
+                                            txtMobile.getText(),
+                                            (rBtnMale.isSelected()) ? "Male" : "Female")
+                            );
+                        } catch (SQLException | ClassNotFoundException e) {
+                            new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
+                        }
                         if(isUpdated){
                             new Alert(Alert.AlertType.INFORMATION,"Inquiry Updated").show();
                             clearAll();

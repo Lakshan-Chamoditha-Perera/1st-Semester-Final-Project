@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -46,13 +47,9 @@ public class InquiriesFormController implements Initializable {
 
     }
 
-    public void btnViewStdOnAction(ActionEvent actionEvent) throws IOException {
-        Navigation.navigate(Routes.VIEW_STUDENT,pane);
-    }
+    public void btnViewStdOnAction(ActionEvent actionEvent) throws IOException {Navigation.navigate(Routes.VIEW_STUDENT,pane);}
 
-    public void btnUpdateStdOnAction(ActionEvent actionEvent) throws IOException {
-        Navigation.navigate(Routes.UPDATE_STUDENT,pane);
-    }
+    public void btnUpdateStdOnAction(ActionEvent actionEvent) throws IOException {Navigation.navigate(Routes.UPDATE_STUDENT,pane);}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,7 +66,7 @@ public class InquiriesFormController implements Initializable {
         try {
             addToTable();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+          new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
         }
 
     }
@@ -92,8 +89,6 @@ public class InquiriesFormController implements Initializable {
                     ele.getGender(),
                     ele.getStatus()
             ));
-
-
         }
         tblInquiries.setItems(inquiryTMObservableList);
     }
