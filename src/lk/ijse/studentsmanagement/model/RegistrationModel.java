@@ -38,7 +38,7 @@ public class RegistrationModel {
                 registration.getHigherEDU(),
                 registration.getStatus()
         );
-        if(isAdded){
+        if (isAdded) {
             boolean inquiryStatus = InquiryModel.updateInquiryStatus(registration.getNic());
         }
 
@@ -46,26 +46,26 @@ public class RegistrationModel {
     }
 
     public static boolean registrationPaymentTransaction(Registration registration) throws SQLException, ClassNotFoundException {
-       try {
-           DBconnection.getInstance().getConnection().setAutoCommit(false);
-           if(addRegistration(registration)){
-               if(PaymentModel.addPayment(registration.getPayment())){
-                   DBconnection.getInstance().getConnection().commit();
-                   return true;
-               }
-           }
+        try {
+            DBconnection.getInstance().getConnection().setAutoCommit(false);
+            if (addRegistration(registration)) {
+                if (PaymentModel.addPayment(registration.getPayment())) {
+                    DBconnection.getInstance().getConnection().commit();
+                    return true;
+                }
+            }
             DBconnection.getInstance().getConnection().rollback();
-           return false;
+            return false;
 
-       }finally {
-           DBconnection.getInstance().getConnection().setAutoCommit(true);
-       }
+        } finally {
+            DBconnection.getInstance().getConnection().setAutoCommit(true);
+        }
     }
 
-    public static ArrayList<Registration> getCourseBatchList(String courseID,String batchID) throws SQLException, ClassNotFoundException {
+    public static ArrayList<Registration> getCourseBatchList(String courseID, String batchID) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT registration_id,full_name,mobile_number,email,status FROM registration where courseID = ? AND batchID = ?", courseID, batchID);
         ArrayList<Registration> arrayList = new ArrayList<>();
-        while(resultSet.next()){
+        while (resultSet.next()) {
             arrayList.add(
                     new Registration(
                             resultSet.getString(1),
@@ -81,7 +81,7 @@ public class RegistrationModel {
 
     public static String getRegistrationEmail(String text) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT email from registration where registration_id = ?", text);
-        if(resultSet.next()){
+        if (resultSet.next()) {
             return resultSet.getString(1);
         }
         return null;
@@ -90,15 +90,15 @@ public class RegistrationModel {
     public static ArrayList<String> getRegistrationEmailList(String text) throws SQLException, ClassNotFoundException {
         ArrayList<String> emailList = new ArrayList<>();
         ResultSet resultSet = CrudUtil.execute("SELECT email from registration where batchID = ?", text);
-        if(resultSet.next()){
+        if (resultSet.next()) {
             emailList.add(resultSet.getString(1));
         }
         return emailList;
     }
 
     public static Registration getRegistrationDetails(String text) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet= CrudUtil.execute("SELECT * from registration WHERE registration_id = ?", text);
-        if(resultSet.next()){
+        ResultSet resultSet = CrudUtil.execute("SELECT * from registration WHERE registration_id = ?", text);
+        if (resultSet.next()) {
             return new Registration(
                     resultSet.getString(1),
                     resultSet.getString(2),
@@ -132,6 +132,6 @@ public class RegistrationModel {
                 registration.getDob(),
                 registration.getSchool(),
                 registration.getRegistrationId()
-                );
+        );
     }
 }

@@ -86,4 +86,20 @@ public class InquiryModel {
         return CrudUtil.execute("UPDATE inquiry SET status = 'Registered' WHERE studentID = ?",id);
     }
 
+    public static int getRegisterdStdCount() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet=CrudUtil.execute("SELECT COUNT(studentID) FROM inquiry WHERE status = ?", "Registered");
+        resultSet.next();
+        return  Integer.parseInt(resultSet.getString(1));
+    }
+    public static int getInquiriesCount() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet=CrudUtil.execute("SELECT COUNT(studentID) FROM inquiry");
+        resultSet.next();
+        return  Integer.parseInt(resultSet.getString(1));
+    }
+
+    public static int getUnregisterdStdCount() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet=CrudUtil.execute("SELECT COUNT(studentID) FROM inquiry WHERE status = ?", "not-registered");
+        resultSet.next();
+        return  Integer.parseInt(resultSet.getString(1));
+    }
 }

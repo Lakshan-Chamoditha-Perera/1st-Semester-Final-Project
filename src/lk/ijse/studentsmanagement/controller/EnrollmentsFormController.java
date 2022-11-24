@@ -208,7 +208,6 @@ public class EnrollmentsFormController implements Initializable {
                         registration.setPayment(setPaymentOb());
                         gardian.setRegistration(registration);
                         add(gardian);
-
                     }else{
                         new Alert(Alert.AlertType.INFORMATION,"Please select a course first").show();
                     }

@@ -10,7 +10,11 @@ public class RegExPatterns {
     private static final Pattern addressPattern = Pattern.compile("^[A-Za-z0-9'\\/\\.\\,]{5,}$");
     private static final Pattern postalCodePattern = Pattern.compile("^\\d{5}$");
     private static final Pattern oldIDPattern = Pattern.compile("^[0-9]{9}[vVxX]$");
+    private static  Pattern doublePattern = Pattern.compile("^[0-9]+\\.?[0-9]*$");
 
+    private static Pattern intPattern = Pattern.compile("^[0-9]$");
+
+    public static Pattern getIntPattern() {return intPattern;}
     public static Pattern getOldIDPattern() {return oldIDPattern;}
     public static Pattern getPostalCodePattern() {return postalCodePattern;}
     public static Pattern getAddressPattern() {return addressPattern;}
@@ -28,5 +32,9 @@ public class RegExPatterns {
     }
     public static Pattern getIdPattern() {
         return idPattern;
+    }
+
+    public static Pattern getDoublePattern() {
+        return doublePattern;
     }
 }

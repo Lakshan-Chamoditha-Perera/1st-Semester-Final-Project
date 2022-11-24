@@ -165,11 +165,18 @@ public class Navigation {
                 window.setTitle("ACADEMIC_MANAGE_BATCHES");
                 initUI("AcademicManageBatchesForm.fxml");
                 break;
-            case  SEND_MAIL_TO_REGISTERED:
-                window.setTitle("ACADEMIC_MANAGE_BATCHES");
+            case SEND_MAIL_TO_REGISTERED:
+                window.setTitle("Send Mail");
                 initUI("SendMailToRegisterdStudentForm.fxml");
                 break;
-
+            case ACADEMIC_MANAGE_SUBJECTS:
+                window.setTitle("ACADEMIC_MANAGE_SUBJECTS");
+                initUI("AcademicManageSubjectsForm.fxml");
+                break;
+            case ACADEMIC_ADD_SUBJECT_TO_COURSE:
+                window.setTitle("ACADEMIC_MANAGE_SUBJECTS");
+                initUI("AcademicAddSubjectToCourseForm.fxml");
+                break;
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();
                 break;

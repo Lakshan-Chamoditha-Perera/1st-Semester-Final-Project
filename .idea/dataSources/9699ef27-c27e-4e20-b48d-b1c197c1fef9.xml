@@ -1540,11 +1540,11 @@ testID</ColNames>
       <Position>1</Position>
     </column>
     <column id="382" parent="313" name="date">
-      <DataType>varchar(15)|0s</DataType>
+      <DataType>date|0s</DataType>
       <Position>2</Position>
     </column>
     <column id="383" parent="313" name="time">
-      <DataType>varchar(15)|0s</DataType>
+      <DataType>time|0s</DataType>
       <Position>3</Position>
     </column>
     <column id="384" parent="313" name="lab">
@@ -1812,7 +1812,7 @@ registration_id</ColNames>
       <Position>2</Position>
     </column>
     <column id="440" parent="318" name="date">
-      <DataType>varchar(15)|0s</DataType>
+      <DataType>date|0s</DataType>
       <Position>3</Position>
     </column>
     <column id="441" parent="318" name="remark">

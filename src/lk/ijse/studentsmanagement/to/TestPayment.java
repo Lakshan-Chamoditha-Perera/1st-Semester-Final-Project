@@ -1,9 +1,11 @@
 package lk.ijse.studentsmanagement.to;
 
+import java.sql.Date;
+
 public class TestPayment {
     String id;
     String studentID;
-    String date;
+    Date date;
     String remark = "test payment";
     double amount;
     String iqTestId;
@@ -14,7 +16,7 @@ public class TestPayment {
 
     InquiryIQTestDetail inquiryIQTestDetail;
 
-    public TestPayment(String id, String studentID, String date, String remark, double amount, String iqTestId) {
+    public TestPayment(String id, String studentID, Date date, String remark, double amount, String iqTestId) {
         this.id = id;
         this.studentID = studentID;
         this.date = date;
@@ -27,7 +29,7 @@ public class TestPayment {
         return inquiryIQTestDetail;
     }
 
-    public TestPayment(String id, String studentID, String date, String remark, double amount, String iqTestId, InquiryIQTestDetail inquiryIQTestDetail) {
+    public TestPayment(String id, String studentID, Date date, String remark, double amount, String iqTestId, InquiryIQTestDetail inquiryIQTestDetail) {
         this.id = id;
         this.studentID = studentID;
         this.date = date;
@@ -45,7 +47,7 @@ public class TestPayment {
         return studentID;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

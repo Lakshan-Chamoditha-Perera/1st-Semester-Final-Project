@@ -1,10 +1,6 @@
 package lk.ijse.studentsmanagement.tblModels;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.prism.paint.Color;
-
-import javax.swing.*;
-
 public class InquiryTM {
     private String studentID;
     private String name ;
@@ -14,7 +10,6 @@ public class InquiryTM {
     private String date ;
     private String gender;
     private String status ;
-
     private JFXButton button;
 
 
@@ -29,35 +24,27 @@ public class InquiryTM {
         this.status = status;
        // this.button = button;
     }
-
     public String getStudentID() {
         return studentID;
     }
-
     public String getName() {
         return name;
     }
-
     public String getCity() {
         return city;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getMobile() {
         return mobile;
     }
-
     public String getDate() {
         return date;
     }
-
     public String getGender() {
         return gender;
     }
-
     public String getStatus() {
         return status;
     }

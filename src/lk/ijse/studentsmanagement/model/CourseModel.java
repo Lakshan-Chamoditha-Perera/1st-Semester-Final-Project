@@ -2,7 +2,6 @@ package lk.ijse.studentsmanagement.model;
 
 import lk.ijse.studentsmanagement.to.Course;
 import lk.ijse.studentsmanagement.util.CrudUtil;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

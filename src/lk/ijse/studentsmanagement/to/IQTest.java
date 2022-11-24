@@ -1,18 +1,25 @@
 package lk.ijse.studentsmanagement.to;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class IQTest {
     String id;
-    String date;
-    String time;
+    Date date;
+    Time time;
     String lab;
     double amount;
 
-    public IQTest(String id, String date, String time, String lab,  double amount) {
+    public IQTest(String id, Date date, Time time, String lab,  double amount) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.lab = lab;
         this.amount= amount;
+    }
+
+    public IQTest(String id) {
+        this.id = id;
     }
 
     public double getAmount() {
@@ -23,11 +30,11 @@ public class IQTest {
         return id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public String getTime() {
+    public Time getTime() {
         return time;
     }
 

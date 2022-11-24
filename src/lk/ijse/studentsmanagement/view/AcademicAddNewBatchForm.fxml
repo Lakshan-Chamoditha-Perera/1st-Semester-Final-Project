@@ -15,38 +15,38 @@
     <children>
         <AnchorPane layoutX="54.0" layoutY="145.0" prefHeight="335.0" prefWidth="600.0" style="-fx-background-color: grey; -fx-background-radius: 50;">
             <children>
-                <Label layoutX="29.0" layoutY="30.0" text="Select Course">
+                <Label layoutX="29.0" layoutY="65.0" text="Select Course">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="cmbCourse" layoutX="191.0" layoutY="30.0" onAction="#cmbCourseOnAction" prefHeight="26.0" prefWidth="368.0" />
+                <ComboBox fx:id="cmbCourse" layoutX="191.0" layoutY="65.0" onAction="#cmbCourseOnAction" prefHeight="26.0" prefWidth="368.0" promptText="Select Course " />
                 <Label layoutX="29.0" layoutY="112.0" text="Course ID">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
                     </font>
                 </Label>
                 <Label layoutX="29.0" layoutY="166.0" text="Name">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
                     </font>
                 </Label>
                 <Label layoutX="28.0" layoutY="219.0" text="Duration">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="lblId" layoutX="191.0" layoutY="113.0" prefHeight="26.0" prefWidth="368.0" text="ID">
+                <Label fx:id="lblId" layoutX="191.0" layoutY="113.0" prefHeight="26.0" prefWidth="368.0">
                     <font>
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="lblName" layoutX="191.0" layoutY="166.0" prefHeight="26.0" prefWidth="380.0" text="Name">
+                <Label fx:id="lblName" layoutX="191.0" layoutY="166.0" prefHeight="26.0" prefWidth="380.0">
                     <font>
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="lblDuration" layoutX="191.0" layoutY="220.0" prefHeight="26.0" prefWidth="245.0" text="Duratation">
+                <Label fx:id="lblDuration" layoutX="191.0" layoutY="220.0" prefHeight="26.0" prefWidth="245.0">
                     <font>
                         <Font size="22.0" />
                     </font>
@@ -55,60 +55,62 @@
         </AnchorPane>
         <AnchorPane layoutX="54.0" layoutY="518.0" prefHeight="335.0" prefWidth="665.0" style="-fx-background-color: grey; -fx-background-radius: 50;">
             <children>
-                <Label layoutX="10.0" layoutY="25.0" text="ON going Batches" />
+                <Label layoutX="10.0" layoutY="17.0" text="Ongoing Batches">
+                    <font>
+                        <Font name="Ubuntu Mono Bold" size="33.0" />
+                    </font>
+                </Label>
                 <TableView fx:id="tblOnGoingBatches" layoutX="14.0" layoutY="58.0" prefHeight="250.0" prefWidth="638.0">
                     <columns>
                         <TableColumn fx:id="colBatchID" prefWidth="119.0" text="Batch ID" />
                         <TableColumn fx:id="colFee" prefWidth="137.0" text="Fee" />
                         <TableColumn fx:id="colCrowd" prefWidth="128.0" text="Crowd" />
                         <TableColumn fx:id="colStartDate" prefWidth="126.0" text="Start Date" />
-                  <TableColumn fx:id="colBatchNo" prefWidth="127.0" text="Batch No" />
+                        <TableColumn fx:id="colBatchNo" prefWidth="127.0" text="Batch No" />
                     </columns>
                 </TableView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="734.0" layoutY="145.0" prefHeight="528.0" prefWidth="728.0" style="-fx-background-color: grey; -fx-background-radius: 50;">
+        <AnchorPane layoutX="734.0" layoutY="145.0" prefHeight="713.0" prefWidth="728.0" style="-fx-background-color: grey; -fx-background-radius: 50;">
             <children>
-                <Label layoutX="23.0" layoutY="26.0" text="Add New " />
-                <Label layoutX="134.0" layoutY="222.0" text="Fee">
+                <Label layoutX="14.0" layoutY="14.0" prefHeight="38.0" prefWidth="338.0" text="Add New Batch">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="48.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtCourseFee" layoutX="278.0" layoutY="203.0" prefHeight="38.0" prefWidth="317.0" />
-                <Label layoutX="134.0" layoutY="276.0" text="Start Date">
+                <Label layoutX="72.0" layoutY="144.0" text="Fee">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="30.0" />
                     </font>
                 </Label>
-                <Label layoutX="138.0" layoutY="346.0" text="Crowd">
+                <JFXTextField fx:id="txtCourseFee" layoutX="252.0" layoutY="125.0" prefHeight="38.0" prefWidth="317.0" />
+                <Label layoutX="72.0" layoutY="198.0" text="Start Date">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="30.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtCrowd" layoutX="278.0" layoutY="327.0" prefHeight="38.0" prefWidth="317.0" />
-                <Button layoutX="557.0" layoutY="424.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="50.0" prefWidth="127.0" style="-fx-background-radius: 20;" text="ADD" />
-                <Label layoutX="136.0" layoutY="163.0" text="Batch No: ">
+                <Label layoutX="76.0" layoutY="268.0" text="Crowd">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="30.0" />
                     </font>
                 </Label>
-                <Label layoutX="136.0" layoutY="83.0" text="Course ID">
+                <JFXTextField fx:id="txtCrowd" layoutX="252.0" layoutY="249.0" prefHeight="38.0" prefWidth="317.0" />
+                <Button fx:id="btnAdd" layoutX="557.0" layoutY="424.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="50.0" prefWidth="127.0" style="-fx-background-radius: 20;" text="ADD" />
+                <Label layoutX="74.0" layoutY="85.0" text="Batch No">
                     <font>
-                        <Font size="22.0" />
+                        <Font name="Ubuntu Mono Bold" size="30.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="cmbCourseID" layoutX="275.0" layoutY="72.0" prefHeight="38.0" prefWidth="317.0" />
-                <JFXDatePicker fx:id="cmbDate" layoutX="278.0" layoutY="276.0" prefHeight="26.0" prefWidth="317.0" />
-            <Label fx:id="lblBatchNo" layoutX="275.0" layoutY="163.0" prefHeight="26.0" prefWidth="176.0">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
+                <JFXDatePicker fx:id="cmbDate" defaultColor="#006fff" layoutX="252.0" layoutY="198.0" prefHeight="26.0" prefWidth="317.0" />
+                <Label fx:id="lblBatchNo" layoutX="252.0" layoutY="85.0" prefHeight="31.0" prefWidth="317.0">
+                    <font>
+                        <Font name="Ubuntu Mono Bold" size="30.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
         <JFXButton layoutX="63.0" layoutY="35.0" onAction="#btnBackOnAction" prefHeight="50.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Back" />
-        <Label layoutX="181.0" layoutY="25.0" prefHeight="62.0" prefWidth="703.0" text="ADD NEW BATCHES" textAlignment="RIGHT" textFill="WHITE">
+        <Label layoutX="252.0" layoutY="25.0" prefHeight="62.0" prefWidth="703.0" text="ADD NEW BATCHES" textAlignment="RIGHT" textFill="WHITE">
             <font>
                 <Font name="Ubuntu Mono Bold" size="50.0" />
             </font>

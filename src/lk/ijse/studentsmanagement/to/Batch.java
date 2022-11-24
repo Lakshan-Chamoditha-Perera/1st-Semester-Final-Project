@@ -1,6 +1,7 @@
 package lk.ijse.studentsmanagement.to;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Batch {
     String id;
@@ -19,8 +20,24 @@ public class Batch {
         this.maxStdCount = maxStdCount;
     }
 
+    public Batch(String id, double fee, Date starting_date, int maxStdCount) {
+        this.id = id;
+        this.fee = fee;
+        this.starting_date = starting_date;
+        this.maxStdCount = maxStdCount;
+    }
+
     public Batch(String id) {
         this.id = id;
+    }
+
+    public Batch(String id, String courseId) {
+        this.id = id;
+        this.courseId = courseId;
+    }
+
+    public Batch(int batchNo) {
+        this.batchNo = batchNo;
     }
 
     public String getId() {

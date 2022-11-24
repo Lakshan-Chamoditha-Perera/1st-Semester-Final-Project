@@ -86,14 +86,49 @@
                                 <Font name="Ubuntu Mono Bold" size="51.0" />
                             </font>
                         </Label>
-                  <ImageView fitHeight="103.0" fitWidth="127.0" layoutX="644.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="176.0" fitWidth="188.0" layoutX="127.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asserts/inquiries.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="127.0" layoutY="536.0" prefHeight="74.0" prefWidth="200.0" text="Inquiries List" textFill="#000000b1">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblInquiriesCount" layoutX="182.0" layoutY="573.0" prefHeight="74.0" prefWidth="114.0" text="00" textFill="#000000b1">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="45.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="146.0" fitWidth="153.0" layoutX="407.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../asserts/registerd_count.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblGreetings1" layoutX="757.0" layoutY="45.0" prefHeight="74.0" prefWidth="111.0" text="Registerd Students" textFill="#000000b1">
+                  <Label layoutX="387.0" layoutY="536.0" prefHeight="74.0" prefWidth="200.0" text="Registerd Students" textFill="#000000b1">
                      <font>
                         <Font name="Ubuntu Mono Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblRegisteredCount" layoutX="449.0" layoutY="581.0" prefHeight="58.0" prefWidth="114.0" text="00" textFill="#000000b1">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="45.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="159.0" fitWidth="161.0" layoutX="666.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asserts/pending.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="707.0" layoutY="536.0" prefHeight="74.0" prefWidth="99.0" text="Pending " textFill="#000000b1">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUnregisteredCount" layoutX="723.0" layoutY="580.0" prefHeight="58.0" prefWidth="114.0" text="00" textFill="#000000b1">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="45.0" />
                      </font>
                   </Label>
                     </children>

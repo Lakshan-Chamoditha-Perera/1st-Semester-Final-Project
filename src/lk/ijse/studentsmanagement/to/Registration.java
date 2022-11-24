@@ -22,6 +22,15 @@ public class Registration {
     String status;
 
     Payment payment;
+    Inquiry inquiry;
+
+    public Registration(String registrationId) {
+        this.registrationId = registrationId;
+    }
+
+    public Inquiry getInquiry() {
+        return inquiry;
+    }
 
     public Registration(String registrationId, String name, String address, String city, String postalCode, String mobile, String email, Date dob, String school) {
         this.registrationId = registrationId;

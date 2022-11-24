@@ -5,38 +5,52 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="978.0" prefWidth="1544.0" style="-fx-background-color: #333535; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.PaymentsFormController">
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" style="-fx-background-color: #333535; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.PaymentsFormController">
     <children>
         <AnchorPane layoutX="71.0" layoutY="123.0" prefHeight="766.0" prefWidth="627.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
             <children>
-                <Label layoutX="82.0" layoutY="97.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Enter ID :" />
-                <JFXTextField layoutX="254.0" layoutY="109.0" prefHeight="36.0" prefWidth="263.0" promptText="registration id" />
-                <Label layoutX="90.0" layoutY="227.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Amount" />
-                <JFXTextField layoutX="254.0" layoutY="239.0" prefHeight="36.0" prefWidth="263.0" promptText="amount" />
-                <Label layoutX="92.0" layoutY="161.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Remark" />
-                <JFXTextField layoutX="254.0" layoutY="173.0" prefHeight="36.0" prefWidth="263.0" />
-                <Label layoutX="198.0" prefHeight="60.0" prefWidth="263.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="PAYEMENT FORM" />
-                <JFXButton layoutX="186.0" layoutY="391.0" prefHeight="32.0" prefWidth="255.0" style="-fx-background-color: blue;" text="PAY NOW" />
-                <Label layoutX="90.0" layoutY="303.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-family: &quot;Proxima Nova&quot;,&quot;Verdana&quot;,&quot;Avenir Next&quot;; -fx-font-size: 18;" text="Date" />
-                <Label layoutX="241.0" layoutY="317.0" text="Label" />
+                <Label layoutX="96.0" layoutY="167.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-size: 18;" text="Enter ID :" />
+                <JFXTextField fx:id="txtRegistrationId" layoutX="254.0" layoutY="179.0" onMouseClicked="#regOnMouseClick" prefHeight="36.0" prefWidth="263.0" promptText="registration id" />
+                <Label layoutX="90.0" layoutY="297.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-size: 18;" text="Amount" />
+                <JFXTextField fx:id="txAmount" layoutX="254.0" layoutY="309.0" onMouseClicked="#amountOnMouseClicked" prefHeight="36.0" prefWidth="263.0" promptText="amount" />
+                <Label layoutX="92.0" layoutY="231.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-size: 18;" text="Remark" />
+                <JFXTextField fx:id="txtRemark" layoutX="254.0" layoutY="243.0" onMouseClicked="#remarkOnMouseClick" prefHeight="36.0" prefWidth="263.0" promptText="Enter remark" />
+                <Label layoutX="182.0" prefHeight="60.0" prefWidth="263.0" style="-fx-font-size: 30; -fx-text-fill: Black;" text="PAYMENTS FORM" />
+                <JFXButton fx:id="btnPayment" layoutX="186.0" layoutY="470.0" onAction="#btnPayments" prefHeight="53.0" prefWidth="255.0" style="-fx-background-color: RED; -fx-background-radius: 50;" text="PAY NOW" />
+                <Label layoutX="91.0" layoutY="373.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-size: 18;" text="Date" />
+                <Label fx:id="lblDate" layoutX="258.0" layoutY="399.0" text="Label" />
+                <Label layoutX="32.0" layoutY="60.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-size: 18;" text="Payment ID" />
+                <Label fx:id="lblPaymentID" layoutX="155.0" layoutY="60.0" prefHeight="60.0" prefWidth="129.0" style="-fx-font-size: 18;" text="Payment ID" />
+            <Label fx:id="lblInvalidRegistration" layoutX="257.0" layoutY="218.0" prefHeight="18.0" prefWidth="255.0" style="-fx-text-fill: red;" text="Invalid Registration" />
+            <Label fx:id="lblInValidRemark" layoutX="257.0" layoutY="280.0" prefHeight="18.0" prefWidth="255.0" style="-fx-text-fill: red;" text="Invalid Remark" />
+            <Label fx:id="lblInvalidAmount" layoutX="259.0" layoutY="347.0" prefHeight="18.0" prefWidth="255.0" style="-fx-text-fill: red;" text="Invalid Amount" />
+            <ImageView fitHeight="205.0" fitWidth="504.0" layoutX="93.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/paynow-logo-vector-01.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="793.0" layoutY="123.0" prefHeight="189.0" prefWidth="627.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
+        <AnchorPane layoutX="731.0" layoutY="123.0" prefHeight="189.0" prefWidth="689.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
             <children>
-                <JFXButton layoutX="361.0" layoutY="53.0" prefHeight="75.0" prefWidth="210.0" text="View Payments" />
-                <JFXTextField layoutX="22.0" layoutY="79.0" prefHeight="36.0" prefWidth="263.0" promptText="registration id" />
+                <JFXButton layoutX="465.0" layoutY="57.0" onAction="#btnViewPaymentsOnAcion" prefHeight="75.0" prefWidth="210.0" text="View Payments" />
+                <JFXTextField fx:id="txtSearchRegID" layoutX="22.0" layoutY="79.0" prefHeight="36.0" prefWidth="263.0" promptText="registration id" />
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="804.0" layoutY="370.0" prefHeight="492.0" prefWidth="627.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
+        <AnchorPane layoutX="721.0" layoutY="370.0" prefHeight="492.0" prefWidth="739.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 50;">
             <children>
-                <TableView layoutX="45.0" layoutY="36.0" prefHeight="419.0" prefWidth="540.0" style="-fx-background-color: pink; -fx-background-radius: 60; -fx-border-color: pink;">
+                <TableView fx:id="tblPayment" layoutX="32.0" layoutY="36.0" prefHeight="419.0" prefWidth="681.0" style="-fx-background-color: pink; -fx-background-radius: 60; -fx-border-color: pink;">
                     <columns>
-                        <TableColumn prefWidth="177.0" text="Date" />
-                        <TableColumn prefWidth="170.0" text="Remark" />
-                        <TableColumn prefWidth="181.0" text="Amount" />
+                        <TableColumn fx:id="colPaymentID" prefWidth="110.0" text="Payment ID" />
+                        <TableColumn fx:id="colType" prefWidth="124.0" text="Type" />
+                        <TableColumn fx:id="colRemark" prefWidth="192.0" text="Remark" />
+                  <TableColumn fx:id="colAmount" prefWidth="111.0" text="Amount" />
+                  <TableColumn fx:id="colDate" prefWidth="138.0" text="Date" />
                     </columns>
                 </TableView>
             </children>

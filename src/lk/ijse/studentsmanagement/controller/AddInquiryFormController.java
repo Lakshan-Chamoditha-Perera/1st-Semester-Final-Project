@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -86,7 +87,7 @@ public class AddInquiryFormController implements Initializable {
         IQTest iqTestDetails = IQTestModel.getIQTestDetails(cmbExamDates.getValue());
         lblTestID.setText(iqTestDetails.getId());
         lblTestLab.setText(iqTestDetails.getLab());
-        lblTestTime.setText(iqTestDetails.getTime());
+        lblTestTime.setText(iqTestDetails.getTime().toString());
         lblAmount.setText(String.valueOf(iqTestDetails.getAmount()));
 
     }
@@ -162,7 +163,7 @@ public class AddInquiryFormController implements Initializable {
         TestPayment testPayment = new TestPayment(
                 lblPaymentID.getText(),
                 txtId.getText(),
-                new SimpleDateFormat("dd-MM-20yy").format(new Date()),
+                java.sql.Date.valueOf(LocalDate.now()),
                 "Test Payment",
                 Double.parseDouble(lblAmount.getText()),
                 lblTestID.getText(),

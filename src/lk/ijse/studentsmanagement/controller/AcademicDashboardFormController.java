@@ -60,12 +60,12 @@ public class AcademicDashboardFormController implements Initializable {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.ACADEMIC,mainPane);
+        Navigation.navigate(Routes.ACADEMIC, mainPane);
     }
 
     @FXML
     void btnExamOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.EXAMS,pane);
+        Navigation.navigate(Routes.EXAMS, pane);
     }
 
     @FXML
@@ -91,21 +91,25 @@ public class AcademicDashboardFormController implements Initializable {
 
     @FXML
     void btnStudentsOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.ACADEMIC_STUDENTFORM,pane);
+        Navigation.navigate(Routes.ACADEMIC_STUDENTFORM, pane);
 
     }
 
     @FXML
     void homeOnMouseClicked(MouseEvent event) throws IOException {
-        Navigation.navigate(Routes.ACADEMIC,mainPane);
+        Navigation.navigate(Routes.ACADEMIC, mainPane);
     }
 
     public void btnManageBatchesOnAction(ActionEvent actionEvent) throws IOException {
-                Navigation.navigate(Routes.ACADEMIC_MANAGE_BATCHES,pane);
+        Navigation.navigate(Routes.ACADEMIC_MANAGE_BATCHES, pane);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         localDateAndTime(lblDate, lblTime);
+    }
+
+    public void btnManageSubjectOnAction(ActionEvent actionEvent) throws IOException {
+         Navigation.navigate(Routes.ACADEMIC_MANAGE_SUBJECTS,pane);
     }
 }
