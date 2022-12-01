@@ -161,8 +161,8 @@ public class AcademicScheduleIQTestFormController implements Initializable {
 
     public void tblIqTestOnMouseClicked(MouseEvent mouseEvent) {
         if (tblIqTest.getSelectionModel().getSelectedItem() != null) {
-         btnDelete.setDisable(false);
-        }else {
+            btnDelete.setDisable(false);
+        } else {
             btnDelete.setDisable(true);
         }
 

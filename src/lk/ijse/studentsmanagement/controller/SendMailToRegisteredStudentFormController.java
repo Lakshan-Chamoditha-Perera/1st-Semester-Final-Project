@@ -153,7 +153,10 @@ public class SendMailToRegisteredStudentFormController implements Initializable 
         cmbBatch.setVisible(false);
         txtSelectBatch.setVisible(false);
         try {
-            ComboLoader.loadBatchIDS(cmbBatch);
+            boolean loadBatchIDS = ComboLoader.loadBatchIDS(cmbBatch);
+            if(!loadBatchIDS){
+                new Alert(Alert.AlertType.INFORMATION,"No any batcehs added").show();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

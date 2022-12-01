@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.PaymentModel;
+import lk.ijse.studentsmanagement.regex.RegExPatterns;
 import lk.ijse.studentsmanagement.tblModels.PaymentsTM;
 import lk.ijse.studentsmanagement.to.Payment;
 import lk.ijse.studentsmanagement.to.Registration;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -56,7 +58,7 @@ public class PaymentsFormController implements Initializable {
             AutoGenerateID.setLblRegPaymentID(lblPaymentID);
             lblDate.setText(Date.valueOf(LocalDate.now()).toString());
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
 
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -74,15 +76,15 @@ public class PaymentsFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 
     public void btnPayments(ActionEvent actionEvent){
        try{
-           if(txtRegistrationId.getText()!=null){
-               if(txtRemark.getText() != null){
-                   if(txAmount.getText()!=null){
+           if(RegExPatterns.getRegistrationIdPattern().matcher(txtRegistrationId.getText()).matches()){
+               if(RegExPatterns.getNamePattern().matcher(txtRemark.getText()).matches()){
+                   if(RegExPatterns.getDoublePattern().matcher(txAmount.getText()).matches()){
                        boolean isAdded = PaymentModel.addPayment(
                                new Payment(
                                        lblPaymentID.getText(),
@@ -116,7 +118,7 @@ public class PaymentsFormController implements Initializable {
                new Alert(Alert.AlertType.ERROR,"Enter Registration ID First!").show();
            }
        } catch (ClassNotFoundException | IOException | SQLException e) {
-           throw new RuntimeException(e);
+           System.out.println(e);
        }
     }
 

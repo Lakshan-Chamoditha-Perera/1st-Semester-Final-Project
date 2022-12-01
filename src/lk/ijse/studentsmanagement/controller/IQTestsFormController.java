@@ -63,7 +63,10 @@ public class IQTestsFormController implements Initializable {
             addIQTestDetail();
             addInquiryIQTestDetail();
             AutoGenerateID.setLblPaymentID(lblPaymentID);
-            ComboLoader.loadIQExamDatesComboBox(cmbExamDate);
+            boolean isIqExamDatesLoaded = ComboLoader.loadIQExamDatesComboBox(cmbExamDate);
+            if(!isIqExamDatesLoaded){
+                new Alert(Alert.AlertType.INFORMATION,"No any exam dates").show();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }

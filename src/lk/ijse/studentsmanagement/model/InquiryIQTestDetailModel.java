@@ -29,4 +29,37 @@ public class InquiryIQTestDetailModel {
         }
         return list;
     }
+
+    public static ArrayList <InquiryIQTestDetail> getInquiryIQTestList(String id) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute(
+                "SELECT inquiry.studentID, inquiry_iqTest_Detail.testID, inquiry_iqTest_Detail.result, inquiry.name " +
+                "FROM inquiry " +
+                "INNER JOIN inquiry_iqTest_Detail " +
+                "ON inquiry.studentID = inquiry_iqTest_Detail.studentID " +
+                "WHERE testID = ?",id);
+        if(resultSet!=null){
+            ArrayList <InquiryIQTestDetail> list = new ArrayList<>();
+            while(resultSet.next()){
+                list.add(
+                  new InquiryIQTestDetail(
+                          resultSet.getString(1),
+                          resultSet.getString(2),
+                          resultSet.getString(3),
+                          resultSet.getString(4)
+                  )
+                );
+            }
+            return list;
+        }
+        return null;
+    }
+
+    public static boolean updateInquiryIQTestDetail(InquiryIQTestDetail inquiryIQTestDetail) throws SQLException, ClassNotFoundException {
+        System.out.println(inquiryIQTestDetail);
+        return CrudUtil.execute("UPDATE inquiry_iqTest_Detail SET result = ? WHERE studentID = ? AND testID = ?",
+                inquiryIQTestDetail.getResult(),
+                inquiryIQTestDetail.getStudentId(),
+                inquiryIQTestDetail.getTestId()
+        );
+    }
 }

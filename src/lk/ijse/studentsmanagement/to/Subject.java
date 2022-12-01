@@ -1,5 +1,10 @@
 package lk.ijse.studentsmanagement.to;
 
+import lk.ijse.studentsmanagement.util.CrudUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Subject {
     String id;
     String name;
@@ -16,6 +21,15 @@ public class Subject {
     }
 
     public Subject() {
+    }
+
+    public static Subject getLastSubjectID() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT id from subject ORDER BY id DESC LIMIT 1");
+        if (resultSet.next()) {
+            return new Subject(resultSet.getString(1));
+        }
+        return null;
+
     }
 
     @Override

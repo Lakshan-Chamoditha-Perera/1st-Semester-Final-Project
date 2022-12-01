@@ -46,6 +46,7 @@ public class AcademicAddNewBatchFormController implements Initializable {
     public Label lblBatchNo;
     public TableColumn colBatchNo;
     public Button btnAdd;
+
     @FXML
     private ComboBox<String> cmbCourse;
 
@@ -54,13 +55,16 @@ public class AcademicAddNewBatchFormController implements Initializable {
         try {
             boolean isAdded = addNewBatch();
             String text = (isAdded) ? "Success" : "Error";
-            if(isAdded){
+            if (isAdded) {
+                txtCourseFee.clear();
+                txtCrowd.clear();
                 new Alert(Alert.AlertType.INFORMATION, text).show();
-                Navigation.navigate(Routes.ACADEMIC_ADD_NEW_BATCH, pane);
-            }else{
+             //   cmbCourse.setItems(null);
+                loadCoursesList(cmbCourse);
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, text).show();
             }
-        } catch (SQLException | ClassNotFoundException | IOException e) {
+        } catch (SQLException | ClassNotFoundException  e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
@@ -69,7 +73,7 @@ public class AcademicAddNewBatchFormController implements Initializable {
         if (!cmbCourse.getValue().isEmpty()) {
             if (RegExPatterns.getDoublePattern().matcher(txtCourseFee.getText()).matches()) {
                 if (cmbDate.getValue() != null) {
-                    if (Integer.parseInt(txtCrowd.getText())>0) {
+                    if (Integer.parseInt(txtCrowd.getText()) > 0) {
                         return BatchModel.addNewBatch(
                                 new Batch(
                                         lblBatchNo.getText() + cmbCourse.getValue(),
@@ -118,15 +122,21 @@ public class AcademicAddNewBatchFormController implements Initializable {
     }
 
     public void cmbCourseOnAction(ActionEvent actionEvent) {
-        btnAdd.setDisable(false);
-        Course courseDetail = null;
+
         try {
-            courseDetail = CourseModel.getCourseDetail(cmbCourse.getValue());
-            lblName.setText(courseDetail.getName());
-            lblDuration.setText(courseDetail.getDuration());
-            lblId.setText(courseDetail.getId());
-            TableLoader.setBatchTable(tblOnGoingBatches, cmbCourse.getValue());
-            AutoGenerateID.setBatchNo(lblBatchNo, cmbCourse.getValue());
+            btnAdd.setDisable(false);
+           if(cmbCourse.getSelectionModel().getSelectedItem()!=null){
+               Course courseDetail = CourseModel.getCourseDetail(
+                       new Course(
+                               cmbCourse.getValue()
+                       )
+               );
+               lblName.setText(courseDetail.getName());
+               lblDuration.setText(courseDetail.getDuration());
+               lblId.setText(courseDetail.getId());
+               TableLoader.setBatchTable(tblOnGoingBatches, cmbCourse.getValue());
+               AutoGenerateID.setBatchNo(lblBatchNo, cmbCourse.getValue());
+           }
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }

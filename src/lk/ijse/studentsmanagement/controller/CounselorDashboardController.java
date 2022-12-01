@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import static lk.ijse.studentsmanagement.util.TimeDate.localDateAndTime;
+import static lk.ijse.studentsmanagement.util.TimeDate.setGreeting;
 
 public class CounselorDashboardController implements Initializable {
 
@@ -46,6 +47,7 @@ public class CounselorDashboardController implements Initializable {
     public Label lblInquiriesCount;
     public Label lblRegisteredCount;
     public Label lblUnregisteredCount;
+    public JFXButton btnDashBoard;
     @FXML
     private AnchorPane mainPane;
 
@@ -70,13 +72,11 @@ public class CounselorDashboardController implements Initializable {
     @FXML
     private Label lbldate;
 
-    @FXML
-    private Label lbldate2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         localDateAndTime(lbldate, lblTime);
-        getGreeting();
+        setGreeting(lblGreetings,wishImageView);
         try {
             setCount();
         } catch (SQLException e) {
@@ -130,23 +130,6 @@ public class CounselorDashboardController implements Initializable {
         alert.setHeaderText("Confirmation: ");
         if (alert.showAndWait().get() == ButtonType.OK) {
             Navigation.navigate(Routes.MAIN, mainPane);
-        }
-    }
-    public void getGreeting() {
-        Calendar c = Calendar.getInstance();
-        LocalDate now = LocalDate.now();
-        c.setTime(new Date());
-        int hours = c.get(Calendar.HOUR_OF_DAY);
-        int min = c.get(Calendar.MINUTE);
-        if (hours >= 1 && hours < 12) {
-            lblGreetings.setText("Good Morning...");
-            wishImageView.setImage(new Image("lk/ijse/studentsmanagement/asserts/morning.png"));
-        } else if (hours >= 12 && hours <= 16) {
-            lblGreetings.setText("Good Afternoon...");
-            wishImageView.setImage(new Image("lk/ijse/studentsmanagement/asserts/afternoon.png"));
-        }else {
-            lblGreetings.setText("Good Evening...");
-            wishImageView.setImage(new Image("lk/ijse/studentsmanagement/asserts/night.png"));
         }
     }
 }

@@ -1,5 +1,6 @@
 package lk.ijse.studentsmanagement.controller;
 
+import animatefx.animation.FadeInLeftBig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -83,23 +84,23 @@ public class AcademicManageExamsFormController implements Initializable {
 
     @FXML
     void btnDeleteClickonAction(ActionEvent event) {
-      try{
-          if(tblExams.getSelectionModel().getSelectedItem()!=null){
-              boolean isDeleted = ExamModel.deleteExam(
-                      new Exam(
-                              tblExams.getSelectionModel().getSelectedItem().getExamId()
-                      )
-              );
-              if(isDeleted){
-                  new Alert(Alert.AlertType.INFORMATION,"DELETED").showAndWait();
-                  Navigation.navigate(Routes.ACADEMIC_MANAGE_EXAMS,pane);
-              }else{
-                  new Alert(Alert.AlertType.ERROR,"ERROR").show();
-              }
-          }
-      } catch (SQLException | ClassNotFoundException | IOException e) {
-          throw new RuntimeException(e);
-      }
+        try {
+            if (tblExams.getSelectionModel().getSelectedItem() != null) {
+                boolean isDeleted = ExamModel.deleteExam(
+                        new Exam(
+                                tblExams.getSelectionModel().getSelectedItem().getExamId()
+                        )
+                );
+                if (isDeleted) {
+                    new Alert(Alert.AlertType.INFORMATION, "DELETED").showAndWait();
+                    Navigation.navigate(Routes.ACADEMIC_MANAGE_EXAMS, pane);
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "ERROR").show();
+                }
+            }
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -121,11 +122,11 @@ public class AcademicManageExamsFormController implements Initializable {
                                     )
                             );
 
-                            if(isUpdated){
-                                new Alert(Alert.AlertType.INFORMATION,"Updated").showAndWait();
-                                Navigation.navigate(Routes.ACADEMIC_MANAGE_EXAMS,pane);
-                            }else{
-                                new Alert(Alert.AlertType.ERROR,"ERROR").show();
+                            if (isUpdated) {
+                                new Alert(Alert.AlertType.INFORMATION, "Updated").showAndWait();
+                                Navigation.navigate(Routes.ACADEMIC_MANAGE_EXAMS, pane);
+                            } else {
+                                new Alert(Alert.AlertType.ERROR, "ERROR").show();
                             }
 
 
@@ -156,8 +157,12 @@ public class AcademicManageExamsFormController implements Initializable {
         colSubjectID.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+
         try {
-            TableLoader.loadAllExams(tblExams);
+            boolean isExamLoaded = TableLoader.loadAllExams(tblExams);
+            if (!isExamLoaded) {
+                new Alert(Alert.AlertType.INFORMATION, "No any exam scheduled yet").show();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

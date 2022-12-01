@@ -1,5 +1,6 @@
 package lk.ijse.studentsmanagement.controller;
 
+import com.google.zxing.WriterException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -9,15 +10,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import lk.ijse.studentsmanagement.comboLoad.ComboLoader;
 import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.GardianModel;
 import lk.ijse.studentsmanagement.model.RegistrationModel;
+import lk.ijse.studentsmanagement.qr.QRGenerator;
 import lk.ijse.studentsmanagement.regex.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Batch;
 import lk.ijse.studentsmanagement.to.Gardian;
@@ -45,6 +49,13 @@ public class EnrollmentsFormController implements Initializable {
     public Label lblInvalidSearchDetail;
     public JFXTextField txtStdNic;
     public Label lblInvalidStdNic;
+    public AnchorPane panelRegistration;
+    public AnchorPane panelGuardian;
+    public AnchorPane panelPayment;
+    public JFXButton btnView;
+    public JFXButton btnEnroll;
+    public Label lblInvalidAmount;
+    public Label lblInvalidRemark;
     @FXML
     private AnchorPane pane;
 
@@ -197,205 +208,228 @@ public class EnrollmentsFormController implements Initializable {
 
     @FXML
     void btnEnrollClickOnAction(ActionEvent event) {
+        boolean isAdded;
         Registration registration = isStdDetailCorrect();
-        Gardian gardian;
-        if(registration != null){
-            if(rBtnNo.isSelected()){
-                gardian = setGardianDetail();
-                if(gardian != null){
-                    System.out.println("gardian done");
-                    if(!txtBatch.getText().equals("No any Ongoing Batch")){
-                        registration.setPayment(setPaymentOb());
-                        gardian.setRegistration(registration);
-                        add(gardian);
-                    }else{
-                        new Alert(Alert.AlertType.INFORMATION,"Please select a course first").show();
-                    }
-                }
-            }
-            else{
-                if(RegExPatterns.getOldIDPattern().matcher(txtParentID.getText()).matches()){
-                    gardian = setGardianDetail();
-                    if(gardian!=null){
-                        if(!txtBatch.getText().equals("No any Ongoing Batch")){
-                            registration.setPayment(setPaymentOb());
-                           // gardian.setRegistration(registration);
-                            try {
-                                boolean flag = RegistrationModel.registrationPaymentTransaction(registration);
-                                String text =(flag)?"DONE":"ERROR";
-                                Navigation.navigate(Routes.ENROLLMENTS, pane);
-                                new Alert(Alert.AlertType.INFORMATION,text).show();
-                            } catch (SQLException | IOException | ClassNotFoundException e) {
-                                new Alert(Alert.AlertType.INFORMATION,String.valueOf(e)).show();
-                            }
-                           // add(gardian);
-                        }
-                    }
+        try {
+            if (registration != null) {
+                System.out.println("registration not null");
+                Gardian gardian = setGardianDetail();
+                if (gardian != null) {
+                    System.out.println("gardian not null");
+                    Payment payment = setPaymentOb();
+                    if (payment != null) {
+                        System.out.println("payment not null");
+                        if (!rBtnYes.isSelected()) {
+                            //add with parent
+                            System.out.println("add with parent");
+                            registration.setPayment(payment);
+                            gardian.setRegistration(registration);
+                            isAdded = GardianModel.addGardianT(gardian);
+                        } else {
+                            //add without parent
 
-                }else{
-                    System.out.println("search parent first");
-                    new Alert(Alert.AlertType.INFORMATION,"Search parent first").show();
+                            System.out.println("add without parent");
+                            registration.setGardianId(txtParentID.getText());
+                            registration.setPayment(payment);
+                            isAdded = RegistrationModel.registrationPaymentTransaction(registration);
+                        }
+                        alertAndGenerateQRCode(isAdded, registration);
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Invalid Payment").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Enter Guardian Details").show();
                 }
             }
+        } catch (SQLException | IOException | ClassNotFoundException | WriterException e) {
+            System.out.println(e);
         }
-        else{
-            new Alert(Alert.AlertType.INFORMATION, "Please enter registration details").show();
+    }
+
+    private void alertAndGenerateQRCode(boolean isAdded, Registration registration) throws IOException, WriterException {
+        if (isAdded) {
+            System.out.println("All DONE");
+            ButtonType print_bill = new ButtonType("Print Bill");
+            ButtonType generate_qr_code = new ButtonType("Send QR Code");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Student Added", print_bill, generate_qr_code);
+            alert.showAndWait();
+            ButtonType result = alert.getResult();
+            if (result.equals(generate_qr_code)) {
+                QRGenerator.getGenerator(registration.toString());
+            } else if (result.equals(print_bill)) {
+
+            }
+            Navigation.navigate(Routes.ENROLLMENTS, pane);
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Student Not added").show();
         }
+
     }
 
     private void add(Gardian gardian) {
         boolean isAdded = false;
         try {
             isAdded = GardianModel.addGardianT(gardian);
-            String text ="NOT";
-            if(isAdded){
+            String text = "NOT";
+            if (isAdded) {
                 text = "ADDED";
                 Navigation.navigate(Routes.ENROLLMENTS, pane);
             }
-            new Alert(Alert.AlertType.INFORMATION,text).show();
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.INFORMATION, text).show();
+        } catch (SQLException | IOException | ClassNotFoundException | WriterException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
-
-
     }
 
     private Payment setPaymentOb() {
-        return new Payment(
-                lblPaymentID.getText(),
-                lblRegID.getText(),
-                "registration",
-                "Registration Payment",
-                Double.parseDouble(txtAmount.getText()),
-                Date.valueOf(LocalDate.now())
-        );
+        if (RegExPatterns.getDoublePattern().matcher(txtAmount.getText()).matches()) {
+            if (RegExPatterns.getNamePattern().matcher(txtRemark.getText()).matches()) {
+                return new Payment(
+                        lblPaymentID.getText(),
+                        lblRegID.getText(),
+                        "registration",
+                        "Registration Payment",
+                        Double.parseDouble(txtAmount.getText()),
+                        Date.valueOf(LocalDate.now())
+                );
+            } else {
+                txtRemark.setFocusColor(Color.RED);
+                lblInvalidRemark.setVisible(true);
+            }
+        } else {
+            txtAmount.setFocusColor(Color.RED);
+            lblInvalidAmount.setVisible(true);
+        }
+        return null;
     }
 
     private Gardian setGardianDetail() {
         System.out.println("gardian regex");
-            if(RegExPatterns.getOldIDPattern().matcher(txtParentID.getText()).matches()){
-                System.out.println("Id check");
-                if(RegExPatterns.getNamePattern().matcher(txtParentName.getText()).matches()){
-                    System.out.println("name check");
-                    if(RegExPatterns.getAddressPattern().matcher(txtParentAddress.getText()).matches()){
-                        System.out.println("address check");
-                        if(RegExPatterns.getMobilePattern().matcher(txtParentMobile.getText()).matches()){
-                            System.out.println("mobile check");
-                               if(RegExPatterns.getEmailPattern().matcher(txtParentEmail.getText()).matches()){
-                                   System.out.println("email check");
-                                   if(RegExPatterns.getNamePattern().matcher(txtParentDesignation.getText()).matches()){
-                                       System.out.println("designation check");
-                                       if(RegExPatterns.getNamePattern().matcher(txtParentWorkPlace.getText()).matches()){
-                                           System.out.println("work place check");
-                                                  return new Gardian(
-                                                          txtParentID.getText(),
-                                                          txtParentName.getText(),
-                                                          txtParentAddress.getText(),
-                                                          txtParentMobile.getText(),
-                                                          txtParentEmail.getText(),
-                                                          txtParentDesignation.getText(),
-                                                          txtParentWorkPlace.getText()
-                                                  );
-                                       }else{
-                                           lblInvalidParentWorkingPlace.setVisible(true);
-                                           txtParentWorkPlace.setFocusColor(Color.RED);
-                                       }
-                                   }else{
-                                       lblInvalidParentDesignaion.setVisible(true);
-                                       txtParentDesignation.setFocusColor(Color.RED);
-                                   }
-                               }else{
-                                   lblInvalidParentEmail.setVisible(true);
-                                   txtParentEmail.setFocusColor(Color.RED);
-                               }
-                        }else{
-                            lblInvalidParentMobile.setVisible(true);
-                            txtParentMobile.setFocusColor(Color.RED);
+        if (RegExPatterns.getOldIDPattern().matcher(txtParentID.getText()).matches()) {
+            System.out.println("Id check");
+            if (RegExPatterns.getNamePattern().matcher(txtParentName.getText()).matches()) {
+                System.out.println("name check");
+                if (RegExPatterns.getAddressPattern().matcher(txtParentAddress.getText()).matches()) {
+                    System.out.println("address check");
+                    if (RegExPatterns.getMobilePattern().matcher(txtParentMobile.getText()).matches()) {
+                        System.out.println("mobile check");
+                        if (RegExPatterns.getEmailPattern().matcher(txtParentEmail.getText()).matches()) {
+                            System.out.println("email check");
+                            if (RegExPatterns.getNamePattern().matcher(txtParentDesignation.getText()).matches()) {
+                                System.out.println("designation check");
+                                if (RegExPatterns.getNamePattern().matcher(txtParentWorkPlace.getText()).matches()) {
+                                    System.out.println("work place check");
+                                    return new Gardian(
+                                            txtParentID.getText(),
+                                            txtParentName.getText(),
+                                            txtParentAddress.getText(),
+                                            txtParentMobile.getText(),
+                                            txtParentEmail.getText(),
+                                            txtParentDesignation.getText(),
+                                            txtParentWorkPlace.getText()
+                                    );
+                                } else {
+                                    lblInvalidParentWorkingPlace.setVisible(true);
+                                    txtParentWorkPlace.setFocusColor(Color.RED);
+                                }
+                            } else {
+                                lblInvalidParentDesignaion.setVisible(true);
+                                txtParentDesignation.setFocusColor(Color.RED);
+                            }
+                        } else {
+                            lblInvalidParentEmail.setVisible(true);
+                            txtParentEmail.setFocusColor(Color.RED);
                         }
-                    }else{
-                        lblInvalidParentAddress.setVisible(true);
-                        txtParentAddress.setFocusColor(Color.RED);
+                    } else {
+                        lblInvalidParentMobile.setVisible(true);
+                        txtParentMobile.setFocusColor(Color.RED);
                     }
-                }else{
-                    lblInvalidParentName.setVisible(true);
-                    txtParentName.setFocusColor(Color.RED);
+                } else {
+                    lblInvalidParentAddress.setVisible(true);
+                    txtParentAddress.setFocusColor(Color.RED);
                 }
-            }else{
-                lblInvalidParentID.setVisible(true);
-                txtParentID.setFocusColor(Color.RED);
+            } else {
+                lblInvalidParentName.setVisible(true);
+                txtParentName.setFocusColor(Color.RED);
             }
-            return null;
+        } else {
+            lblInvalidParentID.setVisible(true);
+            txtParentID.setFocusColor(Color.RED);
         }
+        return null;
+    }
+
     private Registration isStdDetailCorrect() {
         if (RegExPatterns.getNamePattern().matcher(txtStdName.getText()).matches()) {
-           if(RegExPatterns.getIdPattern().matcher(txtStdNic.getText()).matches()){
-               if (RegExPatterns.getAddressPattern().matcher(txtStdAddress.getText()).matches()) {
-                   if (RegExPatterns.getCityPattern().matcher(txtStdCity.getText()).matches()) {
-                       if (RegExPatterns.getPostalCodePattern().matcher(txtPostalCode.getText()).matches()) {
-                           if (RegExPatterns.getMobilePattern().matcher(txtStdMobileNumber.getText()).matches()) {
-                               if (RegExPatterns.getEmailPattern().matcher(txtStdEmail.getText()).matches()) {
-                                   if (calDob.getValue() != null) {
-                                       if (RegExPatterns.getNamePattern().matcher(txtSchool.getText()).matches()) {
-                                           if (cmbCourse.getValue() != null) {
-                                               return new Registration(
+            if (RegExPatterns.getIdPattern().matcher(txtStdNic.getText()).matches()) {
+                if (RegExPatterns.getAddressPattern().matcher(txtStdAddress.getText()).matches()) {
+                    if (RegExPatterns.getCityPattern().matcher(txtStdCity.getText()).matches()) {
+                        if (RegExPatterns.getPostalCodePattern().matcher(txtPostalCode.getText()).matches()) {
+                            if (RegExPatterns.getMobilePattern().matcher(txtStdMobileNumber.getText()).matches()) {
+                                if (RegExPatterns.getEmailPattern().matcher(txtStdEmail.getText()).matches()) {
+                                    if (calDob.getValue() != null) {
+                                        if (RegExPatterns.getNamePattern().matcher(txtSchool.getText()).matches()) {
+                                            if (cmbCourse.getValue() != null) {
+                                                return new Registration(
 
-                                                       lblRegID.getText(),
-                                                       txtStdNic.getText(),
-                                                       txtBatch.getText(),
-                                                       cmbCourse.getValue(),
-                                                       txtParentID.getText(),
-                                                       txtStdName.getText(),
-                                                       txtStdAddress.getText(),
-                                                       txtStdCity.getText(),
-                                                       txtPostalCode.getText(),
-                                                       txtStdMobileNumber.getText(),
-                                                       txtStdEmail.getText(),
-                                                       Date.valueOf(calDob.getValue()),
-                                                       (rBtnMale.isSelected())?"Male":
-                                                               "Female",
-                                                       txtSchool.getText(),
-                                                       (rBtnOL.isSelected())?"Ordinary Level":
-                                                               (rBtnAL.isSelected())?"Advanced Level":
-                                                                       (rBtnDiploma.isSelected())?"Diploma Level":
-                                                                               (rBtnDegree.isSelected())?"Degree Level":
-                                                                                       "Master",
-                                                       "Active"
+                                                        lblRegID.getText(),
+                                                        txtStdNic.getText(),
+                                                        txtBatch.getText(),
+                                                        cmbCourse.getValue(),
+                                                        txtParentID.getText(),
+                                                        txtStdName.getText(),
+                                                        txtStdAddress.getText(),
+                                                        txtStdCity.getText(),
+                                                        txtPostalCode.getText(),
+                                                        txtStdMobileNumber.getText(),
+                                                        txtStdEmail.getText(),
+                                                        Date.valueOf(calDob.getValue()),
+                                                        (rBtnMale.isSelected()) ? "Male" :
+                                                                "Female",
+                                                        txtSchool.getText(),
+                                                        (rBtnOL.isSelected()) ? "Ordinary Level" :
+                                                                (rBtnAL.isSelected()) ? "Advanced Level" :
+                                                                        (rBtnDiploma.isSelected()) ? "Diploma Level" :
+                                                                                (rBtnDegree.isSelected()) ? "Degree Level" :
+                                                                                        "Master",
+                                                        "Active"
 
-                                               );
-                                           } else {
-                                               lblSelectCourseFirst.setVisible(true);
-                                           }
-                                       } else {
-                                           txtSchool.setFocusColor(Color.RED);
-                                           lblInvalidSchool.setVisible(true);
-                                       }
-                                   } else {
-                                       lblSelectDob.setVisible(true);
-                                   }
-                               } else {
-                                   txtStdEmail.setFocusColor(Color.RED);
-                                   lblInvalidEmail.setVisible(true);
-                               }
-                           } else {
-                               txtStdMobileNumber.setFocusColor(Color.RED);
-                               lblInvalidMobileNumber.setVisible(true);
-                           }
-                       } else {
-                           txtPostalCode.setFocusColor(Color.RED);
-                           lblInvalidPostalCode.setVisible(true);
-                       }
-                   } else {
-                       txtStdCity.setFocusColor(Color.RED);
-                       lblInvalidCity.setVisible(true);
-                   }
-               } else {
-                   txtStdAddress.setFocusColor(Color.RED);
-                   lblInvalidAddress.setVisible(true);
-               }
-           }else{
-               txtStdNic.setFocusColor(Color.RED);
-               lblInvalidStdNic.setVisible(true);
-           }
+                                                );
+                                            } else {
+                                                lblSelectCourseFirst.setVisible(true);
+                                            }
+                                        } else {
+                                            txtSchool.setFocusColor(Color.RED);
+                                            lblInvalidSchool.setVisible(true);
+                                        }
+                                    } else {
+                                        lblSelectDob.setVisible(true);
+                                    }
+                                } else {
+                                    txtStdEmail.setFocusColor(Color.RED);
+                                    lblInvalidEmail.setVisible(true);
+                                }
+                            } else {
+                                txtStdMobileNumber.setFocusColor(Color.RED);
+                                lblInvalidMobileNumber.setVisible(true);
+                            }
+                        } else {
+                            txtPostalCode.setFocusColor(Color.RED);
+                            lblInvalidPostalCode.setVisible(true);
+                        }
+                    } else {
+                        txtStdCity.setFocusColor(Color.RED);
+                        lblInvalidCity.setVisible(true);
+                    }
+                } else {
+                    txtStdAddress.setFocusColor(Color.RED);
+                    lblInvalidAddress.setVisible(true);
+                }
+            } else {
+                txtStdNic.setFocusColor(Color.RED);
+                lblInvalidStdNic.setVisible(true);
+            }
         } else {
             txtStdName.setFocusColor(Color.RED);
             lblInvalidName.setVisible(true);
@@ -405,9 +439,9 @@ public class EnrollmentsFormController implements Initializable {
 
     @FXML
     void btnSearchOnaction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        if(RegExPatterns.getOldIDPattern().matcher(txtSearchParent.getText()).matches()){
+        if (RegExPatterns.getOldIDPattern().matcher(txtSearchParent.getText()).matches()) {
             Gardian gardianDetail = GardianModel.getGardianDetail(new Gardian(txtSearchParent.getText()));
-            if(gardianDetail!=null){
+            if (gardianDetail != null) {
                 txtParentID.setText(gardianDetail.getId());
                 txtParentName.setText(gardianDetail.getName());
                 txtParentEmail.setText(gardianDetail.getEmail());
@@ -415,12 +449,12 @@ public class EnrollmentsFormController implements Initializable {
                 txtParentWorkPlace.setText(gardianDetail.getWorkingPlace());
                 txtParentAddress.setText(gardianDetail.getAddress());
                 txtParentDesignation.setText(gardianDetail.getDesignation());
-            }else{
-                new Alert(Alert.AlertType.ERROR,"Gardian not Found!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Gardian not Found!").show();
             }
-        }else{
-         lblInvalidSearchDetail.setVisible(true);
-         txtSearchParent.setFocusColor(Color.RED);
+        } else {
+            lblInvalidSearchDetail.setVisible(true);
+            txtSearchParent.setFocusColor(Color.RED);
         }
     }
 
@@ -434,10 +468,19 @@ public class EnrollmentsFormController implements Initializable {
         Batch lastOngoingBatch = BatchModel.getLastOngoingBatch(cmbCourse.getValue());
         if (lastOngoingBatch != null) {
             txtBatch.setText(lastOngoingBatch.getId());
+            activate(false);
         } else {
             txtBatch.setText("No any Ongoing Batch");
+            activate(true);
         }
+    }
 
+    private void activate(boolean active) {
+        panelRegistration.setDisable(active);
+        panelPayment.setDisable(active);
+        panelGuardian.setDisable(active);
+        btnEnroll.setDisable(active);
+        btnView.setDisable(active);
     }
 
     @FXML
@@ -457,6 +500,7 @@ public class EnrollmentsFormController implements Initializable {
         txtParentWorkPlace.setDisable(flag);
         txtSearchParent.setDisable(!flag);
         btnSearch.setDisable(!flag);
+
     }
 
     @FXML
@@ -504,11 +548,15 @@ public class EnrollmentsFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+
+            activate(true);
             ComboLoader.loadCoursesList(cmbCourse);
+
             setLblRegPaymentID(lblPaymentID);
             setRegistrationID(lblRegID);
+
         } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
 
     }
@@ -555,6 +603,18 @@ public class EnrollmentsFormController implements Initializable {
 
     public void txtStdNicOnAction(MouseEvent mouseEvent) {
         lblInvalidStdNic.setVisible(false);
+    }
+
+    public void txtAmountOnMouseClicked(MouseEvent mouseEvent) {
+        lblInvalidAmount.setVisible(false);
+    }
+
+    public void txtRegistrationOnMouseClicked(MouseEvent mouseEvent) {
+        lblInvalidRemark.setVisible(false);
+    }
+
+    public void clickOn(ActionEvent actionEvent) {
+        //new FileChooser()
     }
 }
 

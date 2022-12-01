@@ -25,4 +25,5 @@ public class CourseSubjectDetail {
         this.courseId = courseId;
         this.subjectId = subjectId;
     }
+
 }

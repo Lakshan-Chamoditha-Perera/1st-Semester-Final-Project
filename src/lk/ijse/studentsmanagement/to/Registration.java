@@ -8,6 +8,11 @@ public class Registration {
     String batchId;
     String courseId;
     String gardianId;
+
+    public void setGardianId(String gardianId) {
+        this.gardianId = gardianId;
+    }
+
     String name;
     String address;
     String city;
@@ -51,6 +56,14 @@ public class Registration {
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
+
+    public Registration(String registrationId, String batchId, String name, String status) {
+        this.registrationId = registrationId;
+        this.batchId = batchId;
+        this.name = name;
+        this.status = status;
+    }
+
     public Registration(String registrationId, String nic, String batchId, String courseId, String gardianId, String name, String address, String city, String postalCode, String mobile, String email, Date dob, String gender, String school, String higherEDU, String status) {
         this.registrationId = registrationId;
         this.nic = nic;
@@ -144,23 +157,8 @@ public class Registration {
 
     @Override
     public String toString() {
-        return "Registration{" +
-                "registrationId='" + registrationId + '\'' +
-                ", nic='" + nic + '\'' +
-                ", batchId='" + batchId + '\'' +
-                ", courseId='" + courseId + '\'' +
-                ", gardianId='" + gardianId + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", gender='" + gender + '\'' +
-                ", school='" + school + '\'' +
-                ", higherEDU='" + higherEDU + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return  registrationId +','+ nic + ',' + batchId +','+courseId+','+gardianId +','+name +
+                ','+address+ ','+city + ','+postalCode +','+mobile + ','+email + ','+dob +','+gender +','+school + ','+
+                higherEDU + ','+status;
     }
 }

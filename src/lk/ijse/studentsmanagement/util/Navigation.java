@@ -1,5 +1,7 @@
 package lk.ijse.studentsmanagement.util;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeOut;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
@@ -12,6 +14,7 @@ public class Navigation {
     private static AnchorPane pane;
 
     public static void navigate(Routes route, AnchorPane pane) throws IOException {
+       // new FadeOut(pane).play();
         Navigation.pane = pane;
         Navigation.pane.getChildren().clear();
         Stage window = (Stage) Navigation.pane.getScene().getWindow();
@@ -177,14 +180,42 @@ public class Navigation {
                 window.setTitle("ACADEMIC_MANAGE_SUBJECTS");
                 initUI("AcademicAddSubjectToCourseForm.fxml");
                 break;
+
+            case ACADEMIC_PAYMENTS:
+                window.setTitle("ACADEMIC_PAYMENTS");
+                initUI("AcademicPaymentsForm.fxml");
+                break;
+            case ACADEMIC_REGISTRATION_PAYMENTS:
+                window.setTitle("ACADEMIC_REGISTRATION_PAYMENTS");
+                initUI("AcademicRegistrationPaymentsForm.fxml");
+                break;
+            case ACADEMIC_INQUIRY_PAYMENTS:
+                window.setTitle("ACADEMIC_INQUIRY_PAYMENTS");
+                initUI("AcademicInqauiryPaymentsForm.fxml");
+                break;
+
+
+            case MARK_ATTENDANCE:
+                window.setTitle("MARK_ATTENDANCE");
+                initUI("AcademicAttendanceForm.fxml");
+                break;
+
+            case ACADEMIC_ADD_RESULTS:
+                window.setTitle("ACADEMIC_ADD_RESULTS");
+                initUI("AcademicAddResultsForm.fxml");
+                break;
+
             default:
                 new Alert(Alert.AlertType.ERROR, "UI Not Found!").show();
                 break;
+
+                
 
         }
     }
 
     public static void initUI(String location) throws IOException {
+        new FadeIn(pane).play();
         Navigation.pane.getChildren().add(FXMLLoader.load(Objects.requireNonNull(Navigation.class.getResource("/lk/ijse/studentsmanagement/view/" + location))));
     }
 }

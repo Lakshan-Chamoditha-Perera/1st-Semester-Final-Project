@@ -11,9 +11,32 @@ public class Exam {
     Date examDate;
     String lab;
     Time time;
+    String subjectName;
 
-    public Exam(String examId) {
+    public Exam(String subjectId, String batchId, Date examDate, String description, String lab, String subjectName) {
+        this.subjectId = subjectId;
+        this.batchId = batchId;
+        this.description = description;
+        this.examDate = examDate;
+        this.lab = lab;
+        this.subjectName = subjectName;
+    }
+
+    public Exam(String batchId) {
+        this.batchId = batchId;
+    }
+
+    public Exam(String examId, String batchId) {
         this.examId = examId;
+        this.batchId = batchId;
+    }
+
+    public Exam(String examId, String subjectId, String batchId, String description, Date examDate) {
+        this.examId = examId;
+        this.subjectId = subjectId;
+        this.batchId = batchId;
+        this.description = description;
+        this.examDate = examDate;
     }
 
 

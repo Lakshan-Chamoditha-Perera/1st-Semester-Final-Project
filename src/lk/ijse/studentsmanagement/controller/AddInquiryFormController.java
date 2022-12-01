@@ -18,6 +18,11 @@ import lk.ijse.studentsmanagement.to.InquiryIQTestDetail;
 import lk.ijse.studentsmanagement.to.TestPayment;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,13 +30,14 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static lk.ijse.studentsmanagement.autogenerater.AutoGenerateID.setLblPaymentID;
 
 public class AddInquiryFormController implements Initializable {
 
-    public JFXComboBox <String> cmbExamDates;
+    public JFXComboBox<String> cmbExamDates;
     public Label lblInvalidID;
     public Label lblDate;
     public Label lblPaymentID;
@@ -91,16 +97,22 @@ public class AddInquiryFormController implements Initializable {
         lblAmount.setText(String.valueOf(iqTestDetails.getAmount()));
 
     }
+
     @FXML
     void txtCityOnMouseClicked(MouseEvent event) {
         lblInvalidCity.setVisible(false);
     }
+
     @FXML
     void txtEmailOnMouseClicked(MouseEvent event) {
         lblInvalidEmail.setVisible(false);
     }
+
     @FXML
-    void txtIdOnMouseClicked(MouseEvent event) {lblInvalidID.setVisible(false);}
+    void txtIdOnMouseClicked(MouseEvent event) {
+        lblInvalidID.setVisible(false);
+    }
+
     @FXML
     void txtMobileOnMouseClicked(MouseEvent event) {
         lblInvalidMobile.setVisible(false);
@@ -116,30 +128,30 @@ public class AddInquiryFormController implements Initializable {
     void btnAddOnAction(ActionEvent event) {
         if (RegExPatterns.getIdPattern().matcher(txtId.getText()).matches()) {
             if (RegExPatterns.getNamePattern().matcher(txtName.getText()).matches()) {
-                if(RegExPatterns.getEmailPattern().matcher(txtEmail.getText()).matches()){
-                    if(RegExPatterns.getCityPattern().matcher(txtCity.getText()).matches()){
-                        if(RegExPatterns.getMobilePattern().matcher(txtMobile.getText()).matches()){
-                            if (cmbExamDates.getValue() != null){
+                if (RegExPatterns.getEmailPattern().matcher(txtEmail.getText()).matches()) {
+                    if (RegExPatterns.getCityPattern().matcher(txtCity.getText()).matches()) {
+                        if (RegExPatterns.getMobilePattern().matcher(txtMobile.getText()).matches()) {
+                            if (cmbExamDates.getValue() != null) {
 
                                 try {
-                                    Add();
+                                    add();
                                 } catch (SQLException | ClassNotFoundException e) {
-                                    new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
+                                    new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
                                 }
 
 
-                            }else {
+                            } else {
                                 lblDate.setVisible(true);
                             }
-                        }else{
+                        } else {
                             txtMobile.setFocusColor(Color.valueOf("RED"));
                             lblInvalidMobile.setVisible(true);
                         }
-                    }else{
+                    } else {
                         txtCity.setFocusColor(Color.valueOf("RED"));
                         lblInvalidCity.setVisible(true);
                     }
-                }else{
+                } else {
                     txtEmail.setFocusColor(Color.valueOf("RED"));
                     lblInvalidEmail.setVisible(true);
                 }
@@ -153,7 +165,7 @@ public class AddInquiryFormController implements Initializable {
         }
     }
 
-    private void Add() throws SQLException, ClassNotFoundException {
+    private void add() throws SQLException, ClassNotFoundException {
         InquiryIQTestDetail inquiryIQTestDetail = new InquiryIQTestDetail(
                 txtId.getText(),
                 lblTestID.getText(),
@@ -185,22 +197,51 @@ public class AddInquiryFormController implements Initializable {
         boolean isAdded = InquiryModel.addInquiry(inquiry);
 
         ButtonType printButton = new ButtonType("print");
+
         Alert alert = new Alert(
                 Alert.AlertType.CONFIRMATION,
-                (isAdded)? "ADDED":"ERROR",
-                printButton, ButtonType.OK,ButtonType.NO
+                (isAdded) ? "ADDED" : "ERROR",
+                printButton, ButtonType.OK, ButtonType.NO
         );
-
-        clearAll();
         alert.show();
+        //printReport();
+        clearAll();
+    }
 
+    private void printReport() {
+        HashMap hashMap = new HashMap();
+        hashMap.put("paymentId", lblPaymentID.getText());
+        hashMap.put("currentDate", String.valueOf(LocalDate.now()));
+        hashMap.put("Name", txtName.getText());
+        hashMap.put("address", txtCity.getText());
+        hashMap.put("phone", txtMobile.getText());
+        hashMap.put("nic", txtId.getText());
+        hashMap.put("email", txtEmail.getText());
+        hashMap.put("total", "Rs " + lblAmount.getText());
+
+
+        try {
+            JasperReport compileReport = JasperCompileManager.compileReport(
+                    JRXmlLoader.load(
+                            getClass().getResourceAsStream(
+                                    "lk/ijse/studentsmanagement/report/InquairyPaymentReceipt.jrxml"
+                            )
+                    )
+            );
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, hashMap);
+            JasperViewer.viewReport(jasperPrint, false);
+            System.out.println("111111111111111111111111111111111111");
+
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
     private void clearAll() throws SQLException, ClassNotFoundException {
 
         txtId.clear();
         lblTestID.setText(null);
-      //  lblPaymentID.setText(null);
+        //  lblPaymentID.setText(null);
         txtId.clear();
         lblAmount.setText(null);
         txtName.clear();
@@ -218,7 +259,10 @@ public class AddInquiryFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setLabelVisible();
         try {
-            ComboLoader.loadIQExamDatesComboBox(cmbExamDates);
+            boolean isLoaded = ComboLoader.loadIQExamDatesComboBox(cmbExamDates);
+            if (!isLoaded) {
+                new Alert(Alert.AlertType.INFORMATION, "No any Exams").show();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -229,6 +273,7 @@ public class AddInquiryFormController implements Initializable {
         }
 
     }
+
     private void setLabelVisible() {
         lblInvalidID.setVisible(false);
         lblInvalidCity.setVisible(false);

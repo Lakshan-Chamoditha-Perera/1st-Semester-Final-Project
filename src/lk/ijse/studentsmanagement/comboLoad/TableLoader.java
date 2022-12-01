@@ -10,16 +10,17 @@ import lk.ijse.studentsmanagement.model.*;
 import lk.ijse.studentsmanagement.tblModels.*;
 import lk.ijse.studentsmanagement.to.*;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TableLoader {
-    public static  void loadTableCourseBatch(TableView tblStd, String batch, String course) throws SQLException, ClassNotFoundException {
+    public static void loadTableCourseBatch(TableView tblStd, String batch, String course) throws SQLException, ClassNotFoundException {
         //load students
-        ArrayList <Registration> registrationsArrayList = RegistrationModel.getCourseBatchList(course,batch);
+        ArrayList<Registration> registrationsArrayList = RegistrationModel.getCourseBatchList(course, batch);
         ObservableList<RegistrationTM> observableArrayList = FXCollections.observableArrayList();
         int count = 0;
-        for (Registration ele: registrationsArrayList) {
+        for (Registration ele : registrationsArrayList) {
             observableArrayList.add(
                     new RegistrationTM(
                             ele.getRegistrationId(),
@@ -32,12 +33,13 @@ public class TableLoader {
         }
         tblStd.setItems(observableArrayList);
     }
+
     public static void setBatchTable(TableView tblBatches, String course) throws SQLException, ClassNotFoundException {
         //load batch table in specific course
-        ArrayList <Batch> batchesArrayList = BatchModel.getBatches(course);
+        ArrayList<Batch> batchesArrayList = BatchModel.getBatches(course);
         ObservableList<BatchTM> observableListBatchTM = FXCollections.observableArrayList();
-       int count = 0;
-        for (Batch ele: batchesArrayList) {
+        int count = 0;
+        for (Batch ele : batchesArrayList) {
             System.out.println(ele);
             observableListBatchTM.add(
                     new BatchTM(
@@ -52,6 +54,7 @@ public class TableLoader {
         }
         tblBatches.setItems(observableListBatchTM);
     }
+
     public static void setCellValues(TableColumn[] columns) {
         columns[0].setCellValueFactory(new PropertyValueFactory<>("registrationId"));
         columns[1].setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -65,27 +68,29 @@ public class TableLoader {
         columns[8].setCellValueFactory(new PropertyValueFactory<>("starting_date"));
         columns[9].setCellValueFactory(new PropertyValueFactory<>("maxStdCount"));
     }
+
     public static void loadAllBatches(TableView tableBatches) throws SQLException, ClassNotFoundException {
-        ArrayList <Batch> list =  BatchModel.getAllBAtches();
+        ArrayList<Batch> list = BatchModel.getAllBAtches();
         ObservableList<BatchTM> observableArrayList = FXCollections.observableArrayList();
-        for (Batch ele: list) {
+        for (Batch ele : list) {
             observableArrayList.add(
-              new BatchTM(
-                      ele.getId(),
-                      ele.getBatchNo(),
-                      ele.getCourseId(),
-                      ele.getFee(),
-                      ele.getStarting_date(),
-                      ele.getMaxStdCount()
-              )
+                    new BatchTM(
+                            ele.getId(),
+                            ele.getBatchNo(),
+                            ele.getCourseId(),
+                            ele.getFee(),
+                            ele.getStarting_date(),
+                            ele.getMaxStdCount()
+                    )
             );
         }
         tableBatches.setItems(observableArrayList);
     }
+
     public static void loadExamBatchSubjectTable(TableView tblExam, String batchId, String subjectId) throws SQLException, ClassNotFoundException {
-       ArrayList<Exam> list = ExamModel.getExams(batchId,subjectId);
-       ObservableList<ExamTM> observableArrayList= FXCollections.observableArrayList();
-       for (Exam ele: list) {
+        ArrayList<Exam> list = ExamModel.getExams(batchId, subjectId);
+        ObservableList<ExamTM> observableArrayList = FXCollections.observableArrayList();
+        for (Exam ele : list) {
             observableArrayList.add(
                     new ExamTM(
                             ele.getExamId(),
@@ -98,16 +103,17 @@ public class TableLoader {
                     )
             );
         }
-       tblExam.setItems(observableArrayList);
+        tblExam.setItems(observableArrayList);
     }
+
     public static void loadIQTests(TableView tblIqTest) throws SQLException, ClassNotFoundException {
         method(tblIqTest);
     }
 
     public static void method(TableView tblIqTest) throws SQLException, ClassNotFoundException {
         ArrayList<IQTest> list = IQTestModel.getIQTestList();
-        ObservableList<IQTestTM> observableArrayList= FXCollections.observableArrayList();
-        for (IQTest ele: list) {
+        ObservableList<IQTestTM> observableArrayList = FXCollections.observableArrayList();
+        for (IQTest ele : list) {
             observableArrayList.add(
                     new IQTestTM(
                             ele.getId(),
@@ -127,7 +133,7 @@ public class TableLoader {
         );
         if (payments != null) {
             ObservableList<PaymentsTM> observableList = FXCollections.observableArrayList();
-            for (Payment ele: payments) {
+            for (Payment ele : payments) {
                 observableList.add(new PaymentsTM(
                         ele.getId(),
                         ele.getType(),
@@ -137,17 +143,17 @@ public class TableLoader {
                 ));
             }
             tbl.setItems(observableList);
-        }else{
-            new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
         }
     }
 
 
-    public static void loadAllExams(TableView<ExamTM> tblExams) throws SQLException, ClassNotFoundException {
+    public static boolean loadAllExams(TableView<ExamTM> tblExams) throws SQLException, ClassNotFoundException {
         ArrayList<Exam> list = ExamModel.getExams();
-        if(list!=null){
-            ObservableList <ExamTM> observableArrayList = FXCollections.observableArrayList();
-            for (Exam ele: list) {
+        if (list != null) {
+            ObservableList<ExamTM> observableArrayList = FXCollections.observableArrayList();
+            for (Exam ele : list) {
                 observableArrayList.add(
                         new ExamTM(
                                 ele.getExamId(),
@@ -161,17 +167,16 @@ public class TableLoader {
                 );
             }
             tblExams.setItems(observableArrayList);
-        }else{
-            new Alert(Alert.AlertType.INFORMATION,"Exams Not added yet").show();
+            return true;
         }
-
+        return false;
     }
 
-    public static void loadSubjectTable(TableView<SubjectTM> tblSubjects) throws SQLException, ClassNotFoundException {
+    public static boolean loadSubjectTable(TableView<SubjectTM> tblSubjects) throws SQLException, ClassNotFoundException {
         ArrayList<Subject> list = SubjectModel.getSubjectList();
-        if(list!=null){
+        if (list != null) {
             ObservableList<SubjectTM> observableList = FXCollections.observableArrayList();
-            for (Subject ele:list) {
+            for (Subject ele : list) {
                 observableList.add(
                         new SubjectTM(
                                 ele.getId(),
@@ -181,8 +186,162 @@ public class TableLoader {
                 );
             }
             tblSubjects.setItems(observableList);
-        }else{
-            new Alert(Alert.AlertType.INFORMATION,"Subjects Not added yet").show();
+            return true;
         }
+        return false;
+    }
+
+    public static void loadCourseSubjectDetailJOIN(TableView<CourseSubjectDetailTM> tblCourseSubjectDetail, String courseId) throws SQLException, ClassNotFoundException {
+        ArrayList<CourseSubjectDetailTM> list = CourseSubjectDetailModel.getCourseSubjecDetailList(courseId);
+        if (list != null) {
+            ObservableList<CourseSubjectDetailTM> observableList = FXCollections.observableArrayList();
+            observableList.addAll(list);
+            tblCourseSubjectDetail.setItems(observableList);
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "Subjects Not added yet").show();
+        }
+    }
+
+    public static boolean loadTestPayments(TableView<TestPaymentsTM> tblPayments) throws SQLException, ClassNotFoundException {
+        ArrayList<TestPayment> list = TestPaymentModel.getAllPayments();
+        if (list != null) {
+            ObservableList<TestPaymentsTM> observableList = FXCollections.observableArrayList();
+            int i = 1;
+            for (TestPayment ele : list) {
+                TestPaymentsTM t = new TestPaymentsTM(
+                        ele.getId(),
+                        ele.getStudentID(),
+                        ele.getDate(),
+                        ele.getRemark(),
+                        ele.getAmount()
+                );
+                observableList.add(t);
+              //  System.out.println(t);
+            }
+            tblPayments.setItems(observableList);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean loadAllPayments(TableView<PaymentsTM> tblPayments) throws SQLException, ClassNotFoundException {
+        ArrayList<Payment> paymentArrayList = PaymentModel.getAllPayments();
+        if (paymentArrayList != null) {
+            ObservableList<PaymentsTM> observableList = FXCollections.observableArrayList();
+            for (Payment ele : paymentArrayList) {
+                observableList.add(new PaymentsTM(
+                        ele.getId(),
+                        ele.getRegistrationId(),
+                        ele.getType(),
+                        ele.getRemark(),
+                        ele.getAmount(),
+                        ele.getDate()
+                ));
+            }
+            tblPayments.setItems(observableList);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean loadInquiryIQTestResults(TableView tbl, IQTest iqTest) throws SQLException, ClassNotFoundException {
+        ArrayList<InquiryIQTestDetail> inquiryIQTestList = InquiryIQTestDetailModel.getInquiryIQTestList(iqTest.getId());
+        if(inquiryIQTestList!=null){
+            ObservableList<InquiryIQTestDetailTM> observableArrayList = FXCollections.observableArrayList();
+            for (InquiryIQTestDetail ele: inquiryIQTestList) {
+                observableArrayList.add(
+                        new InquiryIQTestDetailTM(
+                                ele.getStudentId(),
+                                ele.getTestId(),
+                                ele.getResult(),
+                                ele.getName()
+                        )
+                );
+            }
+            tbl.setItems(observableArrayList);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean loadMarkAttendanceTable(Date valueOf, TableView<AttendanceTM> tblAttendance) throws SQLException, ClassNotFoundException {
+        ArrayList<Attendance> list = AttendanceModel.loadDayAttendance(valueOf);
+        if(list!=null){
+            ObservableList<AttendanceTM> observableList = FXCollections.observableArrayList();
+            for (Attendance ele: list) {
+                observableList.add(
+                  new AttendanceTM(
+                          ele.getRegistrationId(),
+                          ele.getDate(),
+                          ele.getBatchId(),
+                          ele.getStatus()
+                  )
+                );
+            }
+            tblAttendance.setItems(observableList);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean loadBatchRegistrations(TableView<RegistrationTM> tblStudents, String value) throws SQLException, ClassNotFoundException {
+        ArrayList<Registration> list = RegistrationModel.loadBatchRegistrations(value);
+        if(list!=null){
+            ObservableList<RegistrationTM> observableList = FXCollections.observableArrayList();
+            for (Registration ele: list) {
+                observableList.add(
+                        new RegistrationTM(
+                                ele.getRegistrationId(),
+                                ele.getBatchId(),
+                                ele.getName(),
+                                ele.getStatus()
+                        )
+                );
+            }
+            tblStudents.setItems(observableList);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean loadRegistrationEaxmResults(TableView<RegistrationExamResultTM> tblResults, String examId) throws SQLException, ClassNotFoundException {
+        ArrayList<RegistrationExamResult> list = RegistrationExamResultModel.getResults(examId);
+        if(list!=null){
+            ObservableList<RegistrationExamResultTM> registrationExamResultTMS = FXCollections.observableArrayList();
+
+            for (RegistrationExamResult ele: list) {
+                registrationExamResultTMS.add(
+                  new RegistrationExamResultTM(
+                          ele.getExamId(),
+                          ele.getRegistrationId(),
+                          ele.getMark(),
+                          ele.getResult()
+                  )
+                );
+            }
+            tblResults.setItems(registrationExamResultTMS);
+            return true;
+
+        }
+        return false;
+    }
+
+    public static boolean loadTableTranscript(Registration registration, TableView tblResults) throws SQLException, ClassNotFoundException {
+        ArrayList<RegistrationExamResult> transcript = RegistrationExamResultModel.getTrancript(registration);
+        if(transcript.size()!=0){
+            ObservableList<RegistrationExamResultTM> registrationExamResultTMS = FXCollections.observableArrayList();
+            for (RegistrationExamResult ele: transcript) {;
+                registrationExamResultTMS.add(
+                        new RegistrationExamResultTM(
+                                ele.getMark(),
+                                ele.getResult(),
+                                ele.getSubject()
+                        )
+                );
+            }
+            tblResults.setItems(registrationExamResultTMS);
+            return true;
+        }
+        return false;
     }
 }

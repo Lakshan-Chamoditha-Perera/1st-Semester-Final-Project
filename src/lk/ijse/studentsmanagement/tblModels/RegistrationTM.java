@@ -46,6 +46,13 @@ public class RegistrationTM  {
         this.payment = payment;
     }
 
+    public RegistrationTM(String registrationId, String batchId, String name, String status) {
+        this.registrationId = registrationId;
+        this.batchId = batchId;
+        this.name = name;
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "RegistrationTM{" +

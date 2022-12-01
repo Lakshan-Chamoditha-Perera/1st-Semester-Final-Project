@@ -9,13 +9,16 @@ import java.util.ArrayList;
 
 public class SubjectModel {
 
-    public static ArrayList<Subject> getIDs(String courseId) throws SQLException, ClassNotFoundException {
+    public static ArrayList<Subject> getIDs() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT id FROM subject ");
-        ArrayList<Subject> arrayList = new ArrayList<>();
-        while (resultSet.next()) {
-            arrayList.add(new Subject(resultSet.getString(1)));
+        if(resultSet!=null){
+            ArrayList<Subject> arrayList = new ArrayList<>();
+            while (resultSet.next()) {
+                arrayList.add(new Subject(resultSet.getString(1)));
+            }
+            return arrayList;
         }
-        return arrayList;
+        return null;
     }
 
     public static String getSubjectName(Subject subject) throws SQLException, ClassNotFoundException {

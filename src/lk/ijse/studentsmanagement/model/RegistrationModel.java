@@ -1,10 +1,14 @@
 package lk.ijse.studentsmanagement.model;
 
+import com.google.zxing.WriterException;
 import javafx.collections.ObservableList;
 import lk.ijse.studentsmanagement.db.DBconnection;
+import lk.ijse.studentsmanagement.qr.QRGenerator;
+import lk.ijse.studentsmanagement.to.Attendance;
 import lk.ijse.studentsmanagement.to.Registration;
 import lk.ijse.studentsmanagement.util.CrudUtil;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +23,7 @@ public class RegistrationModel {
         return null;
     }
 
-    public static boolean addRegistration(Registration registration) throws SQLException, ClassNotFoundException {
+    public static boolean addRegistration(Registration registration) throws SQLException, ClassNotFoundException, IOException, WriterException {
         boolean isAdded = CrudUtil.execute("INSERT INTO registration VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 registration.getRegistrationId(),
                 registration.getNic(),
@@ -38,20 +42,22 @@ public class RegistrationModel {
                 registration.getHigherEDU(),
                 registration.getStatus()
         );
-        if (isAdded) {
-            boolean inquiryStatus = InquiryModel.updateInquiryStatus(registration.getNic());
-        }
-
+//        if (isAdded) {
+//           // boolean inquiryStatus =
+//            //QRGenerator.getGenerator(registration.getRegistrationId());
+//        }
         return isAdded;
     }
 
-    public static boolean registrationPaymentTransaction(Registration registration) throws SQLException, ClassNotFoundException {
+    public static boolean registrationPaymentTransaction(Registration registration) throws SQLException, ClassNotFoundException, IOException, WriterException {
         try {
             DBconnection.getInstance().getConnection().setAutoCommit(false);
             if (addRegistration(registration)) {
                 if (PaymentModel.addPayment(registration.getPayment())) {
-                    DBconnection.getInstance().getConnection().commit();
-                    return true;
+                    if(InquiryModel.updateInquiryStatus(registration.getNic())){
+                        DBconnection.getInstance().getConnection().commit();
+                        return true;
+                    }
                 }
             }
             DBconnection.getInstance().getConnection().rollback();
@@ -133,5 +139,24 @@ public class RegistrationModel {
                 registration.getSchool(),
                 registration.getRegistrationId()
         );
+    }
+
+    public static ArrayList<Registration> loadBatchRegistrations(String value) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT registration_id, batchID, full_name, status from registration WHERE batchID = ?", value);
+        if(resultSet!=null){
+            ArrayList<Registration> list = new ArrayList<>();
+            while (resultSet.next()){
+                list.add(
+                  new Registration(
+                          resultSet.getString(1),
+                          resultSet.getString(2),
+                          resultSet.getString(3),
+                          resultSet.getString(4)
+                  )
+                );
+            }
+            return list;
+        }
+        return null;
     }
 }

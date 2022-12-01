@@ -51,11 +51,14 @@ public class BatchModel {
 
     public static ArrayList<Batch> getBatches() throws SQLException, ClassNotFoundException {
         ArrayList<Batch> list = new ArrayList<>();
-        ResultSet resultSet = CrudUtil.execute("SELECT batchId FROM batch ");
-        while (resultSet.next()) {
-            list.add(new Batch(resultSet.getString(1)));
+        if(list!=null){
+            ResultSet resultSet = CrudUtil.execute("SELECT batchId FROM batch ");
+            while (resultSet.next()) {
+                list.add(new Batch(resultSet.getString(1)));
+            }
+            return list;
         }
-        return list;
+        return null;
     }
 
     public static Batch getLastBatchNo(String course) throws SQLException, ClassNotFoundException {

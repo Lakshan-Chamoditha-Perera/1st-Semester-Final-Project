@@ -1,6 +1,7 @@
 package lk.ijse.studentsmanagement.model;
 
 import lk.ijse.studentsmanagement.to.Exam;
+import lk.ijse.studentsmanagement.to.Subject;
 import lk.ijse.studentsmanagement.util.CrudUtil;
 
 import java.sql.Date;
@@ -88,5 +89,49 @@ public class ExamModel {
         return CrudUtil.execute("DELETE FROM exam WHERE id = ?",
                 exam.getExamId()
         );
+    }
+
+    public static ArrayList<Exam> getExam(Exam exam) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM exam WHERE batchId=?", exam.getBatchId());
+        if (resultSet != null) {
+            ArrayList<Exam> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(
+                        new Exam(
+                                resultSet.getString(1),
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getString(4),
+                                Date.valueOf(resultSet.getString(5))
+                        )
+                );
+            }
+            return list;
+        }
+        return null;
+    }
+
+    public static Exam getExamDetails(Exam exam) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM exam WHERE id = ?", exam.getExamId());
+        Exam ex = null;
+        if (resultSet.next()) {
+            ex = new Exam(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    Date.valueOf(resultSet.getString(5)
+                    )
+            );
+        }
+        return ex;
+    }
+
+    public static String getSubjectName(Exam exam) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT name FROM subject WHERE id = (SELECT subjectID FROM exam WHERE id = ?)",exam.getExamId() );
+        if(resultSet.next()){
+            return resultSet.getString(1);
+        }
+        return null;
     }
 }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class SystemUserModel {
     public static SystemUser search(SystemUser user) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.execute("SELECT * from loginCredentials where userName=?", user.getUserName());
+        ResultSet resultSet = CrudUtil.execute("SELECT * from loginCredential where userName=?", user.getUserName());
         if (resultSet.next()) {
             return (new SystemUser(
                     resultSet.getString(1),

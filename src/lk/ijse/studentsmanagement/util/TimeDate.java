@@ -4,9 +4,12 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,6 +27,25 @@ public class TimeDate {
                 new KeyFrame(Duration.seconds(1)));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+
+    }
+
+    public static void setGreeting(Label lblGreetings, ImageView wishImageView){
+        Calendar c = Calendar.getInstance();
+        LocalDate now = LocalDate.now();
+        c.setTime(new Date());
+        int hours = c.get(Calendar.HOUR_OF_DAY);
+        int min = c.get(Calendar.MINUTE);
+        if (hours >= 1 && hours < 12) {
+            lblGreetings.setText("Good Morning...");
+            wishImageView.setImage(new Image("lk/ijse/studentsmanagement/asserts/morning.png"));
+        } else if (hours >= 12 && hours <= 16) {
+            lblGreetings.setText("Good Afternoon...");
+            wishImageView.setImage(new Image("lk/ijse/studentsmanagement/asserts/afternoon.png"));
+        }else {
+            lblGreetings.setText("Good Evening...");
+            wishImageView.setImage(new Image("lk/ijse/studentsmanagement/asserts/night.png"));
+        }
 
     }
 }

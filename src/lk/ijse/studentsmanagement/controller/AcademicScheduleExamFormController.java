@@ -9,7 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.ComboLoader;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
@@ -17,6 +20,7 @@ import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.CourseSubjectDetailModel;
 import lk.ijse.studentsmanagement.model.ExamModel;
 import lk.ijse.studentsmanagement.model.SubjectModel;
+import lk.ijse.studentsmanagement.regex.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Batch;
 import lk.ijse.studentsmanagement.to.CourseSubjectDetail;
 import lk.ijse.studentsmanagement.to.Exam;
@@ -52,6 +56,12 @@ public class AcademicScheduleExamFormController implements Initializable {
     public ComboBox<String> cmbSubjectID;
     public Label lblSubjectName;
     public JFXTimePicker cmbTime;
+    public Label lblSelectBatch;
+    public Label lblSelectSubject;
+    public Label lblSelectDescription;
+    public Label lblPickDate;
+    public Label lblPickTime;
+    public Label lblEnterLab;
     @FXML
     private AnchorPane pane;
 
@@ -79,8 +89,8 @@ public class AcademicScheduleExamFormController implements Initializable {
         try {
             if (cmbBatchID.getValue() != null) {
                 if (cmbSubjectID.getValue() != null) {
-                    if (txtDescription.getText() != null) {
-                        if (cmbDate.getValue() != null) {
+                    if (RegExPatterns.getNamePattern().matcher(txtDescription.getText()).matches()) {
+                        if (cmbDate.getValue()!= null) {
                             if (cmbTime.getValue() != null) {
                                 if (txtLab.getText() != null) {
                                     boolean isAdded = ExamModel.addExam(
@@ -103,21 +113,29 @@ public class AcademicScheduleExamFormController implements Initializable {
 
                                 } else {
                                     new Alert(Alert.AlertType.INFORMATION, "Select Lab").show();
+                                    lblEnterLab.setVisible(true);
+                                    txtLab.setFocusColor(Color.RED);
                                 }
                             } else {
                                 new Alert(Alert.AlertType.INFORMATION, "Select Time").show();
+                                lblPickTime.setVisible(true);
                             }
                         } else {
+
                             new Alert(Alert.AlertType.INFORMATION, "Select Date").show();
+                            lblPickDate.setVisible(true);
                         }
                     } else {
-                        new Alert(Alert.AlertType.INFORMATION, "Enter Description").show();
+                        txtDescription.setFocusColor(Color.RED);
+                        lblSelectDescription.setVisible(true);
                     }
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "Select Subject").show();
+                    lblSelectSubject.setVisible(true);
                 }
             } else {
                 new Alert(Alert.AlertType.INFORMATION, "Select batch first !").show();
+                lblSelectBatch.setVisible(true);
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -150,8 +168,14 @@ public class AcademicScheduleExamFormController implements Initializable {
 
         try {
             AutoGenerateID.loadExamID(lblExamId);
-            ComboLoader.loadBatchIDS(cmbBatchID);
-            //
+            boolean loadBatchIDS = ComboLoader.loadBatchIDS(cmbBatchID);
+            if(!loadBatchIDS){
+                new Alert(Alert.AlertType.INFORMATION,"No any batcehs added").show();
+            }
+            boolean isExamLoaded = TableLoader.loadAllExams(tblExam);
+            if(!isExamLoaded){
+                new Alert(Alert.AlertType.INFORMATION, "No any exam loaded").show();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
@@ -180,4 +204,27 @@ public class AcademicScheduleExamFormController implements Initializable {
     }
 
 
+    public void cmbTimeOnMouseClicked(MouseEvent mouseEvent) {
+        lblPickTime.setVisible(false);
+    }
+
+    public void txtLabOnMouseClicked(MouseEvent mouseEvent) {
+        lblEnterLab.setVisible(false);
+    }
+
+    public void cmbDateOnMouseClicked(MouseEvent mouseEvent) {
+        lblPickDate.setVisible(false);
+    }
+
+    public void txtDescriptionOnMouseClicked(MouseEvent mouseEvent) {
+        lblSelectDescription.setVisible(false);
+    }
+
+    public void cmbSubjectOnMouseClicked(MouseEvent mouseEvent) {
+        lblSelectSubject.setVisible(false);
+    }
+
+    public void cmbBatchOnMouseClicked(MouseEvent mouseEvent) {
+        lblSelectBatch.setVisible(false);
+    }
 }

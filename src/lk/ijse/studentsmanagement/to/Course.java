@@ -11,6 +11,10 @@ public class Course {
         this.duration = duration;
     }
 
+    public Course(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
@@ -30,5 +34,7 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", duration='" + duration + '\'' +
                 '}';
+
+
     }
 }

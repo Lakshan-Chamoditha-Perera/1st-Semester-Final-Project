@@ -12,19 +12,24 @@ import java.util.ArrayList;
 
 public class IQTestModel {
     public static ArrayList<IQTest> getIQTestList() throws SQLException, ClassNotFoundException {
-        ArrayList<IQTest> list = new ArrayList<>();
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM iqTest");
-        while (resultSet.next()) {
-            list.add(
-                    new IQTest(
-                            resultSet.getString(1),
-                            Date.valueOf(resultSet.getString(2)),
-                            Time.valueOf(resultSet.getString(3)),
-                            resultSet.getString(4),
-                            Double.parseDouble(resultSet.getString(5)))
-            );
+        if (resultSet != null) {
+
+            ArrayList<IQTest> list = new ArrayList<>();
+
+            while (resultSet.next()) {
+                list.add(
+                        new IQTest(
+                                resultSet.getString(1),
+                                Date.valueOf(resultSet.getString(2)),
+                                Time.valueOf(resultSet.getString(3)),
+                                resultSet.getString(4),
+                                Double.parseDouble(resultSet.getString(5)))
+                );
+            }
+            return list;
         }
-        return list;
+        return null;
     }
 
     public static IQTest getIQTestDetails(String date) throws SQLException, ClassNotFoundException {
@@ -61,5 +66,20 @@ public class IQTestModel {
 
     public static boolean deleteTest(IQTest test) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM iqTest WHERE id = ?", test.getId());
+    }
+
+    public static IQTest getExamDetails(IQTest test) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM iqTest WHERE id = ?", test.getId());
+        if(resultSet.next()){
+            return new IQTest(
+                    resultSet.getString(1),
+                    Date.valueOf(resultSet.getString(2)),
+                    Time.valueOf(resultSet.getString(3)),
+                    resultSet.getString(4),
+                    Double.parseDouble(resultSet.getString(5))
+
+                    );
+        }
+        return null;
     }
 }

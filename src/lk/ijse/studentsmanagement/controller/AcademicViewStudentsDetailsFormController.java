@@ -10,9 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.RegistrationModel;
+import lk.ijse.studentsmanagement.regex.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Registration;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
@@ -75,25 +78,28 @@ public class AcademicViewStudentsDetailsFormController implements Initializable 
     void btnSearchClickOnAction(ActionEvent event) {
         Registration registrationDetails = null;
         try {
-            registrationDetails = RegistrationModel.getRegistrationDetails(txtID.getText());
+            if (RegExPatterns.getRegistrationIdPattern().matcher(txtID.getText()).matches()) {
+                registrationDetails = RegistrationModel.getRegistrationDetails(txtID.getText());
+                if (registrationDetails != null) {
+                    new Alert(Alert.AlertType.ERROR, "Students exists").show();
+                    btnUpdate.setDisable(false);
+                    loadPaymentsTable();
+                    setRegistrationDetails(registrationDetails);
+                    setBatchDetails(registrationDetails);
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Student Does Not exists").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
-
-        }
-
-        if (registrationDetails != null) {
-            new Alert(Alert.AlertType.ERROR, "Students exists").show();
-
-            btnUpdate.setDisable(false);
-
-            setRegistrationDetails(registrationDetails);
-            setBatchDetails(registrationDetails);
-
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Students Does Not exists").show();
         }
     }
 
+    private void loadPaymentsTable() throws SQLException, ClassNotFoundException {
+        TableLoader.loadRegistrationPayments(tblPayments,txtID.getText());
+    }
     private void setRegistrationDetails(Registration registrationDetails) {
         txtStdName.setText(registrationDetails.getName());
         txtStdAddress.setText(registrationDetails.getAddress());
@@ -104,12 +110,10 @@ public class AcademicViewStudentsDetailsFormController implements Initializable 
         txtStdEmail.setText(registrationDetails.getEmail());
         txtStdPostalCode.setText(registrationDetails.getPostalCode());
     }
-
     private void setBatchDetails(Registration registrationDetails) {
         lblBatchID.setText(registrationDetails.getBatchId());
         lblCourseID.setText(registrationDetails.getCourseId());
     }
-
     @FXML
     void btnUpdateClickOnAction(ActionEvent event) {
         try {
@@ -125,17 +129,23 @@ public class AcademicViewStudentsDetailsFormController implements Initializable 
                             Date.valueOf(calDob.getValue()),
                             txtStdSchool.getText()
                     ));
-            String text = (isUpdated)?"Updated Done":"Error";
+            String text = (isUpdated) ? "Updated Done" : "Error";
 
-            new Alert(Alert.AlertType.INFORMATION,text).show();
-            Navigation.navigate(Routes.ACADEMIC_VIEW_STUDENT_DETAILS,pane);
+            new Alert(Alert.AlertType.INFORMATION, text).show();
+            Navigation.navigate(Routes.ACADEMIC_VIEW_STUDENT_DETAILS, pane);
         } catch (SQLException | ClassNotFoundException | IOException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         btnUpdate.setDisable(true);
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colRemark.setCellValueFactory(new PropertyValueFactory<>("remark"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
     }
 }

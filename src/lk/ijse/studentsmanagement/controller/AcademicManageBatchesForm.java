@@ -52,6 +52,7 @@ public class AcademicManageBatchesForm implements Initializable {
     void btnAddNewBatchOnAction(ActionEvent event) throws IOException {
         Navigation.navigate(Routes.ACADEMIC_ADD_NEW_BATCH, pane);
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colBatchID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -75,21 +76,21 @@ public class AcademicManageBatchesForm implements Initializable {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-        try{
+        try {
             BatchTM selectedItem = tableBatches.getSelectionModel().getSelectedItem();
-            if(selectedItem !=null){
-                boolean isDeleted=BatchModel.deleteBatch(new Batch(selectedItem.getId()));
-                if(isDeleted){
-                    new Alert(Alert.AlertType.INFORMATION,"Deleted").showAndWait();
-                    Navigation.navigate(Routes.ACADEMIC_MANAGE_BATCHES,pane);
-                }else{
-                    new Alert(Alert.AlertType.INFORMATION,"Something went Wrong!").show();
+            if (selectedItem != null) {
+                boolean isDeleted = BatchModel.deleteBatch(new Batch(selectedItem.getId()));
+                if (isDeleted) {
+                    new Alert(Alert.AlertType.INFORMATION, "Deleted").showAndWait();
+                    TableLoader.loadAllBatches(tableBatches);
+                } else {
+                    new Alert(Alert.AlertType.INFORMATION, "Something went Wrong!").show();
                 }
-            }else {
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, "Select Batch First!").show();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
-            System.out.println(e);
+        } catch (ClassNotFoundException | SQLException e) {
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 
@@ -101,11 +102,11 @@ public class AcademicManageBatchesForm implements Initializable {
                     if (cmbDate.getValue() != null) {
                         if (txtCrowd.getText() != null) {
                             boolean isUpdated = update();
-                            if(isUpdated){
-                                new Alert(Alert.AlertType.INFORMATION,"Updated").showAndWait();
-                                Navigation.navigate(Routes.ACADEMIC_MANAGE_BATCHES,pane);
-                            }else {
-                                new Alert(Alert.AlertType.ERROR,"Something went wrong!").show();
+                            if (isUpdated) {
+                                new Alert(Alert.AlertType.INFORMATION, "Updated").showAndWait();
+                                TableLoader.loadAllBatches(tableBatches);
+                            } else {
+                                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
                             }
                         } else {
                             lblInvalidCount.setVisible(true);
@@ -121,7 +122,7 @@ public class AcademicManageBatchesForm implements Initializable {
             } else {
                 new Alert(Alert.AlertType.INFORMATION, "Select Batch First!").show();
             }
-        } catch (SQLException | ClassNotFoundException | IOException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.INFORMATION, String.valueOf(e)).show();
         }
     }
@@ -138,11 +139,18 @@ public class AcademicManageBatchesForm implements Initializable {
         );
     }
 
-    public void cmbDateOnMouseClicked(MouseEvent mouseEvent) {lblInvalidDate.setVisible(false);}
-    public void txtMaxCroedOnMouseClicked(MouseEvent mouseEvent) {lblInvalidCount.setVisible(false);}
+    public void cmbDateOnMouseClicked(MouseEvent mouseEvent) {
+        lblInvalidDate.setVisible(false);
+    }
+
+    public void txtMaxCroedOnMouseClicked(MouseEvent mouseEvent) {
+        lblInvalidCount.setVisible(false);
+    }
+
     public void txtFeeOnMouseClicked(MouseEvent mouseEvent) {
         lblInvalidAmount.setVisible(false);
     }
+
     public void tblOnMouseClicked(MouseEvent mouseEvent) {
         BatchTM selectedItem = tableBatches.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
@@ -151,6 +159,7 @@ public class AcademicManageBatchesForm implements Initializable {
 
             txtCrowd.setText(String.valueOf(selectedItem.getMaxStdCount()));
             txtFee.setText(String.valueOf(selectedItem.getFee()));
+
             cmbDate.setValue(selectedItem.getStarting_date().toLocalDate());
         }
     }

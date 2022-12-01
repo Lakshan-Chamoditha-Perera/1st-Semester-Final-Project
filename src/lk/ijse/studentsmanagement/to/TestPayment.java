@@ -25,6 +25,14 @@ public class TestPayment {
         this.iqTestId = iqTestId;
     }
 
+    public TestPayment(String id, String studentID, Date date, String remark, double amount) {
+        this.id = id;
+        this.studentID = studentID;
+        this.date = date;
+        this.remark = remark;
+        this.amount = amount;
+    }
+
     public InquiryIQTestDetail getInquiryIQTestDetail() {
         return inquiryIQTestDetail;
     }

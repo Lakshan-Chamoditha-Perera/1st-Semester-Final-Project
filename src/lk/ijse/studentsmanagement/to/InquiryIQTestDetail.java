@@ -4,11 +4,23 @@ public class InquiryIQTestDetail {
     String studentId;
     String testId;
     String result;
+    String name;
+
+    public InquiryIQTestDetail(String studentId, String testId, String result, String name) {
+        this.studentId = studentId;
+        this.testId = testId;
+        this.result = result;
+        this.name = name;
+    }
 
     public InquiryIQTestDetail(String studentId, String testId, String result) {
         this.studentId = studentId;
         this.testId = testId;
         this.result = result;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getStudentId() {

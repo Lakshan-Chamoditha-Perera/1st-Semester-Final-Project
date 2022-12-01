@@ -10,6 +10,14 @@ public class Payment {
     double amount;
     Date date;
 
+    public Payment(String id, String type, String remark, double amount, Date date) {
+        this.id = id;
+        this.type = type;
+        this.remark = remark;
+        this.amount = amount;
+        this.date = date;
+    }
+
     public Payment(String id, String registrationId, String type, String remark, double amount, Date date) {
         this.id = id;
         this.registrationId = registrationId;
