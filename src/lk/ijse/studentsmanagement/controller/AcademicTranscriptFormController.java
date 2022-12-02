@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.CourseModel;
 import lk.ijse.studentsmanagement.model.RegistrationModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Course;
 import lk.ijse.studentsmanagement.to.Registration;
 import lk.ijse.studentsmanagement.util.Navigation;
@@ -102,7 +102,7 @@ public class AcademicTranscriptFormController implements Initializable {
                 txtId.setFocusColor(Color.RED);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 

@@ -12,32 +12,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.ComboLoader;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.BatchModel;
-import lk.ijse.studentsmanagement.model.CourseSubjectDetailModel;
 import lk.ijse.studentsmanagement.model.ExamModel;
 import lk.ijse.studentsmanagement.model.SubjectModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Batch;
-import lk.ijse.studentsmanagement.to.CourseSubjectDetail;
 import lk.ijse.studentsmanagement.to.Exam;
 import lk.ijse.studentsmanagement.to.Subject;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
-import java.net.FileNameMap;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
-
-import static sun.net.www.MimeTable.loadTable;
 
 public class AcademicScheduleExamFormController implements Initializable {
 
@@ -81,7 +75,6 @@ public class AcademicScheduleExamFormController implements Initializable {
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
-
     }
 
     @FXML
@@ -90,9 +83,9 @@ public class AcademicScheduleExamFormController implements Initializable {
             if (cmbBatchID.getValue() != null) {
                 if (cmbSubjectID.getValue() != null) {
                     if (RegExPatterns.getNamePattern().matcher(txtDescription.getText()).matches()) {
-                        if (cmbDate.getValue()!= null) {
-                            if (cmbTime.getValue() != null) {
-                                if (txtLab.getText() != null) {
+                        if (!cmbDate.getValue().isBefore(LocalDate.now())) {
+                            if (cmbTime.getValue()!=null) {
+                                if (txtLab.getText()!=null) {
                                     boolean isAdded = ExamModel.addExam(
                                             new Exam(
                                                     lblExamId.getText(),
@@ -110,7 +103,6 @@ public class AcademicScheduleExamFormController implements Initializable {
                                     } else {
                                         new Alert(Alert.AlertType.ERROR, "ERROR").show();
                                     }
-
                                 } else {
                                     new Alert(Alert.AlertType.INFORMATION, "Select Lab").show();
                                     lblEnterLab.setVisible(true);
@@ -121,7 +113,6 @@ public class AcademicScheduleExamFormController implements Initializable {
                                 lblPickTime.setVisible(true);
                             }
                         } else {
-
                             new Alert(Alert.AlertType.INFORMATION, "Select Date").show();
                             lblPickDate.setVisible(true);
                         }
@@ -138,7 +129,7 @@ public class AcademicScheduleExamFormController implements Initializable {
                 lblSelectBatch.setVisible(true);
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
 
     }
@@ -151,7 +142,7 @@ public class AcademicScheduleExamFormController implements Initializable {
                 ComboLoader.loadBatchCourseSubjectID(cmbSubjectID, batch.getId());
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 

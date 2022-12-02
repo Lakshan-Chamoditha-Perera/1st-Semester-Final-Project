@@ -23,43 +23,40 @@ public class Inquiry {
         this.status = status;
         this.testPayment = testPayment;
     }
-
     public String getStudentID() {
         return studentID;
     }
-
     public String getName() {
         return name;
     }
-
     public String getCity() {
         return city;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getMobile() {
         return mobile;
     }
-
     public String getDate() {
         return date;
     }
-
     public String getGender() {
         return gender;
     }
-
     public String getStatus() {
         return status;
     }
-
     public TestPayment getTestPayment() {
         return testPayment;
     }
-
+    public Inquiry(String studentID) {
+        this.studentID = studentID;
+    }
+    public Inquiry(String studentID, String email) {
+        this.studentID = studentID;
+        this.email = email;
+    }
     public Inquiry(String studentID, String name, String city, String email, String mobile, String gender) {
         this.studentID = studentID;
         this.name = name;
@@ -68,7 +65,6 @@ public class Inquiry {
         this.mobile = mobile;
         this.gender = gender;
     }
-
     public Inquiry(String studentID, String name, String city, String email, String mobile, String date, String gender, String status) {
         this.studentID = studentID;
         this.name = name;
@@ -79,11 +75,6 @@ public class Inquiry {
         this.gender = gender;
         this.status = status;
     }
-
-    public Inquiry(String studentID) {
-        this.studentID = studentID;
-    }
-
     @Override
     public String toString() {
         return "Inquiry{" +

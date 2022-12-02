@@ -12,11 +12,9 @@ public class CrudUtil {
                 pstm.setObject((i+1), args[i]);
             }
             System.out.println(sql);
-       // System.out.println(pstm);
             if(sql.startsWith("SELECT") || sql.startsWith("select")) {
                 return (T)pstm.executeQuery();
             }
-       // System.out.println(pstm);
             return (T)((Boolean)(pstm.executeUpdate() > 0));   // convert boolean to Boolean(Boxing type)
     }
 }

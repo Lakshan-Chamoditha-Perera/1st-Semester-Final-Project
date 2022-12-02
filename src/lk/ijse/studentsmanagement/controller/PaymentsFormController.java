@@ -2,8 +2,6 @@ package lk.ijse.studentsmanagement.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import com.mysql.cj.jdbc.IterateBlock;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,20 +12,21 @@ import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.PaymentModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.tblModels.PaymentsTM;
 import lk.ijse.studentsmanagement.to.Payment;
-import lk.ijse.studentsmanagement.to.Registration;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class PaymentsFormController implements Initializable {
@@ -76,7 +75,7 @@ public class PaymentsFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e);
+            new Alert(Alert.AlertType.INFORMATION, String.valueOf(e)).show();
         }
     }
 
@@ -98,8 +97,10 @@ public class PaymentsFormController implements Initializable {
                        if(isAdded){
                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Payment Success! Do you want to print invoice?", ButtonType.OK,ButtonType.NO);
                            TableLoader.loadRegistrationPayments(tblPayment,txtRegistrationId.getText());
-                           if(alert.getAlertType().equals(ButtonType.OK)){
-                               /////////
+                           alert.showAndWait();
+                           ButtonType result = alert.getResult();
+                           if(!result.getButtonData().isCancelButton()){
+                              printReport();
                            }
                            Navigation.navigate(Routes.PAYMENTS, pane);
                        }else{
@@ -118,8 +119,30 @@ public class PaymentsFormController implements Initializable {
                new Alert(Alert.AlertType.ERROR,"Enter Registration ID First!").show();
            }
        } catch (ClassNotFoundException | IOException | SQLException e) {
-           System.out.println(e);
+           new Alert(Alert.AlertType.INFORMATION, String.valueOf(e)).show();
        }
+    }
+    private void printReport() {
+        HashMap hashMap = new HashMap<>();
+
+        hashMap.put("paymentId", lblPaymentID.getText());
+        hashMap.put("regId", txtRegistrationId.getText());
+        hashMap.put("remark", txtRemark.getText());
+        hashMap.put("amount", txAmount.getText());
+        hashMap.put("total", txAmount.getText());
+        try {
+            JasperReport compileReport = JasperCompileManager.compileReport(
+                    JRXmlLoader.load(
+                            getClass().getResourceAsStream(
+                                    "/lk/ijse/studentsmanagement/report/PaymentReceipts.jrxml"
+                            )
+                    )
+            );
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, hashMap, new JREmptyDataSource());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.INFORMATION, String.valueOf(e)).show();
+        }
     }
 
     public void remarkOnMouseClick(MouseEvent mouseEvent) {

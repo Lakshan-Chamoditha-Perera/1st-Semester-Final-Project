@@ -11,7 +11,7 @@ public class Mail {
     public static void outMail(String msg, String to, String subject) throws MessagingException {
 
         //String to = "ruvinisubhasinghe200009@gmail.com";
-        String from = "perera.alc2000@gmail.com";
+        String from = "softwareengineeringIJSE@gmail.com";
         String host = "localhost";
 
         Properties properties = new Properties();
@@ -22,7 +22,7 @@ public class Mail {
 
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("perera.alc2000@gmail.com", "xrqtlzucdqluamaz");  // have to change some settings in SMTP
+                return new PasswordAuthentication("softwareengineeringIJSE@gmail.com", "boetfzbejjithdve");  // have to change some settings in SMTP
             }
         });
 
@@ -36,9 +36,9 @@ public class Mail {
         System.out.println("Sent... " + to);
     }
 
-    public static void outMail(String msg, ArrayList<String>to, String subject) throws MessagingException {
+    public static void outMail(String msg, ArrayList<String> to, String subject) throws MessagingException {
         for (String ele : to) {
-            outMail(msg, ele,subject);
+            outMail(msg, ele, subject);
         }
     }
 }

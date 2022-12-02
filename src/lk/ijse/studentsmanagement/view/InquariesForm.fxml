@@ -1,54 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" styleClass="sideBar" stylesheets="@../style/newStyle.css"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lk.ijse.studentsmanagement.controller.InquiriesFormController">
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" styleClass="sideBar" stylesheets="@../asserts/newStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.InquiriesFormController">
     <children>
-        <AnchorPane layoutX="28.0" layoutY="95.0" prefHeight="789.0" prefWidth="1510.0"
-                    style="-fx-background-color: grey; -fx-background-radius: 50;">
+        <AnchorPane layoutX="28.0" layoutY="95.0" prefHeight="789.0" prefWidth="1510.0" style="-fx-background-color: white; -fx-background-radius: 50;">
             <children>
-                <TableView fx:id="tblInquiries" layoutX="20.0" layoutY="211.0" prefHeight="517.0" prefWidth="1446.0">
+                <TableView fx:id="tblInquiries" layoutX="25.0" layoutY="211.0" prefHeight="517.0" prefWidth="1446.0" style="-fx-background-radius: 50;">
                     <columns>
-                        <TableColumn fx:id="colId" prefWidth="164.0" text="ID"/>
-                        <TableColumn fx:id="colName" prefWidth="191.0" text="Name"/>
-                        <TableColumn fx:id="colCity" prefWidth="138.0" text="City"/>
-                        <TableColumn fx:id="colMobileNumber" prefWidth="163.0" text="Mobile number"/>
-                        <TableColumn fx:id="colEmail" prefWidth="198.0" text="Email"/>
-                        <TableColumn fx:id="colGender" prefWidth="98.0" text="Gender"/>
-                        <TableColumn fx:id="colDate" editable="false" minWidth="0.0" prefWidth="117.0" text="Date"/>
-                        <TableColumn fx:id="colStatus" prefWidth="154.0" text="Status"/>
-                        <TableColumn fx:id="colButton" prefWidth="197.0" text="Button"/>
+                        <TableColumn fx:id="colId" prefWidth="164.0" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="191.0" text="Name" />
+                        <TableColumn fx:id="colCity" prefWidth="138.0" text="City" />
+                        <TableColumn fx:id="colMobileNumber" prefWidth="163.0" text="Mobile number" />
+                        <TableColumn fx:id="colEmail" prefWidth="344.0" text="Email" />
+                        <TableColumn fx:id="colGender" prefWidth="110.0" text="Gender" />
+                        <TableColumn fx:id="colDate" editable="false" minWidth="0.0" prefWidth="149.0" text="Date" />
+                        <TableColumn fx:id="colStatus" prefWidth="177.0" text="Status" />
                     </columns>
                 </TableView>
-                <JFXButton layoutX="561.0" layoutY="53.0" onAction="#btnSearchOnAction" prefHeight="59.0"
-                           prefWidth="239.0" style="-fx-background-color: #FF895C; -fx-background-radius: 20;"
-                           text="Search"/>
-                <Label layoutX="661.0" layoutY="157.0" prefHeight="52.0" prefWidth="259.0"
-                       style="-fx-font-size: 30; -fx-font-weight: bold; -fx-font-style: Ubuntu;"
-                       text="Inquiries Table"/>
-                <JFXButton id="btn-grad" layoutX="962.0" layoutY="54.0" onAction="#btnAddStdOnAction" prefHeight="52.0"
-                           prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #0081FF;"
-                           styleClass="-fx-" text="Add Students"/>
-                <JFXButton layoutX="1139.0" layoutY="54.0" onAction="#btnViewStdOnAction" prefHeight="52.0"
-                           prefWidth="152.0" style="-fx-background-color: #009700; -fx-background-radius: 20;"
-                           text="View  Detail"/>
-                <JFXButton layoutX="1334.0" layoutY="54.0" onAction="#btnUpdateStdOnAction" prefHeight="52.0"
-                           prefWidth="138.0" style="-fx-background-color: #DB0000; -fx-background-radius: 20;"
-                           text="Update Detail"/>
-                <JFXTextField fx:id="txtId" layoutX="73.0" layoutY="54.0" prefHeight="52.0" prefWidth="385.0"
-                              promptText="Enter ID Number"
-                              style="-fx-background-color: white; -fx-background-radius: 20;"/>
+                <Label layoutX="681.0" layoutY="157.0" prefHeight="52.0" prefWidth="259.0" style="-fx-font-size: 30; -fx-font-weight: bold; -fx-font-style: Ubuntu;" text="Inquiries Table" />
+                <JFXButton id="btn-grad" layoutX="376.0" layoutY="14.0" onAction="#btnAddStdOnAction" prefHeight="132.0" prefWidth="222.0" style="-fx-background-radius: 50; -fx-background-color: #0081FF;" styleClass="-fx-" text="Add Students" />
+                <JFXButton layoutX="675.0" layoutY="14.0" onAction="#btnViewStdOnAction" prefHeight="132.0" prefWidth="222.0" style="-fx-background-color: #009700; -fx-background-radius: 50;" text="View  Detail" />
+                <JFXButton layoutX="967.0" layoutY="14.0" onAction="#btnUpdateStdOnAction" prefHeight="132.0" prefWidth="222.0" style="-fx-background-color: LightBlue; -fx-background-radius: 50;" text="Update Detail" />
             </children>
         </AnchorPane>
-        <Label layoutX="11.0" layoutY="22.0" prefHeight="52.0" prefWidth="572.0"
-               style="-fx-text-fill: White; -fx-font-family: ubuntu mono; -fx-font-size: 50; -fx-font-weight: bold;"
-               text="MANAGE INQUIRIES"/>
+        <Label layoutX="11.0" layoutY="22.0" prefHeight="52.0" prefWidth="572.0" style="-fx-text-fill: White; -fx-font-family: ubuntu mono; -fx-font-size: 50; -fx-font-weight: bold;" text="MANAGE INQUIRIES" />
     </children>
 </AnchorPane>

@@ -79,10 +79,8 @@ public class CounselorDashboardController implements Initializable {
         setGreeting(lblGreetings,wishImageView);
         try {
             setCount();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 

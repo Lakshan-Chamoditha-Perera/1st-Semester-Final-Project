@@ -19,12 +19,14 @@ import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.tblModels.BatchTM;
 import lk.ijse.studentsmanagement.to.Batch;
 import lk.ijse.studentsmanagement.util.Navigation;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -98,9 +100,9 @@ public class AcademicManageBatchesForm implements Initializable {
         BatchTM selectedItem = tableBatches.getSelectionModel().getSelectedItem();
         try {
             if (selectedItem != null) {
-                if (txtFee.getText() != null) {
-                    if (cmbDate.getValue() != null) {
-                        if (txtCrowd.getText() != null) {
+                if (RegExPatterns.getDoublePattern().matcher(txtFee.getText()).matches()) {
+                    if (!cmbDate.getValue().isBefore(LocalDate.now())) {
+                        if (RegExPatterns.getIntPattern().matcher(txtCrowd.getText()).matches()) {
                             boolean isUpdated = update();
                             if (isUpdated) {
                                 new Alert(Alert.AlertType.INFORMATION, "Updated").showAndWait();

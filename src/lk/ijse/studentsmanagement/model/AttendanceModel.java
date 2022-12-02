@@ -27,4 +27,14 @@ public class AttendanceModel {
         }
         return null;
     }
+
+    public static boolean addAttendance(Attendance present) throws SQLException, ClassNotFoundException {
+        return
+                CrudUtil.execute("INSERT INTO attendance VALUES(?,?,?,?)",
+                present.getRegistrationId(),
+                present.getDate(),
+                present.getStatus(),
+                present.getBatchId()
+                );
+    }
 }

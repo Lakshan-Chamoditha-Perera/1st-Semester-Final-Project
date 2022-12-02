@@ -6,17 +6,19 @@ import com.sun.scenario.animation.AnimationPulse;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.studentsmanagement.comboLoad.TableLoader;
+import lk.ijse.studentsmanagement.tblModels.ExamTM;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static lk.ijse.studentsmanagement.util.TimeDate.localDateAndTime;
@@ -37,6 +39,23 @@ public class AcademicDashboardFormController implements Initializable {
     public JFXButton btnPayments;
     @FXML
     private AnchorPane mainPane;
+    @FXML
+    private TableView<ExamTM> tblExams;
+
+    @FXML
+    private TableColumn<?, ?> colSubjectID;
+
+    @FXML
+    private TableColumn<?, ?> colBatchId;
+
+    @FXML
+    private TableColumn<?, ?> colDescription;
+
+    @FXML
+    private TableColumn<?, ?> colDate;
+
+    @FXML
+    private TableColumn<?, ?> colTime;
 
     @FXML
     private JFXButton btnMails;
@@ -130,6 +149,22 @@ public class AcademicDashboardFormController implements Initializable {
         new FadeInLeftBig(btnPayments).play();
 
         new FadeInLeftBig(btnMails).play();
+       // colExamID.setCellValueFactory(new PropertyValueFactory<>("examId"));
+        colBatchId.setCellValueFactory(new PropertyValueFactory<>("batchId"));
+    //    colLab.setCellValueFactory(new PropertyValueFactory<>("lab"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("examDate"));
+        colSubjectID.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        try {
+            boolean isExamLoaded = TableLoader.loadAllExams(tblExams);
+            if (!isExamLoaded) {
+                new Alert(Alert.AlertType.INFORMATION, "No any exam scheduled yet").show();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

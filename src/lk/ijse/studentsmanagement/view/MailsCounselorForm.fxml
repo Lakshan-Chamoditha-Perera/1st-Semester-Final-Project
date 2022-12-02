@@ -12,7 +12,7 @@
         <AnchorPane layoutX="183.0" layoutY="131.0" prefHeight="672.0" prefWidth="1200.0" style="-fx-background-color: White; -fx-background-radius: 90;">
             <children>
                 <JFXButton layoutX="397.0" layoutY="416.0" onAction="#sendToRegisteredStudentOnAction" prefHeight="50.0" prefWidth="391.0" style="-fx-background-color: green; -fx-background-radius: 50;" text="to REGISTERED " />
-                <JFXButton layoutX="398.0" layoutY="473.0" onAction="#sendToInquiryOnAction" prefHeight="50.0" prefWidth="391.0" style="-fx-background-radius: 50; -fx-background-color: yellow;" text="to INQUIRY" />
+                <JFXButton fx:id="btnInq" layoutX="398.0" layoutY="473.0" onAction="#sendToInquiryOnAction" prefHeight="50.0" prefWidth="391.0" style="-fx-background-radius: 50; -fx-background-color: yellow;" text="to INQUIRY" />
                 <ImageView fitHeight="362.0" fitWidth="708.0" layoutX="396.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../asserts/email.png" />

@@ -61,7 +61,6 @@ public class InquiriesFormController implements Initializable {
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-      //  colButton.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         try {
             addToTable();
@@ -78,7 +77,6 @@ public class InquiriesFormController implements Initializable {
         ObservableList<InquiryTM> inquiryTMObservableList = FXCollections.observableArrayList();
 
         for (Inquiry ele: allInquires) {
-          //  JFXButton button = new JFXButton("Delete");
             inquiryTMObservableList.add(new InquiryTM(
                     ele.getStudentID(),
                     ele.getName(),

@@ -2,6 +2,7 @@ package lk.ijse.studentsmanagement.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.studentsmanagement.model.PaymentModel;
@@ -40,7 +41,7 @@ public class AcademicPaymentsFormController implements Initializable {
                     Double.parseDouble(lblInquiryPayments.getText())
             ));
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+           new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
         }
     }
 

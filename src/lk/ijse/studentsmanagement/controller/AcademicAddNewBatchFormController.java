@@ -13,7 +13,7 @@ import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.CourseModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Batch;
 import lk.ijse.studentsmanagement.to.Course;
 import lk.ijse.studentsmanagement.util.Navigation;
@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static lk.ijse.studentsmanagement.comboLoad.ComboLoader.loadCoursesList;

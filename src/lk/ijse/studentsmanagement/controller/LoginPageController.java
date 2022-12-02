@@ -9,13 +9,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.model.SystemUserModel;
+import lk.ijse.studentsmanagement.smtp.Mail;
 import lk.ijse.studentsmanagement.to.SystemUser;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -27,7 +33,7 @@ public class LoginPageController implements Initializable {
     public Label lblUsername;
 
     public void btnClickOnAction(ActionEvent actionEvent) throws IOException {
-        /*if (pattern[0].matcher(txtUserName.getText()).matches()){
+        if (pattern[0].matcher(txtUserName.getText()).matches()){
             if(pattern[1].matcher(txtPassword.getText()).matches()){
                 login();
             }else {
@@ -37,10 +43,6 @@ public class LoginPageController implements Initializable {
         }else{
             txtUserName.setFocusColor(Color.valueOf("RED"));
             txtUserName.requestFocus();
-        }*/
-        switch (txtUserName.getText()){
-            case "co" : Navigation.navigate(Routes.COUNSELOR,pane); break;
-            case "ac":Navigation.navigate(Routes.ACADEMIC,pane);break;
         }
     }
 
@@ -52,11 +54,19 @@ public class LoginPageController implements Initializable {
                     if (systemUser.getPassword().equals(txtPassword.getText())) {
                         switch (systemUser.getUserName()) {
 
-                            case "co":
+                            case "counselor":
+                                Mail.outMail(
+                                        "New login to system." +
+                                                "\n\t Time: "+
+                                                Date.valueOf(LocalDate.now())+
+                                                " : "+
+                                                Time.valueOf(LocalTime.now()),
+                                        "perera.alc2000@gmail.com",
+                                        "Alert!");
                                 Navigation.navigate(Routes.COUNSELOR, pane);
                                 break;
 
-                            case "ac":
+                            case "admin":
                                 Navigation.navigate(Routes.ACADEMIC, pane);
                                 break;
                         }
@@ -69,8 +79,8 @@ public class LoginPageController implements Initializable {
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid User").show();
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e);
+        } catch (SQLException | ClassNotFoundException |MessagingException e) {
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 

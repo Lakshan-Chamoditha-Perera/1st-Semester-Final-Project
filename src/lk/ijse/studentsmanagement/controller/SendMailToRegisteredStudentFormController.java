@@ -16,6 +16,7 @@ import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.RegistrationModel;
 import lk.ijse.studentsmanagement.smtp.Mail;
 import lk.ijse.studentsmanagement.to.Batch;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 
 import javax.mail.MessagingException;
 import java.net.URL;
@@ -70,7 +71,7 @@ public class SendMailToRegisteredStudentFormController implements Initializable 
                 sendToGroup();
             }
         } catch (SQLException | MessagingException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+           new Alert(Alert.AlertType.ERROR,String.valueOf(e)).show();
         }
     }
 
@@ -92,7 +93,7 @@ public class SendMailToRegisteredStudentFormController implements Initializable 
     }
 
     private void sendToStudent() throws SQLException, ClassNotFoundException, MessagingException {
-        if (!txtID.getText().isEmpty()) {
+        if (RegExPatterns.getRegistrationIdPattern().matcher(txtID.getText()).matches()) {
             String registrationEmail = RegistrationModel.getRegistrationEmail(txtID.getText());
             if (registrationEmail != null) {
                 txtEmail.setText(registrationEmail);

@@ -1,7 +1,6 @@
 package lk.ijse.studentsmanagement.controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -13,12 +12,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import lk.ijse.studentsmanagement.model.InquiryModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Inquiry;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
 
-import javax.swing.text.rtf.RTFEditorKit;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

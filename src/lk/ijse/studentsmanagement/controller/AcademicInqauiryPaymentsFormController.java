@@ -9,10 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
+import lk.ijse.studentsmanagement.db.DBconnection;
 import lk.ijse.studentsmanagement.tblModels.TestPaymentsTM;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AcademicInqauiryPaymentsFormController implements Initializable {
@@ -48,7 +53,7 @@ public class AcademicInqauiryPaymentsFormController implements Initializable {
 
     @FXML
     void btnPrintOnAction(ActionEvent event) {
-
+        printReport();
     }
 
     @FXML
@@ -73,6 +78,24 @@ public class AcademicInqauiryPaymentsFormController implements Initializable {
             }
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e);
+        }
+    }
+    private void printReport() {
+
+        try {
+            JasperReport compileReport = JasperCompileManager.compileReport(
+                    JRXmlLoader.load(
+                            getClass().getResourceAsStream(
+                                    "/lk/ijse/studentsmanagement/report/IQTestPaymentReport.jrxml"
+                            )
+                    )
+            );
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport,null, DBconnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.INFORMATION, String.valueOf(e)).show();
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e+"").show();
         }
     }
 }

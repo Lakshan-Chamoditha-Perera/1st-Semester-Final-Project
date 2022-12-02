@@ -24,7 +24,6 @@ public class InquiryModel {
                         inquiry.getStatus()
             )){
                 if (TestPaymentModel.addTestPayment(inquiry.getTestPayment())) {
-
                     if(InquiryIQTestDetailModel.addInquiryTestDetail(inquiry.getTestPayment().getInquiryIQTestDetail())){
 
                         DBconnection.getInstance().getConnection().commit();
@@ -101,5 +100,13 @@ public class InquiryModel {
         ResultSet resultSet=CrudUtil.execute("SELECT COUNT(studentID) FROM inquiry WHERE status = ?", "not-registered");
         resultSet.next();
         return  Integer.parseInt(resultSet.getString(1));
+    }
+
+    public static Inquiry getEmail(Inquiry inquiry) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT email FROM inquiry WHERE studentID = ?", inquiry.getStudentID());
+        if(resultSet.next()){
+            return new Inquiry(inquiry.getStudentID(), resultSet.getString(1));
+        }
+        return null;
     }
 }

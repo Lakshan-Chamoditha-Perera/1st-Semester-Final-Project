@@ -10,31 +10,35 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import lk.ijse.studentsmanagement.comboLoad.ComboLoader;
 import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.GardianModel;
 import lk.ijse.studentsmanagement.model.RegistrationModel;
 import lk.ijse.studentsmanagement.qr.QRGenerator;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
+import lk.ijse.studentsmanagement.smtp.Mail;
 import lk.ijse.studentsmanagement.to.Batch;
 import lk.ijse.studentsmanagement.to.Gardian;
 import lk.ijse.studentsmanagement.to.Payment;
 import lk.ijse.studentsmanagement.to.Registration;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static lk.ijse.studentsmanagement.autogenerater.AutoGenerateID.setLblRegPaymentID;
@@ -227,58 +231,64 @@ public class EnrollmentsFormController implements Initializable {
                             isAdded = GardianModel.addGardianT(gardian);
                         } else {
                             //add without parent
-
                             System.out.println("add without parent");
                             registration.setGardianId(txtParentID.getText());
                             registration.setPayment(payment);
                             isAdded = RegistrationModel.registrationPaymentTransaction(registration);
                         }
-                        alertAndGenerateQRCode(isAdded, registration);
+                        if (isAdded) alertGenerateQRCodeAndPrintBill(registration);
                     } else {
-                        new Alert(Alert.AlertType.ERROR, "Invalid Payment").show();
+                        new Alert(Alert.AlertType.ERROR, "Invalid Payment").showAndWait();
                     }
                 } else {
-                    new Alert(Alert.AlertType.ERROR, "Enter Guardian Details").show();
+                    new Alert(Alert.AlertType.ERROR, "Enter Guardian Details").showAndWait();
                 }
-            }
-        } catch (SQLException | IOException | ClassNotFoundException | WriterException e) {
-            System.out.println(e);
-        }
-    }
-
-    private void alertAndGenerateQRCode(boolean isAdded, Registration registration) throws IOException, WriterException {
-        if (isAdded) {
-            System.out.println("All DONE");
-            ButtonType print_bill = new ButtonType("Print Bill");
-            ButtonType generate_qr_code = new ButtonType("Send QR Code");
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Student Added", print_bill, generate_qr_code);
-            alert.showAndWait();
-            ButtonType result = alert.getResult();
-            if (result.equals(generate_qr_code)) {
-                QRGenerator.getGenerator(registration.toString());
-            } else if (result.equals(print_bill)) {
-
-            }
-            Navigation.navigate(Routes.ENROLLMENTS, pane);
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Student Not added").show();
-        }
-
-    }
-
-    private void add(Gardian gardian) {
-        boolean isAdded = false;
-        try {
-            isAdded = GardianModel.addGardianT(gardian);
-            String text = "NOT";
-            if (isAdded) {
-                text = "ADDED";
                 Navigation.navigate(Routes.ENROLLMENTS, pane);
             }
-            new Alert(Alert.AlertType.INFORMATION, text).show();
         } catch (SQLException | IOException | ClassNotFoundException | WriterException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
+        }
+    }
+
+    private void alertGenerateQRCodeAndPrintBill(Registration registration) throws IOException, WriterException {
+        printReport();
+        QRGenerator.getGenerator(registration.toString());
+        String msg2 = "\n\n\n\n\nThis email and any attachment transmitted herewith are confidential and is intended solely for the use of the individual or entity to which they are addressed and may contain information that is privileged or otherwise protected from disclosure. If you are not the intended recipient, you are hereby notified that disclosing, copying, distributing, or taking any action in reliance on this email and the information it contains is strictly prohibited. If you have received this email in error, please notify the sender immediately by reply email and discard all of its contents by deleting this email and the attachment, if any, from your system";
+        String msg = "\t \t \t WELCOME TO INSTITUTE OF JAVA AND SOFTWARE ENGINEERING \n" +
+                "Dear "+registration.getName()+", Greetings from the Student Enrollment Unit!\n\n" +
+                "Your Students ID is : " + registration.getRegistrationId() +
+                "\n\nThank You!..."+msg2;
+        String subject = "Welcome to Institute of Software Engineering";
+        try {
+            Mail.outMail(msg,registration.getEmail(),subject);
+        } catch (MessagingException e) {
+            new Alert(Alert.AlertType.INFORMATION,String.valueOf(e)).show();
+        }
+    }
+
+    private void printReport() {
+        HashMap hashMap = new HashMap<>();
+
+        hashMap.put("receptNo", lblPaymentID.getText());
+        hashMap.put("regId", lblRegID.getText());
+        hashMap.put("name", txtStdName.getText());
+        hashMap.put("batchID", txtBatch.getText());
+        hashMap.put("remark", txtRemark.getText());
+        hashMap.put("amount", txtAmount.getText());
+        hashMap.put("total", txtAmount.getText());
+        hashMap.put("nic", txtStdNic.getText());
+        try {
+            JasperReport compileReport = JasperCompileManager.compileReport(
+                    JRXmlLoader.load(
+                            getClass().getResourceAsStream(
+                                    "/lk/ijse/studentsmanagement/report/RegistrationReceipt.jrxml"
+                            )
+                    )
+            );
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, hashMap, new JREmptyDataSource());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.INFORMATION, String.valueOf(e)).show();
         }
     }
 
@@ -464,8 +474,13 @@ public class EnrollmentsFormController implements Initializable {
     }
 
     @FXML
-    void cmbCourseOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        Batch lastOngoingBatch = BatchModel.getLastOngoingBatch(cmbCourse.getValue());
+    void cmbCourseOnAction(ActionEvent event){
+        Batch lastOngoingBatch = null;
+        try {
+            lastOngoingBatch = BatchModel.getLastOngoingBatch(cmbCourse.getValue());
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
+        }
         if (lastOngoingBatch != null) {
             txtBatch.setText(lastOngoingBatch.getId());
             activate(false);
@@ -613,9 +628,6 @@ public class EnrollmentsFormController implements Initializable {
         lblInvalidRemark.setVisible(false);
     }
 
-    public void clickOn(ActionEvent actionEvent) {
-        //new FileChooser()
-    }
 }
 
 

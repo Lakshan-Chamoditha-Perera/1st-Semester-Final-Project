@@ -13,9 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
-import lk.ijse.studentsmanagement.model.BatchModel;
 import lk.ijse.studentsmanagement.model.RegistrationModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.to.Registration;
 import lk.ijse.studentsmanagement.util.Navigation;
 import lk.ijse.studentsmanagement.util.Routes;
@@ -131,7 +130,7 @@ public class AcademicViewStudentsDetailsFormController implements Initializable 
                     ));
             String text = (isUpdated) ? "Updated Done" : "Error";
 
-            new Alert(Alert.AlertType.INFORMATION, text).show();
+            new Alert(Alert.AlertType.INFORMATION, text).showAndWait();
             Navigation.navigate(Routes.ACADEMIC_VIEW_STUDENT_DETAILS, pane);
         } catch (SQLException | ClassNotFoundException | IOException e) {
             new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();

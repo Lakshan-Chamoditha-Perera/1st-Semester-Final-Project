@@ -11,7 +11,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
+import lk.ijse.studentsmanagement.db.DBconnection;
 import lk.ijse.studentsmanagement.tblModels.PaymentsTM;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,13 +54,29 @@ public class AcademicRegistrationPaymentsFormController implements Initializable
     private Button btnSearch;
 
     @FXML
-    void btnPrintOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-
+    void btnPrintOnAction(ActionEvent event) {
+        printReport();
     }
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
 
+    }
+    private void printReport() {
+
+        try {
+            JasperReport compileReport = JasperCompileManager.compileReport(
+                    JRXmlLoader.load(
+                            getClass().getResourceAsStream(
+                                    "/lk/ijse/studentsmanagement/report/RegistrationPaymentReport.jrxml"
+                            )
+                    )
+            );
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport,null, DBconnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (SQLException | ClassNotFoundException |JRException e) {
+            new Alert(Alert.AlertType.ERROR, e+"").show();
+        }
     }
 
     @Override
@@ -67,14 +87,12 @@ public class AcademicRegistrationPaymentsFormController implements Initializable
         colRemark.setCellValueFactory(new PropertyValueFactory<>("remark"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-
         boolean isLoaded = false;
         try {
             isLoaded = TableLoader.loadAllPayments(tblPayments);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e);
         }
-
         if(!isLoaded){
             new Alert(Alert.AlertType.INFORMATION, "Payments Not added yet").show();
         }

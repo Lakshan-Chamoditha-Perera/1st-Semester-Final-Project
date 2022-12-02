@@ -19,9 +19,11 @@ import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.IQTestModel;
 import lk.ijse.studentsmanagement.model.InquiryModel;
+import lk.ijse.studentsmanagement.smtp.Mail;
 import lk.ijse.studentsmanagement.tblModels.IQTestTM;
 import lk.ijse.studentsmanagement.to.IQTest;
 import lk.ijse.studentsmanagement.util.Navigation;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
@@ -29,6 +31,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AcademicScheduleIQTestFormController implements Initializable {
@@ -61,8 +64,8 @@ public class AcademicScheduleIQTestFormController implements Initializable {
     void btnSheduleOnAction(ActionEvent event) {
         try {
             if (txtLabId.getText() != null) {
-                if (txtAmount.getText() != null) {
-                    if (cmbDate.getValue() != null) {
+                if (RegExPatterns.getDoublePattern().matcher(txtAmount.getText()).matches()) {
+                    if (!cmbDate.getValue().isBefore(LocalDate.now())) {
                         if (cmbTime.getValue() != null) {
                             boolean isAdded = IQTestModel.addIQTest(
                                     new IQTest(
@@ -155,16 +158,12 @@ public class AcademicScheduleIQTestFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "Select Exam First!").show();
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
-            System.out.println(e);
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 
     public void tblIqTestOnMouseClicked(MouseEvent mouseEvent) {
-        if (tblIqTest.getSelectionModel().getSelectedItem() != null) {
-            btnDelete.setDisable(false);
-        } else {
-            btnDelete.setDisable(true);
-        }
+        btnDelete.setDisable(tblIqTest.getSelectionModel().getSelectedItem() == null);
 
     }
 }

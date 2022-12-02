@@ -68,7 +68,7 @@ public class QRScanner implements Runnable, ThreadFactory {
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
             result = new MultiFormatReader().decode(bitmap);
-
+            System.out.println(result);
             if (result != null) {
                 System.out.println(result.getText());
                 AcademicAttendanceFormController.scan = result.getText();

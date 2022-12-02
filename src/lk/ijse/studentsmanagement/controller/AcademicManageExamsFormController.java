@@ -20,6 +20,7 @@ import lk.ijse.studentsmanagement.model.ExamModel;
 import lk.ijse.studentsmanagement.tblModels.ExamTM;
 import lk.ijse.studentsmanagement.to.Exam;
 import lk.ijse.studentsmanagement.util.Navigation;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.util.Routes;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AcademicManageExamsFormController implements Initializable {
@@ -49,8 +51,6 @@ public class AcademicManageExamsFormController implements Initializable {
     public JFXButton btnDelete;
     public JFXButton btnUpdate;
 
-    @FXML
-    private JFXTextField txtExamID;
 
     @FXML
     private JFXTextField txtDescription;
@@ -62,16 +62,8 @@ public class AcademicManageExamsFormController implements Initializable {
     private JFXTextField txtLab;
 
     @FXML
-    private JFXTextField txtBatchId;
-
-    @FXML
-    private JFXTextField txtSubject;
-
-    @FXML
     private Label lblExamID;
 
-    @FXML
-    private JFXTextField txtCourseId;
     @FXML
     private TableView<ExamTM> tblExams;
 
@@ -107,8 +99,8 @@ public class AcademicManageExamsFormController implements Initializable {
     void btnUpdateClickOnAction(ActionEvent event) {
         try {
             if (lblExamID.getText() != null) {
-                if (cmbDate.getValue() != null) {
-                    if (txtDescription.getText() != null) {
+                if (!cmbDate.getValue().isBefore(LocalDate.now())) {
+                    if (RegExPatterns.getNamePattern().matcher(txtDescription.getText()).matches()) {
                         if (txtLab.getText() != null) {
                             boolean isUpdated = ExamModel.updateExamDetails(
                                     new Exam(
@@ -121,25 +113,21 @@ public class AcademicManageExamsFormController implements Initializable {
                                             Time.valueOf(cmbTime.getValue())
                                     )
                             );
-
                             if (isUpdated) {
                                 new Alert(Alert.AlertType.INFORMATION, "Updated").showAndWait();
                                 Navigation.navigate(Routes.ACADEMIC_MANAGE_EXAMS, pane);
                             } else {
                                 new Alert(Alert.AlertType.ERROR, "ERROR").show();
                             }
-
-
                         } else {
-
+                            new Alert(Alert.AlertType.ERROR, "Invalid Lab name").show();
                         }
                     } else {
-
+                        new Alert(Alert.AlertType.ERROR, "Invalid Description!").show();
                     }
                 } else {
-
+                    new Alert(Alert.AlertType.ERROR, "Select valid date!").show();
                 }
-
             } else {
                 new Alert(Alert.AlertType.ERROR, "Select Exam First!").show();
             }

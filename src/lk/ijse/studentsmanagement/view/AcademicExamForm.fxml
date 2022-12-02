@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" styleClass="sideBar" stylesheets="@../style/newStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.AcademicExamFormController">
+<AnchorPane fx:id="pane" prefHeight="978.0" prefWidth="1544.0" styleClass="sideBar" stylesheets="@../asserts/newStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentsmanagement.controller.AcademicExamFormController">
     <children>
         <JFXButton fx:id="btnAddResults" layoutX="851.0" layoutY="129.0" onAction="#btnAddMarksOnAction" prefHeight="198.0" prefWidth="551.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="ADD Results">
             <font>

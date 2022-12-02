@@ -19,7 +19,7 @@
                     style="-fx-background-color: white; -fx-background-radius: 50;">
             <children>
                 <TableView fx:id="tblIQTestDetail" layoutX="19.0" layoutY="52.0" prefHeight="217.0" prefWidth="587.0"
-                           stylesheets="@../style/newStyle.css">
+                           stylesheets="@../asserts/newStyle.css">
                     <columns>
                         <TableColumn fx:id="colTestID" prefWidth="112.0" text="Test ID"/>
                         <TableColumn fx:id="colTestDate" prefWidth="121.0" text="Test Date"/>
@@ -40,7 +40,7 @@
                     style="-fx-background-color: white; -fx-background-radius: 50;">
             <children>
                 <TableView fx:id="tblIQTestInquiryDetail" layoutX="102.0" layoutY="93.0" prefHeight="361.0"
-                           prefWidth="865.0" stylesheets="@../style/newStyle.css">
+                           prefWidth="865.0" stylesheets="@../asserts/newStyle.css">
                     <columns>
                         <TableColumn fx:id="colStdID" prefWidth="272.0000305175781" text="Student ID"/>
                         <TableColumn fx:id="colExamID" prefWidth="258.0" text="Exam ID"/>

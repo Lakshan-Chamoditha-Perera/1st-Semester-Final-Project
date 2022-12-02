@@ -66,15 +66,9 @@ public class AcademicViewResultsFormController implements Initializable {
     void btnViewOnAction(ActionEvent event) {
         try {
             boolean isLoaded = TableLoader.loadRegistrationEaxmResults(tblResults, cmbExam.getSelectionModel().getSelectedItem());
-            if (isLoaded) {
-                System.out.println(1);
-            } else {
-                System.out.println(0);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 
@@ -101,7 +95,7 @@ public class AcademicViewResultsFormController implements Initializable {
         try {
             boolean isBatchesLoaded = ComboLoader.loadBatchIDS(cmbBatch);
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 
@@ -115,7 +109,7 @@ public class AcademicViewResultsFormController implements Initializable {
                 }
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 
@@ -138,10 +132,8 @@ public class AcademicViewResultsFormController implements Initializable {
                                 cmbBatch.getSelectionModel().getSelectedItem()
                         )));
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, String.valueOf(e)).show();
         }
     }
 }

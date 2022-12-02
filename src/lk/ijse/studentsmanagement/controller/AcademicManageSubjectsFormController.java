@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.studentsmanagement.autogenerater.AutoGenerateID;
 import lk.ijse.studentsmanagement.comboLoad.TableLoader;
 import lk.ijse.studentsmanagement.model.SubjectModel;
-import lk.ijse.studentsmanagement.regex.RegExPatterns;
+import lk.ijse.studentsmanagement.util.RegExPatterns;
 import lk.ijse.studentsmanagement.tblModels.SubjectTM;
 import lk.ijse.studentsmanagement.to.Subject;
 import lk.ijse.studentsmanagement.util.Navigation;
@@ -25,8 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import static com.sun.prism.paint.Color.RED;
 
 public class AcademicManageSubjectsFormController implements Initializable {
 
@@ -127,7 +125,6 @@ public class AcademicManageSubjectsFormController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
     }
 
     @Override
