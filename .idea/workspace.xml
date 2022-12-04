@@ -1,86 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89daeda8-d7d6-4bac-93f2-f72c7c634145" name="Changes" comment="Dec1">
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/registrationQRCodesIT000001,200076900989,63GDSE,GDSE,757621274v,Ruvinni Rangathara,Panadura,Panadura,12500,0714066967,ruvini925@gmail.com,2022-12-12,Female,Taxilla,Advanced Level,Active.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/asserts/8610313_5917.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/asserts/Screenshot from 2022-12-02 16-13-58.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/asserts/pay.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/report/IQTestPaymentReport.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/report/OfficialReceipt.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/report/PaymentReceipts.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/report/RegistrationPaymentReport.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/report/RegistrationReceipt.jrxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+    <list default="true" id="89daeda8-d7d6-4bac-93f2-f72c7c634145" name="Changes" comment="Dec3">
+      <change afterPath="$PROJECT_DIR$/src/lk/ijse/registrationQRCodesIT000002,200011200960,63GDSE,GDSE,757621274v,Navod,Panadura,Panadura,12500,0711111111,navodsachintha@gmail.com,2000-05-03,Male,Royal ,Advanced Level,Active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lk/ijse/registrationQRCodesIT000003,200107600651,1RWAD,RWAD,757621274v,Ishanka,Panadura,Panadura,12500,0711111111,ishankachanuka.1@gmail.com,2000-12-20,Male,school,Advanced Level,Active.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/registrationQRCodesIT000002.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/registrationQRCodesIT000003,200012401163,1DEP,DEP,757621274v,shan perera,Pamunugama,Panadura,12500,0714066967,shan@gmail.com,2020-11-20,Male,Royal college,Ordinary Level,Active.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicAddNewBatchFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicAddNewBatchFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicAddResultsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicAddResultsFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicAttendanceFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicAttendanceFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicDashboardFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicDashboardFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicInqauiryPaymentsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicInqauiryPaymentsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicLoginControlFormController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageBatchesForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageBatchesForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageExamsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageExamsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageSubjectsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicManageSubjectsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicPaymentsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicPaymentsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicRegistrationPaymentsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicRegistrationPaymentsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicScheduleExamFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicScheduleExamFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicScheduleIQTestFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicScheduleIQTestFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicStudentsFormContorller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicStudentsFormContorller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicTranscriptFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicTranscriptFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicViewResultsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicViewResultsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicViewStudentsDetailsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AcademicViewStudentsDetailsFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AddInquiryFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/AddInquiryFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/CounselorDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/CounselorDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/EnrollmentsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/EnrollmentsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/FormController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/IQTestsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/IQTestsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/InquiriesFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/InquiriesFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/LoginPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/MailsCounselorFormControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/MailsCounselorFormControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/PaymentsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/PaymentsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/SendMailToRegisteredStudentFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/SendMailToRegisteredStudentFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/UpdateInquaryFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/UpdateInquaryFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/ViewStudentDetailsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/controller/ViewStudentDetailsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/model/AttendanceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/model/AttendanceModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/model/InquiryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/model/InquiryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/qr/QRGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/qr/QRGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/qr/QRScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/qr/QRScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/regex/RegExPatterns.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/report/InquairyPaymentReceipt.jrxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/db/DBconnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/db/DBconnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/smtp/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/smtp/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/style/newStyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/tblModels/IQTestTM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/tblModels/IQTestTM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/to/Inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/to/Inquiry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddIQtestMarksForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddIQtestMarksForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddNewBatchForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddNewBatchForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddResultsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddResultsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddSubjectToCourseForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAddSubjectToCourseForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAttendanceForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicAttendanceForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicDashboardForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicDashboardForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicExamForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicExamForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicInqauiryPaymentsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicInqauiryPaymentsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicLoginControlForm.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageBatchesForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageBatchesForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageExamsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageExamsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageSubjectsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicManageSubjectsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicPaymentsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicPaymentsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicRegistrationPaymentsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicRegistrationPaymentsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicScheduleExamForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicScheduleExamForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicSheduleIQTestForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicSheduleIQTestForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicTranscriptForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicTranscriptForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewResultsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewResultsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewStudentsDetailsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicViewStudentsDetailsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/CmjdForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/CmjdForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/CounsilorDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/CounsilorDashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/DepForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/DepForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/GdseForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/GdseForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/IQTestsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/IQTestsForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/InquariesForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/InquariesForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/MailsCounselorForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/MailsCounselorForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/RwadForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/RwadForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicStudentsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/studentsmanagement/view/AcademicStudentsForm.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +70,7 @@
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;public&quot;,
     &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/shan/Desktop/StudentsManagementSystem/src/lk/ijse/studentsmanagement/report&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/shan/Desktop/RangaBeautySalon&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
@@ -349,6 +279,11 @@
       <workItem from="1669982447803" duration="3043000" />
       <workItem from="1669992262530" duration="5268000" />
       <workItem from="1670001041712" duration="385000" />
+      <workItem from="1670005859052" duration="2179000" />
+      <workItem from="1670038569335" duration="630000" />
+      <workItem from="1670041973097" duration="2800000" />
+      <workItem from="1670053163046" duration="2991000" />
+      <workItem from="1670064172418" duration="1210000" />
     </task>
     <task id="LOCAL-00001" summary="milestone-1">
       <created>1668139955032</created>
@@ -434,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669857795402</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Dec3">
+      <created>1670007555982</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1670007555982</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +413,8 @@
     <MESSAGE value="nov 22" />
     <MESSAGE value="nov 24" />
     <MESSAGE value="Dec1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dec1" />
+    <MESSAGE value="Dec3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dec3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

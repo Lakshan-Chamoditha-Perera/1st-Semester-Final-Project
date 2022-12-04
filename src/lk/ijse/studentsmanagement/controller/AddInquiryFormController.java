@@ -191,7 +191,7 @@ public class AddInquiryFormController implements Initializable {
                     "                Payment Date " + LocalDate.now() +
                     "\nNIC   :" + txtId.getText() +
                     "\nTotal Amount = Rs." + Double.parseDouble(lblAmount.getText()) +
-                    "\n \n----YOUR TEST DETAILS----" +
+                    "  PAID\n \n----YOUR TEST DETAILS----" +
                     "\nTEST ID    : " + lblTestID.getText() +
                     "\nDate       : " + cmbExamDates.getValue() +
                     "\nLab        : " + lblTestLab.getText() +

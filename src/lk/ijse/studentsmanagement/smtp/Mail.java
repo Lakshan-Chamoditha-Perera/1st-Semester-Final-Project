@@ -11,6 +11,8 @@ public class Mail {
     public static void outMail(String msg, String to, String subject) throws MessagingException {
 
         //String to = "ruvinisubhasinghe200009@gmail.com";
+        //String from = "perera.alc2000@gmail.com";
+        //
         String from = "softwareengineeringIJSE@gmail.com";
         String host = "localhost";
 

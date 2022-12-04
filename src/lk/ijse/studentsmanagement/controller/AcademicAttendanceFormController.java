@@ -80,20 +80,20 @@ public class AcademicAttendanceFormController implements Initializable {
         colBatch.setCellValueFactory(new PropertyValueFactory<>("batchID"));
         lblInvalidID.setVisible(false);
 
-//        StackPane stackPane = new StackPane();
-//        stackPane.getChildren().add(qrScanner.getVideoPanel());
-//        Stage stage = new Stage();
-//
-//
-//        stage.setScene(new Scene(stackPane, 800, 600));
-//        stage.show();
-//        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//            @Override
-//            public void handle(WindowEvent event) {
-//                QRScanner.webcam.close();
-//                qrScanner.thread.stop();
-//            }
-//        });
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().add(qrScanner.getVideoPanel());
+        Stage stage = new Stage();
+
+
+        stage.setScene(new Scene(stackPane, 800, 600));
+        stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                QRScanner.webcam.close();
+                qrScanner.thread.stop();
+            }
+        });
 
         try {
             boolean isLoaded = loadAttendanceTable(Date.valueOf(LocalDate.now()));
